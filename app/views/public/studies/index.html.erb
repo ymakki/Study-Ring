@@ -2,33 +2,24 @@
   <%= render 'layouts/errors', obj: @study %>
   <div class='row'>
     <div class='col-md-3'>
-      <table class='table table-hover table-inverse'>
-        <thead>
-          <tr>
-            <th><%= current_user.name %></th>
-          </tr>
-          <tr>
-            <th>記録する</th>
-          </tr>
-          <tr>
-            <th>ユーザーを探す</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @studies.each do |study| %>
-            <tr>
-              <td>
-                <%= link_to(study.user) do %>
-                  <%= image_tag study.user.get_profile_image, size:'50x50' %>
-                <% end %>
-              </td>
-              <td><%= link_to study.title, study_path(study), class: "study_#{study.id}" %></td>
-              <td><%= study.body %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
+      <%= render 'side', study: @study %>
     </div>
-    <%= link_to '+ 新しい教材を登録', new_study_path %>
+    <div class='col-md-8 offset-md-1'>
+      <h2>記録する</h2>
+      <table>
+        <% @studies.each do |study| %>
+        <tr>
+          <td>
+            <%= link_to(study.user) do %>
+              <%= image_tag study.user.get_profile_image, size:'50x50' %>
+            <% end %>
+          </td>
+          <td><%= link_to study.title, study_path(study), class: "study_#{study.id}" %></td>
+          <td><%= study.body %></td>
+        </tr>
+        <% end %>
+      </table>
+      <%= link_to '+ 新しい教材を登録', new_study_path %>
+    </div>
   </div>
 </div>

@@ -9,11 +9,12 @@ class Public::StudiesController < ApplicationController
   end
 
   def new
+    @study = Study.new
   end
 
   def create
     @study = Study.new(study_params)
-    @Study.user_id = current_user.id
+    @study.user_id = current_user.id
     if @study.save
       redirect_to study_path(@study), notice: "記録しました"
     else
@@ -44,7 +45,7 @@ class Public::StudiesController < ApplicationController
   private
 
   def study_params
-    params.require(:study).permit(:title, :body, :status)
+    params.require(:study).permit(:user_id, :title, :body, :status, :image)
   end
 
   def ensure_correct_user
