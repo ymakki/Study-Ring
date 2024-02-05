@@ -14,4 +14,11 @@ class Study < ApplicationRecord
     (image.attached?) ? image : 'default_image.jpg'
   end
 
+  # enumステータス
+  enum status: {
+    studying: 0,
+    stand_by: 1,
+    finish: 2,
+  }
+
 end

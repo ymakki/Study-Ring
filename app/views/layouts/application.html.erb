@@ -17,10 +17,6 @@
     <% else %>
       <%= render "layouts/public_header" %>
     <% end %>
-
-    <% if request.fullpath.include? "users/guest_sign_in" %>
-      <%= render "layouts/guest_header" %>
-    <% end %>
     <main>
       <%= flash[:notice] %>
       <%= yield %>
