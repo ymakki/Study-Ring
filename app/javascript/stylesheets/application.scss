@@ -1,1 +1,70 @@
 @use '~bootstrap/scss/bootstrap';
+
+body {
+  background-color: #FFF9E6;
+  padding-bottom: 80px;
+  margin-bottom: 0;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #0A6651;
+  height: 100px;
+  z-index: 1000;
+  span {
+    font-family:'Times New Roman';
+    font-size: 40px;
+  }
+  ul {
+    font-family:'Times New Roman';
+    font-size: 20px;
+  }
+}
+
+nav {
+  background: #0A6651;
+  height: 100px;
+}
+
+.container {
+  h2 {
+    font-weight:bold;
+    color:#A07B35;
+    font-family: serif;
+  }
+  .col-lg-12 {
+    padding: 20px;
+    margin-bottom: 10px;
+    border: 5px double #A07B35;
+    background-color: #fffaf0
+  }
+  .col-lg-7 {
+    width: 170px;
+    height: 40px;
+    border-radius: 12px;
+  }
+}
+
+
+main {
+  padding-top: 120px;
+  margin-bottom: 50px;
+}
+
+footer {
+  background: #0A6651;
+  height: 80px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  .text{
+    color: white;
+    line-height: 80px;
+    text-align: center;
+    font-family:'Times New Roman';
+    font-size: 20px;
+  }
+}
+

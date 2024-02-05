@@ -2,7 +2,6 @@
 <html>
   <head>
     <title>StudyRing</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -12,7 +11,24 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= yield %>
+   <body>
+    <% if request.fullpath.include? "/admin" %>
+      <%= render "layouts/admin_header" %>
+    <% else %>
+      <%= render "layouts/public_header" %>
+    <% end %>
+
+    <% if request.fullpath.include? "users/guest_sign_in" %>
+      <%= render "layouts/guest_header" %>
+    <% end %>
+    <main>
+      <%= flash[:notice] %>
+      <%= yield %>
+    </main>
+    <footer>
+      <div class="text">
+        Copyright © Infratop Inc. All Rights Reserved.
+      </div>
+    </footer>
   </body>
 </html>

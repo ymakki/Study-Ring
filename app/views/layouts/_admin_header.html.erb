@@ -1,0 +1,31 @@
+<header>
+  <nav class= "navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+      <div class="logo-section d-flex justify-content-start">
+        <a class="navbar-brand" href="/" ><span>StudyRing</span></a>
+      </div>
+
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ml-auto">
+          <% if admin_signed_in? %>
+            <li>
+              <%= link_to admin_users_path, class: "btn btn-outline-light rounded-pill mr-2" do %>
+              <i class="fa-solid fa-users"></i>ユーザー一覧
+              <% end %>
+            </li>
+            <li>
+              <%= link_to admin_studies_path, class: "btn btn-outline-light rounded-pill mr-2" do %>
+              <i class="fa-regular fa-comment"></i>投稿一覧
+              <% end %>
+            </li>
+            <li>
+              <%= link_to destroy_admin_session_path, method: :delete, class: "btn btn-outline-light rounded-pill mr-2" do %>
+                <i class="fa-solid fa-right-from-bracket"></i>ログアウト
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
