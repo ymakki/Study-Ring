@@ -1,0 +1,27 @@
+<%= render 'layouts/errors', obj: @study %>
+<%= render 'public/users/side', user: current_user %>
+<div class="col-md-8 offset-md-1">
+  <h2>編集</h2>
+  <%= form_with model: @study, local:true do |f| %>
+    <table class="table">
+      <tr>
+        <td class="form-group col-md-2">
+          <%= f.file_field :image, class: "form-control-file", accept: 'image/*' %>
+        </td>
+        <td class="form-group col-md-6">
+          <%= f.text_field :title, class: "form-control" %>
+        </td>
+      </tr>
+      <tr>
+        <td colspan=2 class="form-group">
+          <%= f.text_area :body, class: "form-control" %>
+        </td>
+      </tr>
+      <tr>
+        <td colspan=2 class="form-group text-center">
+          <%= f.submit "保存", class: 'btn btn-secondary' %>
+        </td>
+      </tr>
+    </table>
+  <% end %>
+</div>

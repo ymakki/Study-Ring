@@ -1,33 +1,32 @@
-<div class="container">
+<div class="container device">
   <div class="row">
-    <div class="device-outline col-lg-12 mt-4">
-      <h2 class="device-title text-center mb-4">管理者ログイン</h2>
+    <div class="outline col-lg-12 mt-4">
+      <h2 class="title text-center mb-4">管理者ログイン</h2>
       <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "form-horizontal mt-3" }) do |f| %>
-        <div class="form-group row mb-5">
-          <%= f.label :メールアドレス, class: "col-lg-3 col-form-label text-lg-right" %>
-          <div class="col-lg-7">
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
-          </div>
-        </div>
-        <div class="form-group row mb-3">
-          <%= f.label :パスワード, class: "col-lg-3 col-form-label text-lg-right" %>
-          <div class="col-lg-7">
-            <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
-          </div>
-        </div>
-        <div class="form-group row mb-2">
-          <div class="col-lg-7 offset-lg-2 text-center"> <!-- text-centerを追加 -->
-            <%= f.submit "ログイン", class: "btn btn-primary" %>
-          </div>
-        </div>
-        <% if false %>
+        <%= render "public/shared/error_messages", resource: resource %>
+        <table>
+          <tr>
+            <td class="from pl-5 pt-3"><%= f.label :メールアドレス %></td>
+            <td class="from pl-5"><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %></td>
+          </tr>
+          <tr>
+            <td class="from pl-5 pt-3"><%= f.label :パスワード %></td>
+            <td class="from pl-5"><%= f.password_field :password, autocomplete: "current-password", class: "form-control" %></td>
+          </tr>
           <% if devise_mapping.rememberable? %>
-            <div class="field">
-              <%= f.check_box :remember_me %>
-              <%= f.label :remember_me %>
-            </div>
+            <tr>
+              <td></td>
+              <td colspan="2" class="from pl-5">
+                <%= f.check_box :remember_me %>
+                <%= f.label :"ログインを保存" %>
+              </td>
+            </tr>
           <% end %>
-        <% end %>
+          <tr>
+            <td></td>
+            <td class="btn-position"><%= f.submit "ログイン", class: "btn btm-sm btn-primary" %></td>
+          </tr>
+        </table>
       <% end %>
     </div>
   </div>
