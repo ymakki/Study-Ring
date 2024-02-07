@@ -1,37 +1,34 @@
-<div class="container">
+<div class="container device">
   <div class="row">
-    <div class="col mt-4">
-      <h2 class="text-center mb-3" style="font-weight:bold; color:#A07B35; font-family: serif;">ログイン</h2>
-      <div style="padding: 20px; margin-bottom: 10px; border: 5px double #A07B35; background-color: #fffaf0;">
-        <h6 class="ml-5 mt-3" style="font-weight:bold;">会員の方はこちらからログイン<h6>
-        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-          <table>
-            <tbody>
-              <tr>
-                <td class="pl-5 pt-3" style="vertical-align: top; margin-top: 10px;"><%= f.label :email, "メールアドレス" %></td>
-                <td class="pl-5" style="vertical-align: top;"><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", style: "width: 400px; margin-bottom: 8px; margin-top: 10px;" %></td>
-              </tr>
-              <tr>
-                <td class="pl-5 py-4" style="vertical-align: top; margin-top: 5px;"><%= f.label :password, "パスワード" %></td>
-                <td class="pl-5" style="vertical-align: top;"><%= f.password_field :password, autocomplete: "current-password", class: "form-control", style: "width: 400px; margin-top: 20px;" %></td>
-              </tr>
-              <tr>
-                <!--Deviseの内部で使用されるヘルパーメソッドで、rememberableが有効な場合はtrueを返す-->
-                <% if devise_mapping.rememberable? %>
-                  <td></td>
-                  <td class="pl-5" style="vertical-align: top;"><%= f.check_box :remember_me %> <%= f.label :remember_me %></td>
-                <% end %>
-              </tr>
-              <tr>
-                <td></td>
-                <td style="vertical-align: top; text-align: right;"><%= f.submit "ログイン", class: "btn btn-sm btn-primary", style: "width: 170px; height: 40px; border-radius: 12px;" %></td>
-              </tr>
-            </tbody>
-          </table>
-        <% end %>
-      </div>
+    <div class="outline col-lg-12 mt-4">
+      <h2 class="title text-center mb-4">ログイン</h2>
+      <div class="text ml-5 mt-3">会員の方はこちらからログイン</div>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <%= render "public/shared/error_messages", resource: resource %>
+        <table>
+          <tr>
+            <td class="from pl-5 pt-3"><%= f.label :email, "メールアドレス" %></td>
+            <td class="from pl-5"><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %></td>
+          </tr>
+          <tr>
+            <td class="from pl-5 pt-3"><%= f.label :password, "パスワード" %></td>
+            <td class="from pl-5"><%= f.password_field :password, autocomplete: "current-password", class: "form-control" %></td>
+          </tr>
+          <tr>
+            <!--Deviseの内部で使用されるヘルパーメソッドで、rememberableが有効な場合はtrueを返す-->
+            <% if devise_mapping.rememberable? %>
+              <td></td>
+              <td class="from pl-5"><%= f.check_box :remember_me %> <%= f.label :remember_me %></td>
+            <% end %>
+          </tr>
+          <tr>
+            <td></td>
+            <td class="btn-position"><%= f.submit "ログイン", class: "btn btn-sm btn-primary" %></td>
+          </tr>
+        </table>
+      <% end %>
       <div class="mt-4">
-        <h5 style="font-weight:bold; color:#A07B35; font-family: serif;">会員登録がお済でない方</h5>
+        <div class="text">会員登録がお済でない方</div>
         <%= render "public/shared/links" %>
       </div>
     </div>

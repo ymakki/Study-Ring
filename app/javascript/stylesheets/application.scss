@@ -14,11 +14,11 @@ header {
   height: 100px;
   z-index: 1000;
   span {
-    font-family:'Times New Roman';
+    font-family:'Meiryo';
     font-size: 40px;
   }
   ul {
-    font-family:'Times New Roman';
+    font-family:'Meiryo';
     font-size: 20px;
   }
 }
@@ -28,23 +28,52 @@ nav {
   height: 100px;
 }
 
-.container {
-  h2 {
-    font-weight:bold;
-    color:#A07B35;
-    font-family: serif;
+.device {
+  .title {
+    font-family:"Meiryo";
+    padding-bottom: 20px;
   }
-  .col-lg-12 {
+  .outline {
     padding: 20px;
     margin-bottom: 10px;
     border: 5px double #A07B35;
     background-color: #fffaf0
   }
-  .col-lg-7 {
+  .from {
+    vertical-align: top;
+    margin-top: 10px;
+  }
+  .form-control {
+    width: 400px;
+    margin-bottom: 8px;
+    margin-top: 10px;
+  }
+  .text {
+    font-family:"Meiryo";
+  }
+  .btn {
     width: 170px;
     height: 40px;
     border-radius: 12px;
   }
+  .btn-position {
+    text-align: right;
+  }
+}
+
+
+.col-lg-7 {
+  width: 170px;
+  height: 40px;
+  border-radius: 12px;
+}
+
+.col-md-3 {
+  padding-top: 40px;
+}
+
+.col-md-8 {
+  padding-top: 40px;
 }
 
 
@@ -63,7 +92,7 @@ footer {
     color: white;
     line-height: 80px;
     text-align: center;
-    font-family:'Times New Roman';
+    font-family:"Meiryo";
     font-size: 20px;
   }
 }

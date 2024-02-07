@@ -7,11 +7,13 @@ class User < ApplicationRecord
   has_many :studies, dependent: :destroy
   has_many :study_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
-
   has_one_attached :profile_image
 
-  def get_profile_image
-    (profile_image.attached?) ? profile_image : 'no_image.jpg'
+  # 画像表示
+  def get_profile_image(width, height)
+    if profile_image.attached?
+      profile_image.variant(resize_to_fill: [width, height]).processed
+    end
   end
 
   # ゲストログイン機能

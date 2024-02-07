@@ -1,0 +1,28 @@
+<div class='col-md-3' style="padding-top: 40px">
+  <table class='table'>
+    <tr>
+      <td>
+        <% if user.profile_image.attached? %>
+          <%= image_tag user.get_profile_image(250, 300), class: "img-fluid" %>
+        <% else %>
+          <i class="fa-solid fa-user"></i>
+        <% end %>
+      </td>
+    </tr>
+    <tr>
+      <th>記録する</th>
+    </tr>
+    <tr>
+      <th>ユーザーを探す</th>
+    </tr>
+    <tr>
+      <th>通知一知覧</th>
+    </tr>
+    <tr>
+      <th>メッセージ一覧</th>
+    </tr>
+    <tr>
+      <th>教材を探す</th>
+    </tr>
+  </table>
+</div>

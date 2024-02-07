@@ -1,25 +1,28 @@
-<div class='container px-5 px-sm-0'>
-  <%= render 'layouts/errors', obj: @study %>
-  <div class='row'>
-    <div class='col-md-3'>
-      <%= render 'side', study: @study %>
-    </div>
-    <div class='col-md-8 offset-md-1'>
-      <h2>記録する</h2>
-      <table>
-        <% @studies.each do |study| %>
-        <tr>
-          <td>
-            <%= link_to(study.user) do %>
-              <%= image_tag study.user.get_profile_image, size:'50x50' %>
+<%= render 'layouts/errors', obj: @study %>
+<%= render 'public/users/side', user: current_user %>
+<div class='col-md-8 offset-md-1'>
+  <h2>記録する</h2>
+  <table>
+    <tr>
+      <% @studies.each do |study| %>
+        <td>
+          <div class="mr-2">
+            <% if study.image.attached? %>
+              <%= link_to study_path(study) do %>
+                <%= image_tag study.get_image(150, 150), class: "img-fluid" %>
+              <% end %>
+            <% else %>
+              <%= link_to study_path(study) do %>
+                <i class="fa-solid fa-book"></i>
+              <% end %>
             <% end %>
-          </td>
-          <td><%= link_to study.title, study_path(study), class: "study_#{study.id}" %></td>
-          <td><%= study.body %></td>
-        </tr>
-        <% end %>
-      </table>
-      <%= link_to '+ 新しい教材を登録', new_study_path %>
-    </div>
+          </div>
+          <%= study.title %>
+        </td>
+      <% end %>
+    </tr>
+  </table>
+  <div class="col-md-8 mx-auto" style="margin-top: 50px;">
+    <%= link_to '+ 新しい教材を登録', new_study_path %>
   </div>
 </div>
