@@ -6,6 +6,11 @@
         <%= render "public/shared/error_messages", resource: resource %>
         <table>
           <tr>
+            <td class="from pl-5 pt-3"><%= f.label :name, "名前" %></td>
+            <td></td>
+            <td class="from pl-5"><%= f.text_field :name, autocomplete: "name", class: "form-control" %></td>
+          </tr>
+          <tr>
             <td class="from pl-5 pt-3"><%= f.label :email, "メールアドレス" %></td>
             <td></td>
             <td class="from pl-5"><%= f.email_field :email, autocomplete: "email", class: "form-control" %></td>

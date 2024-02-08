@@ -1,28 +1,25 @@
 <%= render 'layouts/errors', obj: @study %>
-<%= render 'public/users/side', user: current_user %>
-<div class='col-md-8 offset-md-1'>
-  <h2>内容</h2>
-  <table class='table'>
-  	<tr>
-      <td class="col-md-1">
-        <% if @study.image.attached? %>
-          <%= image_tag @study.get_image(150, 150), class: "img-fluid" %>
-        <% else %>
-          <i class="fa-solid fa-book"></i>
-        <% end %>
-        <%= @study.title %>
-      </td>
-    </tr>
-    <tr>
-      <td class="col-md-8 align-center"><%= @study.body %></td>
-    </tr>
-    <tr>
-      <% if @study.user == current_user %>
-        <td>
-          <%= link_to '編集', edit_study_path(@study), class: "btn btn-sm btn-success" %>
-          <%= link_to '削除', study_path(@study), method: :delete, data: { confirm: "本棚から「#{@study.title}」を削除しますか？" }, class: "btn btn-sm btn-danger" %>
-        </td>
+<h2>内容</h2>
+<table class='table'>
+	<tr>
+    <td class="col-md-1">
+      <% if @study.image.attached? %>
+        <%= image_tag @study.get_image(150, 150), class: "img-fluid" %>
+      <% else %>
+        <i class="fa-solid fa-book"></i>
       <% end %>
-    </tr>
-  </table>
-</div>
+      <%= @study.title %>
+    </td>
+  </tr>
+  <tr>
+    <td class="col-md-8 align-center"><%= @study.body %></td>
+  </tr>
+  <tr>
+    <% if @study.user == current_user %>
+      <td>
+        <%= link_to '編集', edit_study_path(@study), class: "btn btn-sm btn-success" %>
+        <%= link_to '削除', study_path(@study), method: :delete, data: { confirm: "本棚から「#{@study.title}」を削除しますか？" }, class: "btn btn-sm btn-danger" %>
+      </td>
+    <% end %>
+  </tr>
+</table>
