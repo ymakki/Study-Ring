@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     sessions: 'admin/sessions'
   }
 
-  # ゲストログイン機能
+  # ゲストログイン
   devise_scope :user do
     post 'users/guest_sign_in', to: 'public/sessions#guest_sign_in'
   end
@@ -25,7 +25,11 @@ Rails.application.routes.draw do
       resource :favorites, only: [:create, :destroy]
     end
 
-    resources :users, only: [:index, :show, :edit, :create, :destroy, :update]
+    resources :users, only: [:index, :show, :edit, :update]
+
+    # 検索
+    get "search", to: "searches#search"
+
   end
 
   # 管理者側

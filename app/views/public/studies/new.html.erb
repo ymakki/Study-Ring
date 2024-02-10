@@ -1,5 +1,8 @@
 <%= render 'layouts/errors', obj: @study %>
-<h2>記録する</h2>
+<div class="d-flex align-items-center">
+  <%= render 'layouts/back' %>
+  <h2 class="pl-5">教材を追加</h2>
+</div>
 <%= form_with model: @study, url: studies_path, method: :post, local: true do |f| %>
   <table class="table">
     <tr>
@@ -16,8 +19,13 @@
       </td>
     </tr>
     <tr>
+      <td colspan=2 class="form-group col-md-8">
+        <%= f.collection_select :tag_id, Tags.all, :id, :name, include_blank: "-- 選択してください --" %>
+      </td>
+    </tr>
+    <tr>
       <td colspan=2 class="form-group text-center">
-        <%= f.submit '保存', class: 'btn btn-sm btn-text-center' %>
+        <%= f.submit '保存', class: 'btn btn-success' %>
       </td>
     </tr>
   </table>

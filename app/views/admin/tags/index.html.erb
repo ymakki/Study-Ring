@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row">
+    <div class="col-8 mx-auto">
+      <h2 class="mt-5" style="font-weight:bold; color:#A07B35; font-family:serif; font-size:45px;">
+        <strong>Category List&Addition</strong>
+      </h2>
+      <table class="table border-top border-bottom table-condensed mt-4" style="background-color: #fffaf0;">
+        <thead class="thead-center">
+          <tr>
+            <th class="text-center" style="background-color: #ccc8c0; padding-right: 50px;">ジャンル</th>
+            <th class="text-center" style="background-color: #ccc8c0; "></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% tags.each do |tag| %>
+            <tr>
+              <td class="text-center align-middle" style="padding-right: 50px; color:#A07B35; font-family: serif;">
+                <%= tag.name %>
+              </td>
+              <td class="text-center align-middle" style="color:#A07B35; font-family: serif;">
+                <%= link_to "編集する", edit_admin_tag_path(tag.id), class: "btn btn-success btn-sm", style: "width: 120px; height: 40px; border-radius: 12px; line-height:30px;" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <%= form_with model: tag, url: admin_tags_path, method: :post, local: false do |f| %>
+        <div class="form-row align-items-center mt-4">
+          <div class="col-md-3 mb-2">
+            <%= f.label :name, "ジャンル名", class: "text-md-right", style: "font-size: 22px; font-weight:bold; " %>
+          </div>
+          <div class="col-md-6 mb-2">
+            <%= f.text_field :name, placeholder: 'ジャンル名', class: "form-control" %>
+          </div>
+          <div class="col-md-3 mb-2 pl-5">
+            <%= f.submit "新規登録", class: "btn btn-success btn-sm", style: "width: 170px; height: 40px; border-radius: 12px;" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+

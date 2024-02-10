@@ -1,1 +1,46 @@
-マイページ
+<%= render 'layouts/errors', obj: @user %>
+<div class="d-flex justify-content-between align-items-center">
+  <%= render 'layouts/back' %>
+</div>
+<div class="d-flex justify-content-between align-items-center">
+  <div class="icon">
+    <% if @user.profile_image.attached? %>
+      <%= image_tag @user.get_profile_image(150, 150), class: "img-fluid" %>
+    <% else %>
+      <i class="logo-show fa-regular fa-circle-user"></i>
+    <% end %>
+  </div>
+  <% if @user == current_user %>
+    <%= link_to 'プロフィールを編集', edit_user_path(@user), class: "btn btn-secondary" %>
+  <% else %>
+    <%= link_to 'フォローする', edit_user_path(@user), class: "btn btn-secondary" %>
+  <% end %>
+</div>
+<div class="text-size-lg"><%= @user.name %></div>
+<h4 class="pt-3">プロフィール</h4>
+<table class='table col-md-8'>
+  <tr>
+    <td>
+      <strong>フォロワー募集</strong>
+      <div><%= User.follow_requests.key(@user.follow_request) %></div>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong>性別</strong>
+      <div><%= User.sexes.key(@user.sex) %></div>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong>生年月日</strong>
+      <div><%= @user.birthday %></div>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong>都道府県</strong>
+      <div><%= User.residences.key(@user.residence) %></div>
+    </td>
+  </tr>
+</table>

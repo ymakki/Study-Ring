@@ -1,25 +1,9 @@
 <%= render 'layouts/errors', obj: @study %>
-<h2>一覧</h2>
-<table>
-  <tr>
-    <% @studies.each do |study| %>
-      <td>
-        <div class="mr-2">
-          <% if study.image.attached? %>
-            <%= link_to study_path(study) do %>
-              <%= image_tag study.get_image(150, 150), class: "img-fluid" %>
-            <% end %>
-          <% else %>
-            <%= link_to study_path(study) do %>
-              <i class="fa-solid fa-book"></i>
-            <% end %>
-          <% end %>
-        </div>
-        <%= study.title %>
-      </td>
-    <% end %>
-  </tr>
-</table>
+<div class="d-flex align-items-center">
+  <%= render 'layouts/back' %>
+  <h2 class="pl-5">教材一覧</h2>
+</div>
+<%= render 'index', studies: @studies %>
 <div class="col-md-8 mx-auto" style="margin-top: 50px;">
-  <%= link_to '+ 新しい教材を登録', new_study_path %>
+  <%= link_to '+ 新しい教材を登録', new_study_path, class: 'btn btn-secondary' %>
 </div>

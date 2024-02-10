@@ -1,7 +1,7 @@
 class Study < ApplicationRecord
 
   belongs_to :user
-  has_many :book_comments, dependent: :destroy
+  belongs_to :tags
   has_many :favorites, dependent: :destroy
   has_one_attached :image
 
@@ -13,11 +13,9 @@ class Study < ApplicationRecord
     image.variant(resize_to_fill: [width, height]).processed
   end
 
-  # enumステータス
-  enum status: {
-    studying: 0,
-    stand_by: 1,
-    finish: 2,
-  }
+  # 検索
+  def self.search_for(word, model)
+    Study.where('title LIKE ?', '%' + (word.to_s) + '%')
+  end
 
 end

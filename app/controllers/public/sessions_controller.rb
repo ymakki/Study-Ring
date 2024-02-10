@@ -34,7 +34,7 @@ class Public::SessionsController < Devise::SessionsController
     return unless user.valid_password?(params[:user][:password])
     if user.is_active
       sign_in(user)
-      redirect_to root_path
+      redirect_to mypage_path
     else
       flash[:notice] = "既に退会済みのアカウントです。新規会員登録が必要になります。"
       redirect_to new_user_registration_path
@@ -43,7 +43,7 @@ class Public::SessionsController < Devise::SessionsController
 
   # ログイン後の遷移先
   def after_sign_in_path_for(resource)
-    root_path
+    user_path(current_user)
   end
 
   def after_sign_out_path_for(resource)

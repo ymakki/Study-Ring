@@ -1,0 +1,55 @@
+<%= render 'layouts/errors', obj: @user %>
+<div class="d-flex align-items-center">
+  <%= render 'layouts/back' %>
+  <h2 class="pl-5">ユーザー編集</h2>
+</div>
+<%= form_with model: @user, local:true do |f| %>
+  <table class="table col-md-8">
+    <tr>
+      <td class="form-group col-md-2">
+        <%= f.file_field :profile_image, class: "form-control-file", accept: 'image/*' %>
+      </td>
+      <td class="form-group col-md-6">
+        <%= f.label :name, "ニックネーム" %>
+        <%= f.text_field :name, class: "form-control" %>
+      </td>
+    </tr>
+    <tr>
+      <td colspan=2 class="form-group">
+        <%= f.label :introduction, "自己紹介" %>
+        <%= f.text_area :introduction, class: "form-control" %>
+      </td>
+    </tr>
+    <tr>
+      <td colspan=2>
+        <%= f.label :follow_request, "フォロワー募集" %><br>
+        <%= f.select :follow_request, User.follow_requests, include_blank: true, class: "form-control" %>
+      </td>
+    </tr>
+    <tr>
+      <td colspan=2>
+        <%= f.label :sex, "性別" %><br>
+        <%= f.select :sex, User.sexes, include_blank: true, class: "form-control" %>
+      </td>
+    </tr>
+    <tr>
+      <td colspan=2 class="form-group">
+        <div class="field">
+          <%= f.label :birthday, "生年月日" %><br>
+          <%= f.date_select :birthday, { start_year: 1924, end_year: 2024, include_blank: true, use_two_digit_numbers: true }, { class: "input-tab birthday-select" } %>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td colspan=2 class="form-group">
+        <%= f.label :residence, "都道府県" %><br>
+        <%= f.select :residence, User.residences, include_blank: true, class: "form-control" %>
+      </td>
+    </tr>
+    <tr>
+      <td colspan=2 class="form-group text-center">
+        <%= f.submit "保存", class: 'btn btn-success' %>
+      </td>
+    </tr>
+  </table>
+<% end %>

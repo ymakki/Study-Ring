@@ -97,6 +97,7 @@ ActiveRecord::Schema.define(version: 2024_02_02_063442) do
     t.text "introduction"
     t.integer "follow_request"
     t.integer "sex"
+    t.date "birthday"
     t.integer "residence"
     t.boolean "is_active", default: true
     t.datetime "created_at", precision: 6, null: false

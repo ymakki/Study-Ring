@@ -1,0 +1,2 @@
+class TagRelay < ApplicationRecord
+end

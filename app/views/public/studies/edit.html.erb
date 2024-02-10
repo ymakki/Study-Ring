@@ -1,5 +1,8 @@
 <%= render 'layouts/errors', obj: @study %>
-<h2>編集</h2>
+<div class="d-flex align-items-center">
+  <%= render 'layouts/back' %>
+  <h2 class="pl-5">教材を編集</h2>
+</div>
 <%= form_with model: @study, local:true do |f| %>
   <table class="table">
     <tr>
@@ -17,7 +20,7 @@
     </tr>
     <tr>
       <td colspan=2 class="form-group text-center">
-        <%= f.submit "保存", class: 'btn btn-secondary' %>
+        <%= f.submit "保存", class: 'btn btn-success' %>
       </td>
     </tr>
   </table>

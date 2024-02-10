@@ -1,0 +1,23 @@
+<table>
+  <% studies.each do |study| %>
+    <tr>
+      <td class="d-flex mb-3 mr-2">
+        <div class="icon">
+          <% if study.image.attached? %>
+            <%= link_to study_path(study) do %>
+              <%= image_tag study.get_image(150, 150), class: "img-fluid" %>
+            <% end %>
+          <% else %>
+            <%= link_to study_path(study) do %>
+              <i class="fa-solid fa-book"></i>
+            <% end %>
+          <% end %>
+        </div>
+      </td>
+        <td class="align-top">
+          <div class="text-size"><%= study.title %></div>
+          <div class="text-size"><%= study.body %></div>
+        </td>
+    </tr>
+  <% end %>
+</table>

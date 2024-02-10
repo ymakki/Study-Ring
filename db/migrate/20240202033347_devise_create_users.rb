@@ -36,6 +36,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       t.text :introduction
       t.integer :follow_request
       t.integer :sex
+      t.date :birthday
       t.integer :residence
       t.boolean :is_active, default: true
 

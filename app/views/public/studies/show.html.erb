@@ -1,25 +1,27 @@
 <%= render 'layouts/errors', obj: @study %>
-<h2>内容</h2>
-<table class='table'>
+<div class="d-flex align-items-center">
+  <%= render 'layouts/back' %>
+  <h2 class="pl-5">教材詳細</h2>
+</div>
+<table class='table col-md-8'>
 	<tr>
-    <td class="col-md-1">
+    <td class="icon-show col-md-2">
       <% if @study.image.attached? %>
         <%= image_tag @study.get_image(150, 150), class: "img-fluid" %>
       <% else %>
         <i class="fa-solid fa-book"></i>
       <% end %>
-      <%= @study.title %>
     </td>
+    <td colspan=2 class="text-size col-md-6"><%= @study.title %></td>
   </tr>
   <tr>
-    <td class="col-md-8 align-center"><%= @study.body %></td>
+    <td colspan=3 class="text-size col-md-8 align-center"><%= @study.body %></td>
   </tr>
   <tr>
     <% if @study.user == current_user %>
-      <td>
-        <%= link_to '編集', edit_study_path(@study), class: "btn btn-sm btn-success" %>
-        <%= link_to '削除', study_path(@study), method: :delete, data: { confirm: "本棚から「#{@study.title}」を削除しますか？" }, class: "btn btn-sm btn-danger" %>
-      </td>
+      <td class="col-md-2"><%= link_to '編集', edit_study_path(@study), class: "btn btn-success" %></td>
+      <td class="col-md-2"><%= link_to '削除', study_path(@study), method: :delete, data: { confirm: "本棚から「#{@study.title}」を削除しますか？" }, class: "btn btn-danger" %></td>
     <% end %>
+    <td colspan=3 class="col-md-4"><%= link_to '一覧へ', studies_path, class: "btn btn-secondary" %></td>
   </tr>
 </table>

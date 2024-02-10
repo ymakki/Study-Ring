@@ -1,0 +1,52 @@
+<% if @search_type == "user" %>
+  <div class="d-flex align-items-center">
+    <%= render 'layouts/back' %>
+    <h2 class="pl-5">ユーザーを探す</h2>
+  </div>
+
+  <%= form_with url: search_path, method: :get, local: true do |f| %>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
+      </div>
+      <%= f.text_field :word, placeholder: "キーワードでユーザーを検索", class: 'form-control' %>
+    </div>
+    <%= f.hidden_field :model, value: "user" %>
+    <div class="pt-3"><%= f.submit '検索' %></div>
+  <% end %>
+  <div class="pt-3"><%= render 'public/users/index', users: @users %></div>
+<% end %>
+
+<% if @search_type == "study" %>
+  <div class="d-flex align-items-center">
+    <%= render 'layouts/back' %>
+    <h2 class="pl-5">教材を探す</h2>
+  </div>
+  <%= form_with url: search_path, method: :get, local: true do |f| %>
+    <div class="input-group">
+      <div class="input-group-prepend">
+        <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
+      </div>
+      <%= f.text_field :word, placeholder: "キーワードでユーザーを検索", class: 'form-control' %>
+    </div>
+    <%= f.hidden_field :model, value: "study" %>
+    <div class="pt-3"><%= f.submit '検索' %></div>
+  <% end %>
+  <div class="pt-3"><%= render 'public/studies/index', studies: @studies %></div>
+<% end %>
+
+<% if @model == 'user' %>
+  <div class="d-flex align-items-center">
+    <%= render 'layouts/back' %>
+    <h2 class="pl-5"><%= @word %></h2>
+  </div>
+  <%= render 'public/users/index', users: @records %>
+<% end %>
+
+<% if @model == 'study' %>
+  <div class="d-flex align-items-center">
+    <%= render 'layouts/back' %>
+    <h2 class="pl-5"><%= @word %></h2>
+  </div>
+  <%= render 'public/studies/index', studies: @records %>
+<% end %>
