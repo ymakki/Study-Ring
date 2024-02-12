@@ -16,16 +16,11 @@
             <% end %>
           <% end %>
         </li>
-        <li><%= link_to "新規投稿", new_study_path %></li>
-        <li><%= link_to "投稿一覧", studies_path %></li>
-        <li><%= link_to "ユーザー一覧", users_path %></li>
+        <li><%= link_to "記録する", studies_path %></li>
         <li><%= link_to "ユーザーを探す", search_path(search_type: 'user') %></li>
         <li><%= link_to "教材を探す", search_path(search_type: 'study') %></li>
         <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
-      <% elsif admin_signed_in? %>
-        <li><%= link_to "ユーザー一覧", admin_users_path %></li>
-        <li><%= link_to "投稿履歴一覧", admin_studies_path %></li>
-        <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
+        <li><%= link_to "退会する", unsubscribe_user_path(current_user) %></li>
       <% else %>
         <li><%= link_to "新規登録", new_user_registration_path %></li>
         <li><%= link_to "ログイン", new_user_session_path %></li>

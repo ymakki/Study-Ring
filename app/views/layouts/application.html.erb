@@ -13,7 +13,11 @@
 
   <body class="d-flex flex-column h-100">
     <header>
-      <%= render "layouts/header" %>
+      <% if request.fullpath.include? "/admin" %>
+        <%= render "layouts/admin_header" %>
+      <% else %>
+        <%= render "layouts/public_header" %>
+      <% end %>
     </header>
     <main class="flex-shrink-0">
       <%= flash[:notice] %>

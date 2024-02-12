@@ -1,0 +1,32 @@
+<nav class="navbar">
+  <div class="logo d-flex">
+    <a href="/"><span class="pl-2">StudyRing</span></a>
+  </div>
+  <div class="nav-list">
+    <ul>
+      <li><%= link_to "ユーザー一覧", admin_users_path %></li>
+      <li><%= link_to "投稿履歴一覧", admin_studies_path %></li>
+      <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
+    </ul>
+  </div>
+</nav>
+<div class="toggle_btn">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+
+<script>
+  (function($) {
+    var $body = $('body');
+    var $btn = $('.toggle_btn');
+    var open = 'open'; // class
+    $btn.on('click', function() {
+      if (!$body.hasClass(open)) {
+        $body.addClass(open);
+      } else {
+        $body.removeClass(open);
+      }
+    });
+  })(jQuery);
+</script>

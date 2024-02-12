@@ -1,0 +1,14 @@
+<%= form_with model: user, url: admin_user_path(@user) do |f| %>
+  <table class="table table-borderless col-md-8">
+    <tr>
+      <th class="align-middle">会員ステータス</th>
+      <td class="align-middle">
+        <span><%= f.radio_button :is_active, "true" %>有効</span>
+        <span class="pl-3"><%= f.radio_button :is_active, "false" %>無効</span>
+      </td>
+      <td colspan=3 >
+        <span class="pt-2"><%= f.submit "保存", class: "btn btn-success" %></span>
+      </td>
+    </tr>
+  </table>
+<% end %>

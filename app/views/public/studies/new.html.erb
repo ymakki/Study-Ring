@@ -3,30 +3,4 @@
   <%= render 'layouts/back' %>
   <h2 class="pl-5">教材を追加</h2>
 </div>
-<%= form_with model: @study, url: studies_path, method: :post, local: true do |f| %>
-  <table class="table">
-    <tr>
-      <td class="form-group col-md-3">
-        <%= f.file_field :image, accept: "image/*", class: "form-control-file" %>
-      </td>
-      <td class="form-group col-md-5">
-        <%= f.text_field :title, placeholder: "教材名", class: 'form-control' %>
-      </td>
-    </tr>
-    <tr>
-      <td colspan=2 class="form-group col-md-8">
-        <%= f.text_area :body, class: 'form-control', placeholder: '内容' %>
-      </td>
-    </tr>
-    <tr>
-      <td colspan=2 class="form-group col-md-8">
-        <%= f.collection_select :tag_id, Tags.all, :id, :name, include_blank: "-- 選択してください --" %>
-      </td>
-    </tr>
-    <tr>
-      <td colspan=2 class="form-group text-center">
-        <%= f.submit '保存', class: 'btn btn-success' %>
-      </td>
-    </tr>
-  </table>
-<% end %>
+<%= render 'public/studies/from', study: @study %>

@@ -1,12 +1,19 @@
 class Study < ApplicationRecord
 
   belongs_to :user
-  belongs_to :tags
+  has_many :tag_relay, dependent: :destroy
+  has_many :tags, through: :tag_relay
   has_many :favorites, dependent: :destroy
   has_one_attached :image
 
   validates :title,presence:true
-  validates :body,presence:true,length:{maximum:200}
+
+  # ステータス
+  enum statuses: {
+    勉強中: 0,
+    スタンバイ: 1,
+    完了済み: 2,
+  }
 
   # 画像サイズ
   def get_image(width, height)
@@ -15,7 +22,6 @@ class Study < ApplicationRecord
 
   # 検索
   def self.search_for(word, model)
-    Study.where('title LIKE ?', '%' + (word.to_s) + '%')
+    Study.where("title LIKE ?", "%" + (word.to_s) + "%")
   end
-
 end

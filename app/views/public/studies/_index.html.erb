@@ -16,7 +16,13 @@
       </td>
         <td class="align-top">
           <div class="text-size"><%= study.title %></div>
-          <div class="text-size"><%= study.body %></div>
+          <div class="text-size">
+            <% if study.tags.present? %>
+              <% study.tags.each do |tag| %>
+                <%= tag.name %>
+              <% end %>
+            <% end %>
+          </div>
         </td>
     </tr>
   <% end %>

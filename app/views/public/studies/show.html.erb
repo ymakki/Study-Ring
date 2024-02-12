@@ -1,7 +1,7 @@
 <%= render 'layouts/errors', obj: @study %>
 <div class="d-flex align-items-center">
   <%= render 'layouts/back' %>
-  <h2 class="pl-5">教材詳細</h2>
+  <h2 class="pl-5"><%= @study.title %></h2>
 </div>
 <table class='table col-md-8'>
 	<tr>
@@ -14,14 +14,33 @@
     </td>
     <td colspan=2 class="text-size col-md-6"><%= @study.title %></td>
   </tr>
+  <% if @study.status.present? %>
   <tr>
-    <td colspan=3 class="text-size col-md-8 align-center"><%= @study.body %></td>
+    <td colspan=3 class="text-size col-md-6">
+      <nobr>ステータス :</nobr>
+      <%= Study.statuses.key(@study.status) %>
+    </td>
   </tr>
+  <% end %>
+
+
+
+  <% if @study.tags.present? %>
+    <tr>
+      <td colspan=3 class="text-size col-md-8 align-center">
+        <% @study.tags.each do |tag| %>
+          <%= link_to tag.name, tagsearches_search_path(word: tag.name) %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+
+
+
   <tr>
     <% if @study.user == current_user %>
       <td class="col-md-2"><%= link_to '編集', edit_study_path(@study), class: "btn btn-success" %></td>
-      <td class="col-md-2"><%= link_to '削除', study_path(@study), method: :delete, data: { confirm: "本棚から「#{@study.title}」を削除しますか？" }, class: "btn btn-danger" %></td>
+      <td colspan=2 class="col-md-2"><%= link_to '削除', study_path(@study), method: :delete, data: { confirm: "本棚から「#{@study.title}」を削除しますか？" }, class: "btn btn-danger" %></td>
     <% end %>
-    <td colspan=3 class="col-md-4"><%= link_to '一覧へ', studies_path, class: "btn btn-secondary" %></td>
   </tr>
 </table>

@@ -10,12 +10,9 @@
       <i class="logo-show fa-regular fa-circle-user"></i>
     <% end %>
   </div>
-  <% if @user == current_user %>
-    <%= link_to 'プロフィールを編集', edit_user_path(@user), class: "btn btn-secondary" %>
-  <% else %>
-    <%= link_to 'フォローする', edit_user_path(@user), class: "btn btn-secondary" %>
-  <% end %>
+    <%= link_to "会員ステータスを更新", edit_admin_user_path(@user), class: "btn btn-success" %>
 </div>
+
 <div class="text-size-lg"><%= @user.name %></div>
 <h4 class="pt-3">プロフィール</h4>
 <table class='table col-md-8'>
@@ -26,11 +23,6 @@
     </td>
   </tr>
   <tr>
-    <td>
-      <strong>フォロワー募集</strong>
-      <div><%= User.follow_requests.key(@user.follow_request) %></div>
-    </td>
-  </tr>
   <tr>
     <td>
       <strong>性別</strong>
@@ -51,8 +43,12 @@
   </tr>
   <tr>
     <td>
-      <h4 class="pt-3">タイムライン</h4>
-      <%= render 'public/studies/index', studies: @studies %>
+      <strong>会員ステータス</strong>
+      <% if @user.is_active %>
+        <div class="text-success">有効</div>
+      <% else %>
+        <div class="text-danger">退会</div>
+      <% end %>
     </td>
   </tr>
 </table>
