@@ -27,7 +27,7 @@ class Public::UsersController < ApplicationController
   end
 
   # 退会機能
-  def withdrawl
+  def withdrawal
     @user = current_user
     @user.update(is_active: false)
     reset_session

@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'tagsearches/public'
   # 顧客用
   devise_for :users,skip: [:passwords], controllers: {
     registrations: "public/registrations",
@@ -30,14 +29,14 @@ Rails.application.routes.draw do
     # ユーザー
     resources :users, only: [:index, :show, :edit, :update] do
       member do
-        patch "withdrawl"
-        get "unsubscribe"
+        get 'unsubscribe', to: 'users#unsubscribe', as: :unsubscribe
+        patch 'withdrawal', to: 'users#withdrawal', as: :withdrawal
       end
     end
 
     # 検索
     get "search", to: "searches#search"
-    get 'tagsearches/search', to: 'tagsearches#search'
+    get  "tagsearch", to: "tagsearches#search"
 
   end
 
@@ -52,7 +51,6 @@ Rails.application.routes.draw do
 
     # ユーザー
     resources :users, only: [:index, :show, :edit, :update]
-
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

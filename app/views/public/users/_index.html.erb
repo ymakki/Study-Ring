@@ -1,10 +1,10 @@
 <table class="table w-100">
   <% users.each do |user| %>
     <tr>
-      <td class="mb-3">
+      <td class="col-md-1 mb-3">
         <%= render 'public/users/user_icon', user: user %>
       </td>
-      <td>
+      <td class="col-md-7">
         <div class="text-size"><%= user.name %></div>
         <div class="text-size"><%= user.introduction %></div>
       </td>
