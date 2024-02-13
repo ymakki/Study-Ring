@@ -1,7 +1,6 @@
-.align-top {
-  vertical-align: top;
-}
-
+/*============
+main
+=============*/
 .text-size {
   font-size: 15px;
 }
@@ -10,7 +9,41 @@
   font-size: 50px;
 }
 
+
+
+
+
+.align-top {
+  vertical-align: top;
+}
+
 .side-line {
   display: inline-block;
   margin-right: 10px;
+}
+
+.add-margin {
+ padding: 50px;
+}
+
+.user-icon {
+  font-size: 25px;
+}
+
+
+
+.icon-sm {
+  width: 100px;
+  height: 100px;
+  i {
+    font-size: 30px;
+    color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+}
+.icon-sm :hover {
+  text-decoration: none;
 }

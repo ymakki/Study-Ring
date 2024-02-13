@@ -24,4 +24,10 @@ class Study < ApplicationRecord
   def self.search_for(word, model)
     Study.where("title LIKE ?", "%" + (word.to_s) + "%")
   end
+
+  # お気に入りがあるか
+  def favorited_by?(user)
+    favorites.where(user_id: user.id).exists?
+  end
+
 end

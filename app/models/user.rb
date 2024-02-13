@@ -5,8 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :studies, dependent: :destroy
-  has_many :study_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :study_comments, dependent: :destroy
   has_one_attached :profile_image
 
   # 画像サイズ

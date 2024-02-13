@@ -4,12 +4,15 @@
 /*============
 body
 =============*/
+
 body {
   margin: 0;
 }
+
 /*============
 header
 =============*/
+
 header {
   background-color: #ADD8E6;
   height:100px;
@@ -63,6 +66,7 @@ header {
     }
   }
 }
+
 .open .navbar {
   left: 0;
 }
@@ -99,12 +103,15 @@ header {
     top: 25px;
   }
 }
+
 .open .toggle_btn {
   left: 330px;
 }
+
 /*============
 main
 =============*/
+
 .device {
   .title {
     font-family:"Meiryo";
@@ -137,18 +144,7 @@ main
     text-align: right;
   }
 }
-.back {
-  color: #000000;
-  font-size: 30px;
-  align-items: center;
-  padding: 10px 20px;
-}
-.back:hover {
-  color: #000000;
-  background: #e4e4e4;
-  display: inline-block;
-  border-radius: 50%;
-}
+
 .icon {
   width: 100px;
   height: 100px;
@@ -161,27 +157,45 @@ main
     height: 100%;
   }
 }
-.icon-show {
-  i {
-    font-size: 100px;
-    align-items: center;
-    height: 100%;
-  }
-}
+
 .icon :hover {
-  background: #e4e4e4;
   text-decoration: none;
 }
-.icon-show :hover {
-  background: #e4e4e4;
-  text-decoration: none;
+
+.back {
+  color: #000000;
+  font-size: 30px;
+  align-items: center;
+  padding: 10px 20px;
 }
-.img-fluid {
+
+.back:hover {
+  color: #000000;
+  background: #e4e4e4;
+  display: inline-block;
   border-radius: 50%;
 }
+
+.aspect-ratio-box {
+  position: relative;
+  width: 100%;
+  img {
+    top: 10px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+.user-image {
+  border-radius: 50%;
+}
+
 /*============
 footer
 =============*/
+
 footer {
   background-color: #ADD8E6;
   height: 80px;

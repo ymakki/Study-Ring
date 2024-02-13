@@ -8,10 +8,10 @@
         <li>
           <%= link_to user_path(current_user) do %>
             <% if current_user.profile_image.attached? %>
-              <%= image_tag current_user.get_profile_image(250, 300), class: "img-fluid" %>
+              <%= image_tag current_user.get_profile_image(50, 50), class: "img-fluid user-image" %>
               <span class="pl-2"><%= current_user.name %></span>
             <% else %>
-              <i class="fa-solid fa-user"></i>
+              <i class="fa-regular fa-circle-user user-icon"></i>
               <span class="pl-2"><%= current_user.name %></span>
             <% end %>
           <% end %>

@@ -3,7 +3,26 @@
   <%= render 'layouts/back' %>
   <h2 class="pl-5">記録する</h2>
 </div>
-<%= render 'index', studies: @studies %>
-<div class="col-md-8 mx-auto" style="margin-top: 50px;">
+<div class="row">
+  <% @studies.each do |study| %>
+    <div class="col-sm-3 mt-3">
+      <div class="aspect-ratio-box icon align-self-end">
+        <% if study.image.attached? %>
+          <%= link_to study_path(study) do %>
+            <%= image_tag study.get_image(150, 150), class: "img-fluid study-image" %>
+          <% end %>
+        <% else %>
+          <%= link_to study_path(study) do %>
+            <i class="fa-solid fa-book"></i>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="text-center">
+        <h6 class="mt-2 mb-3"><%= study.title %></h6>
+      </div>
+    </div>
+  <% end %>
+</div>
+<div class="mt-5 text-center">
   <%= link_to '+ 新しい教材を登録', new_study_path, class: 'btn btn-secondary' %>
 </div>

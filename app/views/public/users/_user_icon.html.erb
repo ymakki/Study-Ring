@@ -1,0 +1,11 @@
+<div class="icon">
+  <% if user.profile_image.attached? %>
+    <%= link_to user_path(user) do %>
+      <%= image_tag user.get_profile_image(100, 100), class: "img-fluid user-image" %>
+    <% end %>
+  <% else %>
+    <%= link_to user_path(user) do %>
+      <i class="fa-regular fa-circle-user"></i>
+    <% end %>
+  <% end %>
+</div>

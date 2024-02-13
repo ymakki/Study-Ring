@@ -4,8 +4,8 @@ class Public::StudiesController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def index
-    @studies = current_user.studies
     @study = Study.new
+    @studies = current_user.studies
   end
 
   def new

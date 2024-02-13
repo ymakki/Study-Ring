@@ -1,11 +1,11 @@
-<table>
+<table class="table">
   <% studies.each do |study| %>
     <tr>
-      <td class="d-flex mb-3 mr-2">
+      <td class="mb-3 mr-2">
         <div class="icon">
           <% if study.image.attached? %>
             <%= link_to study_path(study) do %>
-              <%= image_tag study.get_image(150, 150), class: "img-fluid" %>
+              <%= image_tag study.get_image(150, 150), class: "img-fluid study-image" %>
             <% end %>
           <% else %>
             <%= link_to study_path(study) do %>
@@ -14,16 +14,19 @@
           <% end %>
         </div>
       </td>
-        <td class="align-top">
-          <div class="text-size"><%= study.title %></div>
-          <div class="text-size">
-            <% if study.tags.present? %>
-              <% study.tags.each do |tag| %>
-                <%= tag.name %>
-              <% end %>
+      <td class="align-top">
+        <div class="text-size"><%= study.title %></div>
+        <div class="text-size">
+          <% if study.tags.present? %>
+            <% study.tags.each do |tag| %>
+              <%= tag.name %>
             <% end %>
-          </div>
-        </td>
+          <% end %>
+        </div>
+      </td>
+      <td>
+        <%= render 'public/favorites/favorite', study: study %>
+      </td>
     </tr>
   <% end %>
 </table>

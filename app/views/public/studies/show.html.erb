@@ -5,9 +5,9 @@
 </div>
 <table class='table col-md-8'>
 	<tr>
-    <td class="icon-show col-md-2">
+    <td class="icon col-md-2">
       <% if @study.image.attached? %>
-        <%= image_tag @study.get_image(150, 150), class: "img-fluid" %>
+        <%= image_tag @study.get_image(150, 150), class: "img-fluid study-image" %>
       <% else %>
         <i class="fa-solid fa-book"></i>
       <% end %>
@@ -25,6 +25,7 @@
 
 
 
+  <!--下記を修正-->
   <% if @study.tags.present? %>
     <tr>
       <td colspan=3 class="text-size col-md-8 align-center">

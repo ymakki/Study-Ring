@@ -2,17 +2,7 @@
   <% users.each do |user| %>
     <tr>
       <td class="mb-3">
-        <div class="icon">
-          <% if user.profile_image.attached? %>
-            <%= link_to user_path(user) do %>
-              <%= image_tag user.get_profile_image(150, 150), class: "img-fluid" %>
-            <% end %>
-          <% else %>
-            <%= link_to user_path(user) do %>
-              <i class="logo fa-regular fa-circle-user"></i>
-            <% end %>
-          <% end %>
-        </div>
+        <%= render 'public/users/user_icon', user: user %>
       </td>
       <td>
         <div class="text-size"><%= user.name %></div>
