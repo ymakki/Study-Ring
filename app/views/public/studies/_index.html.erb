@@ -1,11 +1,11 @@
 <table class="table">
   <% studies.each do |study| %>
     <tr>
-      <td class="mb-3 mr-2">
+      <td class="col-md-1">
         <div class="icon">
           <% if study.image.attached? %>
             <%= link_to study_path(study) do %>
-              <%= image_tag study.get_image(150, 150), class: "img-fluid study-image" %>
+              <%= image_tag study.get_image(100, 100), class: "img-fluid study-image" %>
             <% end %>
           <% else %>
             <%= link_to study_path(study) do %>
@@ -14,18 +14,25 @@
           <% end %>
         </div>
       </td>
-      <td class="align-top">
-        <div class="text-size"><%= study.title %></div>
-        <div class="text-size">
-          <% if study.tags.present? %>
-            <% study.tags.each do |tag| %>
-              <%= tag.name %>
-            <% end %>
-          <% end %>
-        </div>
-      </td>
       <td>
-        <%= render 'public/favorites/favorite', study: study %>
+        <table class="table-borderless">
+          <tr>
+            <td><%= study.title %></td>
+          </tr>
+          <tr>
+            <td>
+              <i class="fa-regular fa-user"></i>
+              <%#= %>
+            </td>
+            <td>
+              <i class="fa-regular fa-comment"></i>
+              <%= study.study_comments.count %>
+            </td>
+            <td>
+              <%= render 'public/favorites/favorite', study: study %>
+            </td>
+          </tr>
+        </table>
       </td>
     </tr>
   <% end %>

@@ -1,11 +1,11 @@
 <% if study.favorited_by?(current_user) %>
-  <%= link_to study_favorites_path(study), method: :delete,  style: "color: red;" do %>
-    <i class="fas fa-heart" aria-hidden="true"></i>
-    <%= study.favorites.count %>
+  <%= link_to study_favorites_path(study), method: :delete do %>
+    <i class="fa-solid fa-thumbs-up"></i>
   <% end %>
+  <%= study.favorites.count %>
 <% else %>
   <%= link_to study_favorites_path(study), method: :post do %>
-    <i class="fas fa-heart" aria-hidden="true"></i>
-    <%= study.favorites.count %>
+    <i class="fa-regular fa-thumbs-up"></i>
   <% end %>
+  <%= study.favorites.count %>
 <% end %>

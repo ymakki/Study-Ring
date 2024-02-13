@@ -7,7 +7,7 @@
 	<tr>
     <td class="icon col-md-2">
       <% if @study.image.attached? %>
-        <%= image_tag @study.get_image(150, 150), class: "img-fluid study-image" %>
+        <%= image_tag @study.get_image(100, 100), class: "img-fluid study-image" %>
       <% else %>
         <i class="fa-solid fa-book"></i>
       <% end %>

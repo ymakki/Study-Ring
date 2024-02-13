@@ -21,11 +21,13 @@ Rails.application.routes.draw do
   scope module: :public do
     root :to =>"homes#top"
 
+    # 教材
     resources :studies, only: [:new, :index, :show, :edit, :create, :destroy, :update] do
       resources :study_comments, only: [:create, :destroy]
       resource :favorites, only: [:create, :destroy]
     end
 
+    # ユーザー
     resources :users, only: [:index, :show, :edit, :update] do
       member do
         patch "withdrawl"
@@ -43,12 +45,12 @@ Rails.application.routes.draw do
   namespace :admin do
     root :to =>"users#index"
 
+    # 教材
     resources :studies, only: [:index, :show, :edit, :update] do
       resources :study_comments, only: [:index, :update]
     end
 
-    resources :tags, only: [:index, :create, :edit, :update]
-
+    # ユーザー
     resources :users, only: [:index, :show, :edit, :update]
 
   end

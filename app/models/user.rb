@@ -1,12 +1,19 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+
+  # デバイス
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  # 教材
   has_many :studies, dependent: :destroy
+
+  # いいね
   has_many :favorites, dependent: :destroy
+
+  # コメント
   has_many :study_comments, dependent: :destroy
+
+  # 画像
   has_one_attached :profile_image
 
   # 画像サイズ
@@ -21,20 +28,20 @@ class User < ApplicationRecord
     User.where('name LIKE ?', '%' + word + '%')
   end
 
-  # フォロワー募集状態
+  # 募集状態
   enum follow_requests: {
     誰でも歓迎: 0,
     知り合い: 1,
     現在募集無し: 2,
   }
 
-  # ユーザーの性別
+  # 性別
   enum sexes: {
     男性: 0,
     女性: 1,
   }
 
-  # ユーザーの住居地
+  # 住居地
   enum residences: {
     北海道:0,青森県:1,岩手県:2,宮城県:3,秋田県:4,山形県:5,福島県:6,
     茨城県:7,栃木県:8,群馬県:9,埼玉県:10,千葉県:11,東京都:12,神奈川県:13,
@@ -56,7 +63,7 @@ class User < ApplicationRecord
     end
   end
 
-  # ゲストユーザー判別
+  # ゲスト判別
   def guest_user?
     email == GUEST_USER_EMAIL
   end

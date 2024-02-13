@@ -9,7 +9,7 @@
       <div class="aspect-ratio-box icon align-self-end">
         <% if study.image.attached? %>
           <%= link_to study_path(study) do %>
-            <%= image_tag study.get_image(150, 150), class: "img-fluid study-image" %>
+            <%= image_tag study.get_image(100, 100), class: "img-fluid study-image" %>
           <% end %>
         <% else %>
           <%= link_to study_path(study) do %>

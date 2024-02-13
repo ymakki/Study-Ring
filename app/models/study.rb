@@ -1,11 +1,22 @@
 class Study < ApplicationRecord
 
+  # ユーザー
   belongs_to :user
-  has_many :tag_relay, dependent: :destroy
-  has_many :tags, through: :tag_relay
+
+  # カテゴリー
+  has_many :tag_relays, dependent: :destroy
+  has_many :tags, through: :tag_relays
+
+  # いいね
   has_many :favorites, dependent: :destroy
+
+  # コメント
+  has_many :study_comments, dependent: :destroy
+
+  # 画像
   has_one_attached :image
 
+  # 教材名
   validates :title,presence:true
 
   # ステータス
@@ -25,7 +36,7 @@ class Study < ApplicationRecord
     Study.where("title LIKE ?", "%" + (word.to_s) + "%")
   end
 
-  # お気に入りがあるか
+  # お気に入りか
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?
   end

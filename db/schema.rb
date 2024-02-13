@@ -65,7 +65,6 @@ ActiveRecord::Schema.define(version: 2024_02_10_142221) do
     t.integer "user_id", null: false
     t.string "title"
     t.text "body"
-    t.string "tag"
     t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
