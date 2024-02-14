@@ -1,17 +1,22 @@
 /*============
 main
 =============*/
+.text-size-sm {
+  font-size: 10px;
+}
+
 .text-size {
   font-size: 15px;
+}
+
+.text-size-md {
+  font-size: 25px;
 }
 
 .text-size-lg {
   font-size: 50px;
 }
 
-.text-size-sm {
-  font-size: 10px;
-}
 
 
 
@@ -29,7 +34,6 @@ main
 .no-hover td {
   pointer-events: none;
 }
-
 
 
 

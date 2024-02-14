@@ -1,4 +1,6 @@
-<%= form_with(model:[book, book_comment], local: true) do |f| %>
-  <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに", class: "w-100" %>
-  <%= f.submit "送信" %>
+<%= form_with(model:[study, study_comment], local: true) do |f| %>
+<div class="d-flex align-items-center">
+  <%= f.text_area :comment, rows:"2",placeholder: "コメント", class: "w-75" %>
+  <span class="ml-3"><%= f.submit "送信" %></span>
+</div>
 <% end %>

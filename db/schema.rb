@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_02_10_142221) do
+ActiveRecord::Schema.define(version: 2024_02_14_085524) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -59,6 +59,16 @@ ActiveRecord::Schema.define(version: 2024_02_10_142221) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["study_id"], name: "index_favorites_on_study_id"
     t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
+
+  create_table "records", force: :cascade do |t|
+    t.integer "study_id", null: false
+    t.date "start_time"
+    t.integer "study_time"
+    t.text "word"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["study_id"], name: "index_records_on_study_id"
   end
 
   create_table "studies", force: :cascade do |t|
@@ -119,6 +129,7 @@ ActiveRecord::Schema.define(version: 2024_02_10_142221) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "favorites", "studies"
   add_foreign_key "favorites", "users"
+  add_foreign_key "records", "studies"
   add_foreign_key "studies", "users"
   add_foreign_key "study_comments", "studies"
   add_foreign_key "study_comments", "users"

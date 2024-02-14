@@ -1,17 +1,21 @@
 <table>
-  <tbody>
-      <% study.study_comments.each do |study_comment| %>
-      <tr>
-        <td>
+  <% study.study_comments.each do |study_comment| %>
+    <tr>
+      <td class="icon">
+        <% if study_comment.user.profile_image.attached? %>
           <%= link_to user_path(study_comment.user) do %>
-            <%= image_tag study_comment.user.get_profile_image(50,50) %><br>
-            <%= study_comment.user.name %>
+            <%= image_tag study_comment.user.get_profile_image(100, 100), class: "img-fluid user-image" %>
           <% end %>
-        </td>
-        <td><%= study_comment.comment %></td>
-        <td>
-        </td>
-      </tr>
-      <% end %>
-  </tbody>
+        <% else %>
+          <%= link_to user_path(study_comment.user) do %>
+            <i class="fa-regular fa-circle-user"></i>
+          <% end %>
+        <% end %>
+      </td>
+      <td>
+        <div><%= study_comment.user.name %></div>
+        <div><%= study_comment.comment %></div>
+      </td>
+    </tr>
+  <% end %>
 </table>

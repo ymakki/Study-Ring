@@ -2,17 +2,7 @@
   <% studies.each do |study| %>
     <tr>
       <td class="col-md-1">
-        <div class="icon">
-          <% if study.image.attached? %>
-            <%= link_to study_path(study) do %>
-              <%= image_tag study.get_image(100, 100), class: "img-fluid study-image" %>
-            <% end %>
-          <% else %>
-            <%= link_to study_path(study) do %>
-              <i class="fa-solid fa-book"></i>
-            <% end %>
-          <% end %>
-        </div>
+        <%= render 'public/studies/study_icon', study: study %>
       </td>
       <td>
         <table class="table-borderless">

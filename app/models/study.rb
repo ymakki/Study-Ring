@@ -13,6 +13,9 @@ class Study < ApplicationRecord
   # コメント
   has_many :study_comments, dependent: :destroy
 
+  # レコード
+  has_many :records, dependent: :destroy
+
   # 画像
   has_one_attached :image
 

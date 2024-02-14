@@ -1,6 +1,7 @@
-class Public::StudiesController < ApplicationController
+class Public::RecordsController < ApplicationController
 
   before_action :authenticate_user!
+  before_action :ensure_correct_user, only: [:destroy]
 
   def index
     @study = Study.new
@@ -8,12 +9,12 @@ class Public::StudiesController < ApplicationController
   end
 
   def new
-    @study = Study.new
-    @tags = Tag.all
+    @record = Record.new
+    @study = Study.find(params[:study_id])
   end
 
   def create
-    @study = current_user.studies.new(study_params)
+    @record = current_user.studies.new(record_params)
 
     if @study.save
       redirect_to study_path(@study), notice: "記録しました"
@@ -58,7 +59,14 @@ class Public::StudiesController < ApplicationController
   private
 
   def study_params
-    params.require(:study).permit(:user_id, :title, :body, :status, :image, tag_ids: [])
+    params.require(:study).permit(:user_id, :start_time, :study_time, :word)
+  end
+
+  def ensure_correct_user
+    study = Study.find(params[:id])
+    unless study.user == current_user
+      redirect_to studies_path
+    end
   end
 
 end
