@@ -8,17 +8,24 @@
     <div class="col-sm-3 mt-3">
       <div class="aspect-ratio-box icon align-self-end">
         <% if study.image.attached? %>
-          <%= link_to study_path(study) do %>
+          <%= link_to record_study_path(study) do %>
             <%= image_tag study.get_image(100, 100), class: "img-fluid study-image" %>
           <% end %>
         <% else %>
-          <%= link_to study_path(study) do %>
+          <%= link_to record_study_path(study) do %>
             <i class="fa-solid fa-book"></i>
           <% end %>
         <% end %>
       </div>
       <div class="text-center">
         <h6 class="mt-2 mb-3"><%= study.title %></h6>
+      </div>
+      <div class="text-center">
+        <% if study.user == current_user %>
+          <span><%= link_to '編集', edit_study_path(study), class: "btn btn-sm btn-success" %></span>
+          <span><%= link_to '詳細', study_path(study), class: "btn btn-sm btn-secondary" %></span>
+          <span><%= link_to '削除', study_path(study), method: :delete, data: { confirm: "本棚から「#{study.title}」を削除しますか？" }, class: "btn btn-sm btn-danger" %></span>
+        <% end %>
       </div>
     </div>
   <% end %>

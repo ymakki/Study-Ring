@@ -1,0 +1,17 @@
+<table>
+  <tbody>
+      <% study.study_comments.each do |study_comment| %>
+      <tr>
+        <td>
+          <%= link_to user_path(study_comment.user) do %>
+            <%= image_tag study_comment.user.get_profile_image(50,50) %><br>
+            <%= study_comment.user.name %>
+          <% end %>
+        </td>
+        <td><%= study_comment.comment %></td>
+        <td>
+        </td>
+      </tr>
+      <% end %>
+  </tbody>
+</table>

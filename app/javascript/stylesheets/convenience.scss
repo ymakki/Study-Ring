@@ -9,26 +9,29 @@ main
   font-size: 50px;
 }
 
-
-
-
-
-.align-top {
-  vertical-align: top;
+.text-size-sm {
+  font-size: 10px;
 }
+
+
+
+
 
 .side-line {
   display: inline-block;
   margin-right: 10px;
 }
 
-.add-margin {
- padding: 50px;
-}
-
 .user-icon {
   font-size: 25px;
 }
+
+.no-hover td {
+  pointer-events: none;
+}
+
+
+
 
 .icon-sm i {
   font-size: 50px;
@@ -39,3 +42,8 @@ main
 .icon-sm :hover {
   text-decoration: none;
 }
+
+
+
+
+

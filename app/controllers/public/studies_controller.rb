@@ -26,6 +26,7 @@ class Public::StudiesController < ApplicationController
 
   def show
     @study = Study.find(params[:id])
+    @study_comment = StudyComment.new
   end
 
   def edit
@@ -47,6 +48,9 @@ class Public::StudiesController < ApplicationController
     @study = Study.find(params[:id])
     @study.destroy
     redirect_to studies_path
+  end
+
+  def record
   end
 
   private

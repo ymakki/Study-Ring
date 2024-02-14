@@ -16,17 +16,6 @@
         <%= f.select :status, Study.statuses, include_blank: false, class: "form-control" %>
       </td>
     </tr>
-
-
-    <!--下記を修正-->
-    <tr>
-      <td class="form-group">
-        <%= f.label :tag, "カテゴリー", class: "pt-3" %>
-      </td>
-      <td class="form-group text-right">
-        <%= f.text_field :tag, class: "form-control", placeholder: "カテゴリー(半角スペースで複数登録)"  %>
-      </td>
-    </tr>
     <tr>
       <td class="form-group">
         <%= f.label :tag_ids, "既存のカテゴリーから選択", class: "pt-3" %>
@@ -39,9 +28,6 @@
         <% end %>
       </td>
     </tr>
-
-
-
     <tr>
       <td colspan=2 class="form-group text-center">
         <%= f.submit '保存', class: "btn btn-success" %>
