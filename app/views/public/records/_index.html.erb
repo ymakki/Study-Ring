@@ -33,14 +33,14 @@
             <td>
               <span>
                 <i class="fa-regular fa-comment"></i>
-                <%= record.study.study_comments.count %>
+                <%= record.study_comments.count %>
               </span>
-              <span class="ml-3"><%= render 'public/favorites/favorite', study: record.study %></span>
+              <span class="ml-3"><%= render 'public/favorites/favorite', record: record %></span>
             </td>
           </tr>
         </table>
       </td>
     </tr>
   </table>
-  <div class="text-right"><%= record.start_time.strftime('%Y年%m月%d日 %H:%M') if record.start_time %></div>
+  <div class="text-right"><%= record.start_time.strftime('%Y年%m月%d日 %H:%M') %></div>
 <% end %>

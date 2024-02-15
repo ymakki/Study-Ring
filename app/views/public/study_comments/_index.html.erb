@@ -1,5 +1,6 @@
 <table>
-  <% study.study_comments.each do |study_comment| %>
+  <% record.study_comments.each do |study_comment| %>
+  <% if study_comment.user.present? %>
     <tr>
       <td class="icon">
         <% if study_comment.user.profile_image.attached? %>
@@ -17,5 +18,6 @@
         <div><%= study_comment.comment %></div>
       </td>
     </tr>
+  <% end %>
   <% end %>
 </table>

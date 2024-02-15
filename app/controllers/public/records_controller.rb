@@ -23,6 +23,7 @@ class Public::RecordsController < ApplicationController
 
   def show
     @record = Record.find(params[:id])
+    @study_comment = @record.study_comments.build
   end
 
   private

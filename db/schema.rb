@@ -54,10 +54,10 @@ ActiveRecord::Schema.define(version: 2024_02_14_085524) do
 
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "study_id", null: false
+    t.integer "record_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["study_id"], name: "index_favorites_on_study_id"
+    t.index ["record_id"], name: "index_favorites_on_record_id"
     t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
@@ -85,11 +85,11 @@ ActiveRecord::Schema.define(version: 2024_02_14_085524) do
 
   create_table "study_comments", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "study_id", null: false
+    t.integer "record_id", null: false
     t.text "comment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["study_id"], name: "index_study_comments_on_study_id"
+    t.index ["record_id"], name: "index_study_comments_on_record_id"
     t.index ["user_id"], name: "index_study_comments_on_user_id"
   end
 
@@ -129,12 +129,12 @@ ActiveRecord::Schema.define(version: 2024_02_14_085524) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "favorites", "studies"
+  add_foreign_key "favorites", "records"
   add_foreign_key "favorites", "users"
   add_foreign_key "records", "studies"
   add_foreign_key "records", "users"
   add_foreign_key "studies", "users"
-  add_foreign_key "study_comments", "studies"
+  add_foreign_key "study_comments", "records"
   add_foreign_key "study_comments", "users"
   add_foreign_key "tag_relays", "studies"
   add_foreign_key "tag_relays", "tags"

@@ -17,7 +17,7 @@ class Public::StudiesController < ApplicationController
     @study = current_user.studies.new(study_params)
 
     if @study.save
-      redirect_to study_path(@study), notice: "記録しました"
+      redirect_to studies_path, notice: "記録しました"
     else
       @tags = Tag.all
       render "new"

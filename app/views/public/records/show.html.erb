@@ -18,19 +18,19 @@
 </div>
 
 <div class="text-size-md pt-3">
-  <% if @record.study.favorited_by?(current_user) %>
-    <%= link_to study_favorites_path(@record.study), method: :delete, style: "text-decoration: none; color: #000000;" do %>
+  <% if @record.favorited_by?(current_user) %>
+    <%= link_to study_record_favorites_path(@record.study, @record), method: :delete, style: "text-decoration: none; color: #000000;" do %>
       <i class="fa-solid fa-thumbs-up"></i>
     <% end %>
     <span class="pl-1">いいね！　(</span>
-    <%= @record.study.favorites.count %>
+    <%= @record.favorites.count %>
     <span class="pl-1">件)</span>
   <% else %>
-    <%= link_to study_favorites_path(@record.study), method: :post, style: "text-decoration: none; color: #000000;" do %>
+    <%= link_to study_record_favorites_path(@record.study, @record), method: :post, style: "text-decoration: none; color: #000000;" do %>
       <i class="fa-regular fa-thumbs-up"></i>
     <% end %>
     <span class="pl-1">いいね！　(</span>
-    <%= @record.study.favorites.count %>
+    <%= @record.favorites.count %>
     <span class="pl-1">件)</span>
   <% end %>
 </div>
@@ -38,14 +38,14 @@
 <div class="text-size-md pt-3">
   <i class="fa-regular fa-comment"></i>
   <span class="pl-1">コメント　(</span>
-  <%= @record.study.study_comments.count %>
+  <%= @record.study_comments.count %>
   <span>件)</span>
 </div>
 
 <div>
-  <%= render 'public/study_comments/index', study: @record.study %>
+  <%= render 'public/study_comments/index', record: @record %>
 </div>
 
 <div class="pt-3">
-  <%#= render 'public/study_comments/form', study: @record.study, study_comment: @record.study.study_comment %>
+  <%= render 'public/study_comments/form', record: @record, study_comment: @study_comment %>
 </div>

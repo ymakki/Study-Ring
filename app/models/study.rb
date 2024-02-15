@@ -7,12 +7,6 @@ class Study < ApplicationRecord
   has_many :tag_relays, dependent: :destroy
   has_many :tags, through: :tag_relays
 
-  # いいね
-  has_many :favorites, dependent: :destroy
-
-  # コメント
-  has_many :study_comments, dependent: :destroy
-
   # レコード
   has_many :records, dependent: :destroy
 
@@ -37,11 +31,6 @@ class Study < ApplicationRecord
   # 検索
   def self.search_for(word, model)
     Study.where("title LIKE ?", "%" + (word.to_s) + "%")
-  end
-
-  # お気に入りか
-  def favorited_by?(user)
-    favorites.where(user_id: user.id).exists?
   end
 
 end
