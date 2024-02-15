@@ -10,7 +10,7 @@
           <% end %>
         </div>
       </td>
-      <td class="col-md-7">
+      <td class="col-md-6">
         <table class="table-borderless">
           <tr  class="no-hover">
             <td>
@@ -22,7 +22,10 @@
             <td>
               <div class="d-flex">
                 <%= render 'public/studies/study_icon', study: record.study %>
-                <div><%= record.study.title %></div>
+                <div class="d-flex flex-column ml-2">
+                  <div><%= record.study.title %></div>
+                  <div><i class="fa-regular fa-clock text-size"></i><%= record.study_time %>分</div>
+                </div>
               </div>
             </td>
           </tr>
@@ -39,4 +42,5 @@
       </td>
     </tr>
   </table>
+  <div class="text-right"><%= record.start_time.strftime('%Y年%m月%d日 %H:%M') if record.start_time %></div>
 <% end %>

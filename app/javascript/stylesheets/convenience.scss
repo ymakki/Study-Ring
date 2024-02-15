@@ -17,6 +17,17 @@ main
   font-size: 50px;
 }
 
+.link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.link:hover {
+  text-decoration: none;
+  color: #000000;
+  background: #e4e4e4;
+  display: inline-block;
+}
 
 
 
@@ -35,17 +46,6 @@ main
   pointer-events: none;
 }
 
-
-
-.icon-sm i {
-  font-size: 50px;
-  color: #000000;
-  height: 100%;
-}
-
-.icon-sm :hover {
-  text-decoration: none;
-}
 
 
 

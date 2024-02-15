@@ -11,7 +11,7 @@
       <i class="fa-regular fa-calendar-days text-size-md"></i>
       <%= f.label :start_time, "学習日" %><br>
     </span>
-    <%= f.datetime_field :start_time %>
+     <%= f.datetime_field :start_time %>
   </div>
 
   <div class="field d-flex justify-content-between pt-3">
@@ -24,12 +24,6 @@
 
   <div class="field pt-3">
     <%= f.text_area :word, rows:"2", placeholder: "要点・ひとことメモ", class: "w-100" %>
-  </div>
-
-  <div class="field pt-3">
-    <td class="form-group">
-      <%= f.file_field :profile_image, class: "form-control-file", accept: 'image/*' %>
-    </td>
   </div>
 
   <div class="field d-flex justify-content-end pt-3">

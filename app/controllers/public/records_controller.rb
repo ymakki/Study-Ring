@@ -1,11 +1,8 @@
 class Public::RecordsController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :ensure_correct_user, only: [:destroy]
 
   def index
-    @study = Study.new
-    @studies = current_user.studies
   end
 
   def new
@@ -28,23 +25,10 @@ class Public::RecordsController < ApplicationController
     @record = Record.find(params[:id])
   end
 
-  def destroy
-    @record = Record.find(params[:id])
-    @record.destroy
-    redirect_to study_records_path
-  end
-
   private
 
   def record_params
-    params.require(:record).permit(:user_id, :start_time, :study_time, :word)
-  end
-
-  def ensure_correct_user
-    study = Study.find(params[:id])
-    unless study.user == current_user
-      redirect_to studies_path
-    end
+    params.require(:record).permit(:user_id, :study_id, :start_time, :study_time, :word)
   end
 
 end

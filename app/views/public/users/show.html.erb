@@ -1,8 +1,5 @@
 <%= render 'layouts/errors', obj: @user %>
 <div class="d-flex justify-content-between align-items-center">
-  <%= render 'layouts/back' %>
-</div>
-<div class="d-flex justify-content-between align-items-center">
   <%= render 'public/users/user_icon', user: @user %>
   <% if @user == current_user %>
     <%= link_to 'プロフィールを編集', edit_user_path(@user), class: "btn btn-secondary" %>
@@ -13,6 +10,13 @@
 <div class="text-size-lg"><%= @user.name %></div>
 <h4 class="pt-3">プロフィール</h4>
 <table class='table col-md-8'>
+  <tr>
+    <td>
+      <%= link_to studies_path(user_id: @user.id), class: "link" do %>
+        <div><%= @user.study_ids.count %>教材 ></div>
+      <% end %>
+    </td>
+  </tr>
   <tr>
     <td>
       <strong>自己紹介</strong>
