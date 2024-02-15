@@ -63,12 +63,14 @@ ActiveRecord::Schema.define(version: 2024_02_14_085524) do
 
   create_table "records", force: :cascade do |t|
     t.integer "study_id", null: false
+    t.integer "user_id", null: false
     t.date "start_time"
     t.integer "study_time"
     t.text "word"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["study_id"], name: "index_records_on_study_id"
+    t.index ["user_id"], name: "index_records_on_user_id"
   end
 
   create_table "studies", force: :cascade do |t|
@@ -130,6 +132,7 @@ ActiveRecord::Schema.define(version: 2024_02_14_085524) do
   add_foreign_key "favorites", "studies"
   add_foreign_key "favorites", "users"
   add_foreign_key "records", "studies"
+  add_foreign_key "records", "users"
   add_foreign_key "studies", "users"
   add_foreign_key "study_comments", "studies"
   add_foreign_key "study_comments", "users"

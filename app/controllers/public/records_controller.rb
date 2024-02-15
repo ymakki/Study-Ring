@@ -14,52 +14,30 @@ class Public::RecordsController < ApplicationController
   end
 
   def create
-    @record = current_user.studies.new(record_params)
+    @study = current_user.studies.find(params[:study_id])
+    @record = current_user.records.new(record_params.merge(study: @study))
 
-    if @study.save
-      redirect_to study_path(@study), notice: "記録しました"
+    if @record.save
+      redirect_to studies_path, notice: "記録しました"
     else
-      @tags = Tag.all
-      render "new"
+      render :new
     end
   end
 
   def show
-    @study = Study.find(params[:id])
-    @study_comment = StudyComment.new
-  end
-
-  def edit
-    @study = Study.find(params[:id])
-    @tags = Tag.all
-  end
-
-  def update
-    @study = Study.find(params[:id])
-    if @study.update(study_params)
-      redirect_to study_path(@study), notice: "更新しました"
-    else
-      @tags = Tag.all
-      render "show"
-    end
+    @record = Record.find(params[:id])
   end
 
   def destroy
-    @study = Study.find(params[:id])
-    @study.destroy
-    redirect_to studies_path
-  end
-
-  def record
-    @study = Study.find(params[:id])
-    @user = User.find(params[:id])
-    @study_comment = StudyComment.new
+    @record = Record.find(params[:id])
+    @record.destroy
+    redirect_to study_records_path
   end
 
   private
 
-  def study_params
-    params.require(:study).permit(:user_id, :start_time, :study_time, :word)
+  def record_params
+    params.require(:record).permit(:user_id, :start_time, :study_time, :word)
   end
 
   def ensure_correct_user

@@ -4,7 +4,7 @@
   <%= render "public/studies/study_icon", study: @study %>
   <span class="pl-2"><%= @study.title %></span>
 </div>
-<%= form_with model: @record, url: new_study_record_path(study_id: @study.id), local: true do |f| %>
+<%= form_with model: @record, url: study_records_path(study_id: @study.id), local: true do |f| %>
 
   <div class="field d-flex justify-content-between pt-3">
     <span>

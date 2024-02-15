@@ -5,7 +5,7 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @studies = @user.studies.all
+    @records = Record.where(user_id: @user.id)
   end
 
   def index
