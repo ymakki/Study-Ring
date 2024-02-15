@@ -64,7 +64,7 @@ ActiveRecord::Schema.define(version: 2024_02_14_085524) do
   create_table "records", force: :cascade do |t|
     t.integer "study_id", null: false
     t.integer "user_id", null: false
-    t.date "start_time"
+    t.datetime "start_time"
     t.integer "study_time"
     t.text "word"
     t.datetime "created_at", precision: 6, null: false
