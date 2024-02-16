@@ -4,8 +4,7 @@ class Public::RecordsController < ApplicationController
 
   def index
     # フォローしているユーザーにしたい
-    @user = current_user
-    @records = Record.where(user_id: @user.id)
+    @records = Record.all
   end
 
   def new
@@ -32,6 +31,15 @@ class Public::RecordsController < ApplicationController
   def edit
     @record = Record.find(params[:id])
     @study = Study.find(params[:study_id])
+  end
+
+  def update
+    @record = Record.find(params[:id])
+    if @record.update(record_params)
+      redirect_to study_record_path(@record), notice: "更新しました"
+    else
+      render "show"
+    end
   end
 
   def destroy

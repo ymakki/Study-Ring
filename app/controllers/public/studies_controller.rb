@@ -50,12 +50,6 @@ class Public::StudiesController < ApplicationController
     redirect_to studies_path
   end
 
-  def record
-    @study = Study.find(params[:id])
-    @user = User.find(params[:id])
-    @study_comment = StudyComment.new
-  end
-
   private
 
   def study_params

@@ -1,10 +1,10 @@
 <h2>タイムライン</h2>
 <% @records.each do |record| %>
   <table class="table table-hover">
-    <tr onclick="location.href='<%= study_record_path(record) %>'" style="cursor:pointer;">
+    <tr onclick="location.href='<%= study_record_path(record.study, record) %>'" style="cursor:pointer;">
       <td class="col-md-1">
         <div class="icon-sm">
-          <% if @user.profile_image.attached? %>
+          <% if record.user.profile_image.attached? %>
             <%= image_tag @user.get_profile_image(50, 50), class: "img-fluid" %>
           <% else %>
             <i class="fa-regular fa-circle-user"></i>
@@ -15,7 +15,7 @@
         <table class="table-borderless">
           <tr  class="no-hover">
             <td>
-              <div><%= @user.name %></div>
+              <div><%= record.user.name %></div>
               <div><%= record.word %></div>
             </td>
           </tr>

@@ -3,19 +3,15 @@ class User < ApplicationRecord
   # デバイス
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-
   # 教材
   has_many :studies, dependent: :destroy
-
   # いいね
   has_many :favorites, dependent: :destroy
-
+  has_many :favorited_records, through: :favorites, source: :record
   # コメント
   has_many :study_comments, dependent: :destroy
-
   # レコード
   has_many :records, dependent: :destroy
-
   # 画像
   has_one_attached :profile_image
 

@@ -1,4 +1,4 @@
-<%= form_with model: record, url: study_records_path(study_id: study.id), local: true do |f| %>
+<%= form_with model: [study, record], local: true do |f| %>
 
   <div class="field d-flex justify-content-between pt-3">
     <span>
