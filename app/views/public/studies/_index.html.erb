@@ -1,25 +1,28 @@
-<table class="table">
+<table class="table table-hover">
   <% studies.each do |study| %>
-    <tr>
+    <tr onclick="location.href='<%= study_path(user) %>'" style="cursor:pointer;">
       <td class="col-md-1">
         <%= render 'public/studies/study_icon', study: study %>
       </td>
       <td>
         <table class="table-borderless">
-          <tr>
+          <tr class="no-hover">
             <td><%= study.title %></td>
           </tr>
-          <tr>
+          <tr class="no-hover">
             <td>
               <i class="fa-regular fa-user"></i>
-              <%#= %>
+              <%#= user %>
+              <!--ユーザー数-->
             </td>
             <td>
               <i class="fa-regular fa-comment"></i>
-              <%= study.study_comments.count %>
+              <%#= study.review.count %>
+              <!--レビュー数-->
             </td>
             <td>
-              <%= render 'public/favorites/favorite', study: study %>
+              <%#= render 'public/favorites/favorite', study: study %>
+              <!--レビューのいいね数-->
             </td>
           </tr>
         </table>

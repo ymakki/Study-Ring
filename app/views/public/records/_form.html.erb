@@ -1,0 +1,30 @@
+<%= form_with model: record, url: study_records_path(study_id: study.id), local: true do |f| %>
+
+  <div class="field d-flex justify-content-between pt-3">
+    <span>
+      <i class="fa-regular fa-calendar-days text-size-md"></i>
+      <%= f.label :start_time, "学習日" %><br>
+    </span>
+     <%= f.datetime_field :start_time %>
+  </div>
+
+  <div class="field d-flex justify-content-between pt-3">
+    <span>
+      <i class="fa-regular fa-clock text-size-md"></i>
+      <%= f.label :study_time, "学習時間" %><br>
+    </span>
+    <%= f.number_field :study_time, placeholder: "学習時間(h)" %>
+  </div>
+
+  <div class="field pt-3">
+    <%= f.text_area :word, rows:"2", placeholder: "要点・ひとことメモ", class: "w-100" %>
+  </div>
+
+  <div class="field d-flex justify-content-end pt-3">
+    <td class="form-group">
+      <span><%= link_to "キャンセル", request.referer, class: "btn btn-secondary" %></span>
+      <span class="ml-2"><%= f.submit "記録", class: "btn btn-secondary" %></span>
+    </td>
+  </div>
+
+<% end %>

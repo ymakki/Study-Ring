@@ -3,6 +3,9 @@ class Public::RecordsController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    # フォローしているユーザーにしたい
+    @user = current_user
+    @records = Record.where(user_id: @user.id)
   end
 
   def new
@@ -24,6 +27,18 @@ class Public::RecordsController < ApplicationController
   def show
     @record = Record.find(params[:id])
     @study_comment = @record.study_comments.build
+  end
+
+  def edit
+    @record = Record.find(params[:id])
+    @study = Study.find(params[:study_id])
+  end
+
+  def destroy
+    @study = Study.find(params[:study_id])
+    @record = @study.records.find(params[:id])
+    @record.destroy
+    redirect_to records_path
   end
 
   private

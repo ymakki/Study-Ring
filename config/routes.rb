@@ -22,11 +22,13 @@ Rails.application.routes.draw do
 
     # 教材
     resources :studies, only: [:new, :index, :show, :edit, :create, :destroy, :update] do
-      resources :records, only: [:new, :index, :show, :create] do
+      resources :records, only: [:new, :edit, :show, :create, :update, :destroy] do
         resource :favorites, only: [:create, :destroy]
         resources :study_comments, only: [:create, :destroy]
       end
     end
+
+    resources :records, only: [:index]
 
     # ユーザー
     resources :users, only: [:index, :show, :edit, :update] do

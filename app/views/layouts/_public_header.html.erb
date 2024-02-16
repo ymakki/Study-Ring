@@ -16,15 +16,52 @@
             <% end %>
           <% end %>
         </li>
-        <li><%= link_to "記録する", studies_path %></li>
-        <li><%= link_to "ユーザーを探す", search_path(search_type: 'user') %></li>
-        <li><%= link_to "教材を探す", search_path(search_type: 'study') %></li>
-        <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
-        <li><%= link_to "退会する", unsubscribe_user_path(current_user) %></li>
+        <li>
+          <%= link_to records_path do %>
+            <i class="fa-solid fa-list"></i> タイムライン
+          <% end %>
+        </li>
+        <li>
+          <%= link_to studies_path do %>
+            <i class="fa-regular fa-pen-to-square"></i> 記録する
+          <% end %>
+        </li>
+        <li>
+          <%= link_to search_path(search_type: 'user') do %>
+            <i class="fa-solid fa-magnifying-glass"></i> ユーザーを探す
+          <% end %>
+        </li>
+        <li>
+          <%= link_to search_path(search_type: 'study') do %>
+            <i class="fa-solid fa-magnifying-glass"></i> 教材を探す
+          <% end %>
+        </li>
+        <li>
+          <%= link_to destroy_user_session_path, method: :delete do %>
+            <i class="fa-solid fa-arrow-right-from-bracket"></i> ログアウト
+          <% end %>
+        </li>
+        <li>
+          <%= link_to unsubscribe_user_path(current_user) do %>
+            <i class="fa-solid fa-user-slash"></i> 退会する
+          <% end %>
+        </li>
       <% else %>
-        <li><%= link_to "新規登録", new_user_registration_path %></li>
-        <li><%= link_to "ログイン", new_user_session_path %></li>
-        <li><%= link_to "ゲストログイン", users_guest_sign_in_path, method: :post %></li>
+        <li>
+          <%= link_to new_user_registration_path do %>
+            <i class="fa-solid fa-plus"></i> 新規登録
+          <% end %>
+        </li>
+        <li>
+          <%= link_to new_user_session_path do %>
+            <i class="fa-solid fa-arrow-right-to-bracket"></i> ログイン
+          <% end %>
+        </li>
+        <li>
+          <%= link_to users_guest_sign_in_path, method: :post do %>
+            <i class="fa-solid fa-circle-user"></i> ゲストログイン
+          <% end %>
+        </li>
       <% end %>
     </ul>
   </div>

@@ -62,4 +62,11 @@ class Public::StudiesController < ApplicationController
     params.require(:study).permit(:user_id, :title, :body, :status, :image, tag_ids: [])
   end
 
+  def ensure_correct_user
+    study = Study.find(params[:id])
+    unless study.user == current_user
+      redirect_to studies_path
+    end
+  end
+
 end
