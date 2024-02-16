@@ -27,7 +27,6 @@ Rails.application.routes.draw do
         resources :study_comments, only: [:create, :destroy]
       end
     end
-
     resources :records, only: [:index]
 
     # ユーザー
@@ -35,7 +34,10 @@ Rails.application.routes.draw do
       member do
         get "unsubscribe", to: "users#unsubscribe", as: :unsubscribe
         patch "withdrawal", to: "users#withdrawal", as: :withdrawal
+        get "following", to: "relationships#following", as: :following
+        get "followers", to: "relationships#followers", as: :followers
       end
+      resource :relationships, only: [:create, :destroy]
     end
 
     # 検索

@@ -12,6 +12,12 @@ class User < ApplicationRecord
   has_many :study_comments, dependent: :destroy
   # レコード
   has_many :records, dependent: :destroy
+  # フォローする
+  has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  has_many :following, through: :relationships, source: :followed
+  # フォローされる
+  has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+  has_many :followers, through: :reverse_of_relationships, source: :follower
   # 画像
   has_one_attached :profile_image
 
@@ -35,6 +41,21 @@ class User < ApplicationRecord
     minutes = total_minutes % 60
 
     "#{days}日 #{hours}時間 #{minutes}分"
+  end
+
+  # フォローする
+  def follow(user)
+    relationships.create(followed_id: user.id)
+  end
+
+  # フォローを外す
+  def unfollow(user)
+    relationships.find_by(followed_id: user.id).destroy
+  end
+
+  # フォローしているか
+  def following?(user)
+    following.include?(user)
   end
 
   # 募集状態

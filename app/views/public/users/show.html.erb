@@ -4,7 +4,7 @@
   <% if @user == current_user %>
     <%= link_to 'プロフィールを編集', edit_user_path(@user), class: "btn btn-secondary" %>
   <% else %>
-    <%#= link_to 'フォローする', path(), class: "btn btn-secondary" %>
+    <%= render 'public/relationships/button', user: @user %>
   <% end %>
 </div>
 <div class="text-size-lg"><%= @user.name %></div>
@@ -13,7 +13,13 @@
   <tr>
     <td>
       <%= link_to studies_path(user_id: @user.id), class: "link" do %>
-        <div><%= @user.study_ids.count %>教材 ></div>
+        <%= @user.study_ids.count %>教材 >
+      <% end %>
+      <%= link_to following_user_path(@user), class: "link ml-2" do %>
+        <%= @user.following.count %>フォロー >
+      <% end %>
+      <%= link_to followers_user_path(@user), class: "link ml-2" do %>
+        <%= @user.followers.count %>フォロワー >
       <% end %>
     </td>
   </tr>
