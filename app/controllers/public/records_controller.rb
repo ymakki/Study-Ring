@@ -3,8 +3,11 @@ class Public::RecordsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    # フォローしているユーザーにしたい
-    @records = Record.all
+    # フォローしているユーザーのID一覧を取得
+    followed_user_ids = current_user.following.pluck(:id)
+
+    # フォローしているユーザーと自身のレコードを取得
+    @records = Record.where(user_id: [current_user.id] + followed_user_ids)
   end
 
   def new

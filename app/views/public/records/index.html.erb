@@ -1,4 +1,5 @@
-<h2>タイムライン</h2>
+<h2 class="pb-2">タイムライン</h2>
+フォロー
 <% @records.each do |record| %>
   <table class="table table-hover">
     <tr onclick="location.href='<%= study_record_path(record.study, record) %>'" style="cursor:pointer;">
