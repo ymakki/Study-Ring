@@ -27,6 +27,16 @@ class User < ApplicationRecord
     User.where('name LIKE ?', '%' + word + '%')
   end
 
+  # 学習時間
+  def total_study_time
+    total_minutes = records.sum(:study_time)
+    days = total_minutes / (60 * 24)
+    hours = (total_minutes % (60 * 24)) / 60
+    minutes = total_minutes % 60
+
+    "#{days}日 #{hours}時間 #{minutes}分"
+  end
+
   # 募集状態
   enum follow_requests: {
     誰でも歓迎: 0,
