@@ -29,7 +29,18 @@ main
   display: inline-block;
 }
 
+.height {
+  height: 100px;
+}
 
+.form-control.height::placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px; /* 適切なパディングを設定してください */
+  font-size: 14px; /* 適切なフォントサイズを設定してください */
+  color: #a0a0a0; /* プレースホルダーの色を設定してください */
+}
 
 
 

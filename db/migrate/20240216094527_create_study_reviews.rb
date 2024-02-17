@@ -1,9 +1,11 @@
-class CreateStudyComments < ActiveRecord::Migration[6.1]
+class CreateStudyReviews < ActiveRecord::Migration[6.1]
   def change
-    create_table :study_comments do |t|
+    create_table :study_reviews do |t|
       t.references :user, foreign_key: true, null: false
       t.references :record, foreign_key: true, null: false
-      t.text :comment
+      
+      t.text :title
+      t.text :body
 
       t.timestamps
     end

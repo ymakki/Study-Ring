@@ -2,14 +2,13 @@ class Study < ApplicationRecord
 
   # ユーザー
   belongs_to :user
-
   # カテゴリー
   has_many :tag_relays, dependent: :destroy
   has_many :tags, through: :tag_relays
-
   # レコード
   has_many :records, dependent: :destroy
-
+  # レビュー
+  has_many :study_reviews, dependent: :destroy
   # 画像
   has_one_attached :image
 

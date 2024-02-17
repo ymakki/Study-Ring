@@ -5,9 +5,8 @@ class Public::RecordsController < ApplicationController
   def index
     # フォローしているユーザーのID一覧を取得
     followed_user_ids = current_user.following.pluck(:id)
-
-    # フォローしているユーザーと自身のレコードを取得
-    @records = Record.where(user_id: [current_user.id] + followed_user_ids)
+    # フォローしているユーザーと自身のレコードとレビューを取得
+    @timelines = Timeline.where(user_id: [current_user.id] + followed_user_ids).order(created_at: :desc)
   end
 
   def new
@@ -19,7 +18,12 @@ class Public::RecordsController < ApplicationController
     @study = current_user.studies.find(params[:study_id])
     @record = current_user.records.new(record_params.merge(study: @study))
 
+    records = Record.where(user_id: current_user.id)
     if @record.save
+      records.each do |record|
+        # Record に紐づく新しい Timeline レコードを作成
+        Timeline.create(user_id: current_user.id, record_id: record.id, created_at: record.created_at)
+      end
       redirect_to studies_path, notice: "記録しました"
     else
       render :new

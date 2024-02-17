@@ -23,13 +23,13 @@
           <td class="col-md-3 text-size">いいね</td>
         </tr>
         <tr class="text-center">
-          <td class="col-md-3"><%#= %></td>
-          <td class="col-md-3"><%#= study.study_reviews.count %></td>
+          <td class="col-md-3"><%#= @study.status.count ステータスが勉強中のやつ%></td>
+          <td class="col-md-3"><%#= @study.study_reviews.review.count %></td>
           <td class="col-md-3"><%#= @study.study_reviews.favorites.count %></td>
         </tr>
         <tr class="text-center">
           <td colspan="3" class="pt-3">
-            <%#= link_to 'レビューを書く', study_path(@study), class: "btn btn-secondary" %>
+            <%= link_to 'レビューを書く', new_study_study_review_path(@study), class: "btn btn-secondary" %>
             <%#= link_to '本棚に登録', study_path(@study), class: "btn btn-secondary" %>
           </td>
         </tr>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_02_16_070549) do
+ActiveRecord::Schema.define(version: 2024_02_17_082352) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -100,6 +100,17 @@ ActiveRecord::Schema.define(version: 2024_02_16_070549) do
     t.index ["user_id"], name: "index_study_comments_on_user_id"
   end
 
+  create_table "study_reviews", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "study_id", null: false
+    t.text "title"
+    t.text "body"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["study_id"], name: "index_study_reviews_on_study_id"
+    t.index ["user_id"], name: "index_study_reviews_on_user_id"
+  end
+
   create_table "tag_relays", force: :cascade do |t|
     t.integer "study_id", null: false
     t.integer "tag_id", null: false
@@ -111,6 +122,14 @@ ActiveRecord::Schema.define(version: 2024_02_16_070549) do
 
   create_table "tags", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "timelines", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "record_id"
+    t.integer "study_review_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -143,6 +162,8 @@ ActiveRecord::Schema.define(version: 2024_02_16_070549) do
   add_foreign_key "studies", "users"
   add_foreign_key "study_comments", "records"
   add_foreign_key "study_comments", "users"
+  add_foreign_key "study_reviews", "studies"
+  add_foreign_key "study_reviews", "users"
   add_foreign_key "tag_relays", "studies"
   add_foreign_key "tag_relays", "tags"
 end

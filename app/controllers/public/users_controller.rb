@@ -5,7 +5,7 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @records = Record.where(user_id: @user.id)
+    @timelines = Timeline.where(user_id: @user.id).order(created_at: :desc)
   end
 
   def index
