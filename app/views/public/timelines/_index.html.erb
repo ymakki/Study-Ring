@@ -4,8 +4,8 @@
       <tr>
         <td class="col-md-1">
           <div class="icon-sm">
-            <% if @user.profile_image.attached? %>
-              <%= image_tag @user.get_profile_image(50, 50), class: "img-fluid" %>
+            <% if timeline.record.user.profile_image.attached? %>
+              <%= image_tag timeline.record.user.get_profile_image(50, 50), class: "img-fluid" %>
             <% else %>
               <i class="fa-regular fa-circle-user"></i>
             <% end %>
@@ -15,7 +15,7 @@
           <table class="table-borderless">
             <tr  class="no-hover">
               <td>
-                <div><%= @user.name %></div>
+                <div><%= timeline.record.user.name %></div>
                 <div><%= timeline.record.word %></div>
               </td>
             </tr>
@@ -49,7 +49,7 @@
       <tr>
         <td class="col-md-1">
           <div class="icon-sm">
-            <% if @user.profile_image.attached? %>
+            <% if timeline.study_review.user.profile_image.attached? %>
               <%= image_tag @user.get_profile_image(50, 50), class: "img-fluid" %>
             <% else %>
               <i class="fa-regular fa-circle-user"></i>
@@ -60,7 +60,7 @@
           <table class="table-borderless">
             <tr  class="no-hover">
               <td>
-                <div><%= @user.name %></div>
+                <div><%= timeline.study_review.user.name %></div>
                 <div><%= timeline.study_review.title %></div>
               </td>
             </tr>
