@@ -23,6 +23,8 @@ class User < ApplicationRecord
   # 画像
   has_one_attached :profile_image
 
+  validates :name,presence:true,length:{maximum:10}
+
   # 画像サイズ
   def get_profile_image(width, height)
     if profile_image.attached?

@@ -37,12 +37,10 @@ main
   position: absolute;
   top: 0;
   left: 0;
-  padding: 10px; /* 適切なパディングを設定してください */
-  font-size: 14px; /* 適切なフォントサイズを設定してください */
-  color: #a0a0a0; /* プレースホルダーの色を設定してください */
+  padding: 10px;
+  font-size: 14px;
+  color: #a0a0a0;
 }
-
-
 
 .side-line {
   display: inline-block;
@@ -57,8 +55,15 @@ main
   pointer-events: none;
 }
 
+.padding-left {
+  padding-left: 300px;
+}
 
-
+.clamp-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 
 

@@ -1,7 +1,6 @@
-<%= render 'layouts/errors', obj: @study %>
 <div class="d-flex align-items-center">
   <%= render 'layouts/back' %>
-  <h2 class="pl-5"><%= @study.title %></h2>
+  <h2 class="clamp-text pl-5"><%= @study.title %></h2>
 </div>
 <table class="ml-5">
   <tr>
@@ -15,33 +14,24 @@
     <td class="w-100">
       <table class="ml-3">
         <tr>
-          <td colspan="3" class="text-size pb-3"><%= @study.title %></td>
+          <td class="clamp-text text-size pb-3"><%= @study.title %></td>
         </tr>
         <tr class="text-center">
-          <td class="col-md-3 text-size">勉強中</td>
-          <td class="col-md-3 text-size">レビュー</td>
-          <td class="col-md-3 text-size">いいね</td>
+          <td class="text-size">レビュー</td>
+          <td class="text-size">いいね</td>
         </tr>
         <tr class="text-center">
-          <td class="col-md-3"><%#= @study.status.count ステータスが勉強中のやつ%></td>
-          <td class="col-md-3"><%#= @study.study_reviews.review.count %></td>
-          <td class="col-md-3"><%#= @study.study_reviews.favorites.count %></td>
+          <td><%= @study.study_reviews.count %></td>
+          <td><%#= @study.study_reviews.favorites.count %></td>
         </tr>
         <tr class="text-center">
-          <td colspan="3" class="pt-3">
-            <%= link_to 'レビューを書く', new_study_study_review_path(@study), class: "btn btn-secondary" %>
-            <%#= link_to '本棚に登録', study_path(@study), class: "btn btn-secondary" %>
+          <td colspan="2" class="pt-3">
+            <span><%= link_to 'レビューを書く', new_study_study_review_path(@study), class: "btn btn-secondary" %></span>
+            <span class="ml-2"><%= link_to "本棚に登録", new_study_path(@study, title: @study.title), class: "btn btn-secondary" %></span>
           </td>
         </tr>
       </table>
     </td>
   </tr>
 </table>
-<table>
-  <tr>
-    <td>
-      <h4 class="pt-3">教材レビュー</h4>
-      <%#= render 'public/studies/timeline', studies: @studies, user: @user %>
-    </td>
-  </tr>
-</table>
+<%= render 'public/study_reviews/index', studies: @studies, user: @user %>

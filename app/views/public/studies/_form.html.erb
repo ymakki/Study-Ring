@@ -5,7 +5,7 @@
         <%= f.file_field :image, accept: "image/*", class: "form-control-file" %>
       </td>
       <td class="form-group col-md-5">
-        <%= f.text_field :title, placeholder: "教材名", class: "form-control" %>
+        <%= f.text_field :title, value: @study_copy.title, placeholder: "教材名", class: "form-control" %>
       </td>
     </tr>
     <tr>

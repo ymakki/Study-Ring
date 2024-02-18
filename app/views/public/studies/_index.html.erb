@@ -7,18 +7,12 @@
       <td>
         <table class="table-borderless">
           <tr class="no-hover">
-            <td><%= study.title %></td>
+            <td class="clamp-text"><%= study.title %></td>
           </tr>
           <tr class="no-hover">
             <td>
-              <i class="fa-regular fa-user"></i>
-              <%#= user %>
-              <!--ユーザー数-->
-            </td>
-            <td>
-              <i class="fa-regular fa-comment"></i>
-              <%#= study.review.count %>
-              <!--レビュー数-->
+              <i class="fa-solid fa-comment-medical"></i>
+              <%= study.study_reviews.count %>
             </td>
             <td>
               <%#= render 'public/favorites/favorite', study: study %>

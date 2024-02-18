@@ -10,6 +10,8 @@ class Public::StudiesController < ApplicationController
 
   def new
     @study = Study.new
+    @study_copy = Study.new(title: params[:title])
+
     @tags = Tag.all
   end
 
@@ -25,8 +27,9 @@ class Public::StudiesController < ApplicationController
   end
 
   def show
-    @study = Study.find(params[:id])
-    @study_comment = StudyComment.new
+    @study = Study.includes(:user, :study_reviews).find(params[:id])
+    @user = @study.user
+    @reviews = @study.study_reviews.all
   end
 
   def edit
