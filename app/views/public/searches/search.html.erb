@@ -40,7 +40,7 @@
 <% if @model == 'user' %>
   <div class="d-flex align-items-center">
     <%= render 'layouts/back' %>
-    <h2 class="pl-5"><%= @word %></h2>
+    <h2 class="pl-5 break-word"><%= @word %></h2>
   </div>
   <%= render 'public/users/index', users: @records %>
 <% end %>
@@ -48,7 +48,7 @@
 <% if @model == 'study' %>
   <div class="d-flex align-items-center">
     <%= render 'layouts/back' %>
-    <h2 class="pl-5"><%= @word %></h2>
+    <h2 class="pl-5 break-word"><%= @word %></h2>
   </div>
   <%= render 'public/studies/index', studies: @records %>
 <% end %>

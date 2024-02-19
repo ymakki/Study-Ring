@@ -1,42 +1,48 @@
-<div class="container">
-  <div class="left-button">
-    <%= link_to "ユーザー一覧に戻る", users_path, class:"btn btn-info" %>
+<div class="line-bc">
+  <div class="d-flex align-items-center">
+    <%= render 'layouts/back' %>
+    <% @entries.each do |entry| %>
+      <% unless entry.user == current_user %>
+        <h2><%= entry.user.name %></h2>
+      <% end %>
+    <% end %>
   </div>
-
-  <% @entries.each do |e| %>
-    <% unless e.user == current_user %>
-    <h2><%= e.user.name %>さんとのチャットルーム</h2>
+  <div class="chats">
+  <% if @messages.present? %>
+    <% @messages.each do |message| %>
+      <% if current_user.id == message.user.id  %>
+        <div class="balloon6">
+          <div class="chatting">
+            <div class="mycomment">
+              <p class="break-word"><%= message.content %></p>
+            </div>
+          </div>
+        </div>
+      <% else %>
+        <div class="icon-sm">
+          <% if message.user.profile_image.attached? %>
+            <%= image_tag message.user.get_profile_image(50, 50), class: "img-fluid user-image" %>
+          <% else %>
+            <i class="fa-regular fa-circle-user"></i>
+          <% end %>
+        </div>
+        <div class="says">
+          <p class="break-word"><%= message.content %></p>
+        </div>
+      <% end %>
     <% end %>
   <% end %>
-
-  <hr>
-  <div class="chat">
-    <div class="chats">
-      <% if @messages.present? %>
-        <% @messages.each do |m| %>
-          <% if m.user_id == current_user.id %>
-              <div class="chat-fukidashi" style="text-align: right;">
-                <strong><%= m.content %></strong>
-              </div>
-          <% else %>
-              <div class="chat-fukidashi" style="text-align: left;">
-                <strong><%= m.content %></strong>
-              </div>
-          <% end %>
-        <% end %>
-      <% end %>
-    </div>
-
-    <div class="errors">
-      <%= render "layouts/errors", obj: @message %>
-    </div>
-
-    <div class="posts">
-      <%= form_with model: @message, local: false do |f| %>
-        <%= f.text_field :content, placeholder: "140字以内でメッセージを入力してください", size: 70, class: "form-text-field" %>
-        <%= f.hidden_field :room_id, value: @room.id %>
-        <%= f.submit "投稿", class: "form-submit" %>
-      <% end %>
-    </div>
   </div>
+  <div class="post"
+  <div class="pt-3">
+    <%= form_with model: @message, local: false do |f| %>
+      <%= f.text_area :content, placeholder: "Aa",  cols: 85, rows: 2, class: "form-text-field" %>
+      <%= f.hidden_field :room_id, value: @room.id %>
+      <%= f.submit "送信", class: "form-submit" %>
+    <% end %>
+  </div>
+</div>
+
+<div class="errors">
+  <%= render "layouts/errors", obj: @message %>
 </div>

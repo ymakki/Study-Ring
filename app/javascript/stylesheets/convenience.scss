@@ -64,5 +64,10 @@ main
   text-overflow: ellipsis;
 }
 
+.break-word{
+  word-break: break-all;
+}
 
-
+.form-text-field {
+  border-radius: 10px;
+}

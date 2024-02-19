@@ -1,7 +1,10 @@
 $('.chats').append(`
-    <div class="chat-fukidashi" style='text-align: right;'>
-        <strong><%= j @message.content %></strong><br>
-        ${'<%= j @message.created_at.strftime('%Y-%m-%d %H:%M:%S') %>'}
+  <div class="balloon6">
+    <div class="chatting">
+      <div class="mycomment">
+        <p class="break-word"><%= j @message.content %></p>
+      </div>
     </div>
-`)
-$('input[type=text]').val("")
+  </div>
+`);
+$('form').find('textarea, input[type="text"]').val("");

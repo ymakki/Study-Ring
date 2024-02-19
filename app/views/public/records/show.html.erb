@@ -15,14 +15,14 @@
   <span class="pl-2"><%= @user.name %></span>
 </div>
 
-<div class="clamp-text pl-3 pt-2 pb-2">
+<div class="break-word pl-3 pt-2 pb-2">
   <%= @record.word %>
 </div>
 
 <div class="d-flex align-items-center">
   <%= render 'public/studies/study_icon', study: @study %>
   <div class="d-flex flex-column">
-    <span class="clamp-text pl-2"><%= @study.title %></span>
+    <span class="break-word pl-2"><%= @study.title %></span>
     <span class="pl-2 mt-2">
       <i class="fa-regular fa-clock text-size"></i>
       <%= @record.study_time %>分
@@ -48,7 +48,7 @@
   <% end %>
 </div>
 
-<div class="d-flex gap-2">
+<div class="d-flex gap-2 break-word">
   <% @record.favoriting_users.each do |user| %>
     <%= render 'public/users/user_icon', user: user %>
   <% end %>

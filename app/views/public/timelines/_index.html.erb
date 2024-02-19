@@ -16,7 +16,7 @@
             <tr  class="no-hover">
               <td>
                 <div><%= timeline.record.user.name %></div>
-                <div class="clamp-text mt-5"><%= timeline.record.word %></div>
+                <div class="break-word mt-5"><%= timeline.record.word %></div>
               </td>
             </tr>
             <tr class="no-hover">
@@ -24,7 +24,7 @@
                 <div class="d-flex">
                   <%= render 'public/studies/study_icon', study: timeline.record.study %>
                   <div class="d-flex flex-column ml-2">
-                    <div class="clamp-text"><%= timeline.record.study.title %></div>
+                    <div class="break-word"><%= timeline.record.study.title %></div>
                     <div class="pt-2"><i class="fa-regular fa-clock text-size"></i><%= timeline.record.study_time %>分</div>
                   </div>
                 </div>
@@ -70,7 +70,7 @@
                       <div class="d-flex">
                         <%= render 'public/studies/study_icon', study: timeline.study_review.study %>
                         <div class="d-flex ml-2 flex-column">
-                          <div class="clamp-text"><%= timeline.study_review.study.title %></div>
+                          <div class="break-word"><%= timeline.study_review.study.title %></div>
                           <div>
                             <i class="fa-solid fa-comment-medical"></i>
                             <%= timeline.study_review.study.study_reviews.count %>
@@ -91,8 +91,8 @@
                       <div class="pl-3"><%= timeline.study_review.user.name %></div>
                     </td>
                     <td class="d-flex flex-column">
-                      <div class="clamp-text"><%= timeline.study_review.title %></div>
-                      <div class="clamp-text"><%= timeline.study_review.body %></div>
+                      <div class="break-word"><%= timeline.study_review.title %></div>
+                      <div class="break-word"><%= timeline.study_review.body %></div>
                     </td>
                   </tr>
                 </table>

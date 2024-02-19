@@ -7,12 +7,16 @@
       <td>
         <table class="table-borderless">
           <tr class="no-hover">
-            <td class="clamp-text"><%= study.title %></td>
+            <td class="break-word"><%= study.title %></td>
           </tr>
           <tr class="no-hover">
             <td>
               <i class="fa-solid fa-comment-medical"></i>
-              <%= study.study_reviews.count %>
+              <% if study.study_reviews.any? %>
+                <%= study.study_reviews.count %>
+              <% else %>
+                0
+              <% end %>
             </td>
             <td>
               <%#= render 'public/favorites/favorite', study: study %>

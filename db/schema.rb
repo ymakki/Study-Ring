@@ -126,12 +126,12 @@ ActiveRecord::Schema.define(version: 2024_02_19_032800) do
 
   create_table "study_reviews", force: :cascade do |t|
     t.integer "user_id", null: false
-    t.integer "record_id", null: false
+    t.integer "study_id", null: false
     t.text "title"
     t.text "body"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["record_id"], name: "index_study_reviews_on_record_id"
+    t.index ["study_id"], name: "index_study_reviews_on_study_id"
     t.index ["user_id"], name: "index_study_reviews_on_user_id"
   end
 
@@ -190,7 +190,7 @@ ActiveRecord::Schema.define(version: 2024_02_19_032800) do
   add_foreign_key "studies", "users"
   add_foreign_key "study_comments", "records"
   add_foreign_key "study_comments", "users"
-  add_foreign_key "study_reviews", "records"
+  add_foreign_key "study_reviews", "studies"
   add_foreign_key "study_reviews", "users"
   add_foreign_key "tag_relays", "studies"
   add_foreign_key "tag_relays", "tags"
