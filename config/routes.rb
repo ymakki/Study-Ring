@@ -45,6 +45,10 @@ Rails.application.routes.draw do
     get "search", to: "searches#search"
     get  "tagsearch", to: "tagsearches#search"
 
+    # DM
+    resources :messages, only: [:create]
+    resources :rooms, only: [:create, :show]
+
   end
 
   # 管理者側

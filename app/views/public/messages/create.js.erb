@@ -1,0 +1,7 @@
+$('.chats').append(`
+    <div class="chat-fukidashi" style='text-align: right;'>
+        <strong><%= j @message.content %></strong><br>
+        ${'<%= j @message.created_at.strftime('%Y-%m-%d %H:%M:%S') %>'}
+    </div>
+`)
+$('input[type=text]').val("")

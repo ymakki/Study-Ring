@@ -1,11 +1,14 @@
 <%= render 'layouts/errors', obj: @user %>
 <div class="d-flex justify-content-between align-items-center">
   <%= render 'public/users/user_icon', user: @user %>
-  <% if @user == current_user %>
-    <%= link_to 'プロフィールを編集', edit_user_path(@user), class: "btn btn-secondary" %>
-  <% else %>
-    <%= render 'public/relationships/button', user: @user %>
-  <% end %>
+  <div>
+    <% if @user == current_user %>
+      <%= link_to 'プロフィールを編集', edit_user_path(@user), class: "btn btn-secondary" %>
+    <% else %>
+      <%= render 'public/relationships/button', user: @user %>
+    <% end %>
+    <%= render 'dm', user: @user, room: @room, isRoom: @isRoom, roomId: @roomId, entry: @entry %>
+  </div>
 </div>
 <div class="text-size-lg"><%= @user.name %></div>
 <h4 class="pt-3">プロフィール</h4>
