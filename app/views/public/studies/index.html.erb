@@ -1,6 +1,10 @@
-<%= render 'layouts/errors', obj: @study %>
 <div class="d-flex align-items-center">
-  <h2 class="pl-5">記録する</h2>
+  <h2 class="pt-3">記録する</h2>
+</div>
+<div class="pt-3 pb-3">
+  <span><%= link_to "勉強中 |", sort_path(sort_type: 'now'), class: "text-size link" %></span>
+  <span><%= link_to " スタンバイ ", sort_path(sort_type: 'stay'), class: "text-size link" %></span>
+  <span><%= link_to "| 完了済み", sort_path(sort_type: 'finish'), class: "text-size link" %></span>
 </div>
 <div class="row">
   <% @studies.each do |study| %>

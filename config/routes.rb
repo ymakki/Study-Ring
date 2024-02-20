@@ -49,6 +49,8 @@ Rails.application.routes.draw do
     resources :messages, only: [:create]
     resources :rooms, only: [:index, :create, :show]
 
+    # ソート
+    get "sort", to: "studies#sort"
   end
 
   # 管理者側

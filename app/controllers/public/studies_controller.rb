@@ -4,7 +4,6 @@ class Public::StudiesController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def index
-    @study = Study.new
     @studies = current_user.studies
   end
 
@@ -51,6 +50,22 @@ class Public::StudiesController < ApplicationController
     @study = Study.find(params[:id])
     @study.destroy
     redirect_to studies_path
+  end
+
+  # ソート
+  def sort
+    sort_type = params[:sort_type]
+
+    case sort_type
+    when 'now'
+      @studies = current_user.studies.where(status: Study.statuses[:勉強中])
+    when 'stay'
+      @studies = current_user.studies.where(status: Study.statuses[:スタンバイ])
+    when 'finish'
+      @studies = current_user.studies.where(status: Study.statuses[:完了済み])
+    end
+
+    render "index"
   end
 
   private
