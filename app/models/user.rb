@@ -19,7 +19,7 @@ class User < ApplicationRecord
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :followers, through: :reverse_of_relationships, source: :follower
   # レビュー
-  has_many :study_review, dependent: :destroy
+  has_many :study_reviews, dependent: :destroy
   # メッセージ
   has_many :entries, dependent: :destroy
   has_many :messages, dependent: :destroy

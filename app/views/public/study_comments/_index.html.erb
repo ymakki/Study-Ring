@@ -1,23 +1,23 @@
 <table>
   <% record.study_comments.each do |study_comment| %>
-  <% if study_comment.user.present? %>
-    <tr>
-      <td class="icon">
-        <% if study_comment.user.profile_image.attached? %>
-          <%= link_to user_path(study_comment.user) do %>
-            <%= image_tag study_comment.user.get_profile_image(100, 100), class: "img-fluid user-image" %>
+    <% if study_comment.user.present? %>
+      <tr>
+        <td class="icon">
+          <% if study_comment.user.profile_image.attached? %>
+            <%= link_to user_path(study_comment.user) do %>
+              <%= image_tag study_comment.user.get_profile_image(100, 100), class: "img-fluid user-image" %>
+            <% end %>
+          <% else %>
+            <%= link_to user_path(study_comment.user) do %>
+              <i class="fa-regular fa-circle-user"></i>
+            <% end %>
           <% end %>
-        <% else %>
-          <%= link_to user_path(study_comment.user) do %>
-            <i class="fa-regular fa-circle-user"></i>
-          <% end %>
-        <% end %>
-      </td>
-      <td>
-        <div><%= study_comment.user.name %></div>
-        <div class="break-word"><%= study_comment.comment %></div>
-      </td>
-    </tr>
-  <% end %>
+        </td>
+        <td>
+          <div><%= study_comment.user.name %></div>
+          <div class="break-word"><%= study_comment.comment %></div>
+        </td>
+      </tr>
+    <% end %>
   <% end %>
 </table>

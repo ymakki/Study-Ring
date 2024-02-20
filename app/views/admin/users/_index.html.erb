@@ -1,23 +1,19 @@
-<table>
+<table class="table table-hover">
   <% users.each do |user| %>
-    <tr>
+    <tr onclick="location.href='<%= admin_user_path(user) %>' "style="cursor:pointer;">
       <td class="d-flex mb-3 mr-2">
-        <div class="icon">
+        <div class="icon-sm mr-3">
           <% if user.profile_image.attached? %>
-            <%= link_to admin_user_path(user) do %>
-              <%= image_tag user.get_profile_image(150, 150), class: "img-fluid" %>
-            <% end %>
+            <%= image_tag user.get_profile_image(50, 50), class: "img-fluid" %>
           <% else %>
-            <%= link_to admin_user_path(user) do %>
-              <i class="logo fa-regular fa-circle-user"></i>
-            <% end %>
+            <i class="fa-regular fa-circle-user"></i>
           <% end %>
         </div>
-      </td>
-        <td class="align-top">
+        <div class="dflex flex-column">
           <div class="text-size"><%= user.name %></div>
           <div class="text-size"><%= user.introduction %></div>
-        </td>
+        </div>
+      </td>
     </tr>
   <% end %>
 </table>

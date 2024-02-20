@@ -11,7 +11,7 @@ class Public::StudyReviewsController < ApplicationController
   def create
     # 取得した教材にレビューを保存
     @study = Study.find(params[:study_id])
-    @review = current_user.study_review.new(study_reviews_params)
+    @review = current_user.study_reviews.new(study_reviews_params)
     @review.study_id = @study.id
 
     if @review.save

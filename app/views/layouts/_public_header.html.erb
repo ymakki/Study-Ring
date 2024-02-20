@@ -27,6 +27,11 @@
           <% end %>
         </li>
         <li>
+          <%= link_to rooms_path do %>
+            <i class="fa-regular fa-comments"></i> メッセージ
+          <% end %>
+        </li>
+        <li>
           <%= link_to search_path(search_type: 'user') do %>
             <i class="fa-solid fa-magnifying-glass"></i> ユーザーを探す
           <% end %>

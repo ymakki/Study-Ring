@@ -2,6 +2,12 @@ class Public::RoomsController < ApplicationController
   before_action :authenticate_user!
   before_action :reject_non_related, only: [:show]
 
+  def index
+    entries = current_user.entries.pluck(:room_id)
+    user_ids = Entry.where(room_id: entries).where.not(user_id: current_user.id).pluck(:user_id)
+    @users = User.where(id: user_ids)
+  end
+
   def create
     @room = Room.create
     Entry.create(room_id: @room.id, user_id: current_user.id)

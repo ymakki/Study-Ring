@@ -47,7 +47,7 @@ Rails.application.routes.draw do
 
     # DM
     resources :messages, only: [:create]
-    resources :rooms, only: [:create, :show]
+    resources :rooms, only: [:index, :create, :show]
 
   end
 
@@ -55,13 +55,13 @@ Rails.application.routes.draw do
   namespace :admin do
     root :to =>"users#index"
 
-    # 教材
-    resources :studies, only: [:index, :show, :edit, :update] do
-      resources :study_comments, only: [:index, :update]
-    end
-
+    # コメント
+    resources :study_comments, only: [:index, :show, :destroy]
     # ユーザー
     resources :users, only: [:index, :show, :edit, :update]
+    # レビュー
+    resources :study_reviews, only: [:index, :show, :destroy]
+
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
