@@ -29,7 +29,6 @@ Rails.application.routes.draw do
       resources :study_reviews, only: [:new, :show, :edit, :create, :destroy, :update]
     end
     resources :records, only: [:index]
-    resources :tags, only: [:new, :index, :edit, :create, :destroy, :update]
 
     # ユーザー
     resources :users, only: [:index, :show, :edit, :update] do
@@ -52,6 +51,9 @@ Rails.application.routes.draw do
 
     # ソート
     get "sort", to: "studies#sort"
+
+    # タグ
+    resources :tags, only: [:new, :index, :edit, :create, :destroy, :update]
   end
 
   # 管理者側

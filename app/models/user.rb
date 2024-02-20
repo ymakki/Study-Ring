@@ -26,7 +26,7 @@ class User < ApplicationRecord
   has_many :rooms, through: :entries
   # 教材カテゴリー
   has_many :tags
-  
+
   has_one_attached :profile_image
   validates :name,presence:true,length:{maximum:10}
 
