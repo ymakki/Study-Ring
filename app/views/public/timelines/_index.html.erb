@@ -5,7 +5,7 @@
         <td class="col-md-1 text-center" style="padding-right: 0;">
           <div class="icon-sm">
             <% if timeline.record.user.profile_image.attached? %>
-              <%= image_tag timeline.record.user.get_profile_image(50, 50), class: "img-fluid" %>
+              <%= image_tag timeline.record.user.get_profile_image(50, 50), class: "img-fluid user-image" %>
             <% else %>
               <i class="fa-regular fa-circle-user"></i>
             <% end %>
@@ -53,7 +53,7 @@
               <td class="d-flex align-items-center">
                 <div class="icon-sm">
                   <% if timeline.study_review.user.profile_image.attached? %>
-                    <%= image_tag timeline.study_review.user.get_profile_image(50, 50), class: "img-fluid" %>
+                    <%= image_tag timeline.study_review.user.get_profile_image(50, 50), class: "img-fluid user-image" %>
                   <% else %>
                     <i class="fa-regular fa-circle-user"></i>
                   <% end %>
@@ -83,7 +83,7 @@
                     <td class="d-flex align-items-center">
                       <div class="icon-sm">
                         <% if timeline.study_review.user.profile_image.attached? %>
-                          <%= image_tag timeline.study_review.user.get_profile_image(50, 50), class: "img-fluid" %>
+                          <%= image_tag timeline.study_review.user.get_profile_image(50, 50), class: "img-fluid user-image" %>
                         <% else %>
                           <i class="fa-regular fa-circle-user"></i>
                         <% end %>

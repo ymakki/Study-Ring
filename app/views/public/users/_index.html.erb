@@ -11,9 +11,9 @@
         <span class="text-size"><%= user.total_study_time %></span>
       </td>
       <td class="text-right align-bottom">
-        <div>
-          <%= render 'public/relationships/button', user: user %>
-        </div>
+        <% unless current_user == user %>
+          <div><%= render 'public/relationships/button', user: user %></div>
+        <% end %>
       </td>
     </tr>
   <% end %>

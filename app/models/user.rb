@@ -10,7 +10,7 @@ class User < ApplicationRecord
   has_many :favorited_records, through: :favorites, source: :record
   # コメント
   has_many :study_comments, dependent: :destroy
-  # レコード
+  # 記録
   has_many :records, dependent: :destroy
   # フォローする
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
@@ -24,9 +24,10 @@ class User < ApplicationRecord
   has_many :entries, dependent: :destroy
   has_many :messages, dependent: :destroy
   has_many :rooms, through: :entries
-  # 画像
+  # 教材カテゴリー
+  has_many :tags
+  
   has_one_attached :profile_image
-
   validates :name,presence:true,length:{maximum:10}
 
   # 画像サイズ

@@ -10,8 +10,6 @@ class Public::StudiesController < ApplicationController
   def new
     @study = Study.new
     @study_copy = Study.new(title: params[:title])
-
-    @tags = Tag.all
   end
 
   def create
@@ -20,7 +18,6 @@ class Public::StudiesController < ApplicationController
     if @study.save
       redirect_to studies_path, notice: "記録しました"
     else
-      @tags = Tag.all
       render "new"
     end
   end
@@ -33,7 +30,6 @@ class Public::StudiesController < ApplicationController
 
   def edit
     @study = Study.find(params[:id])
-    @tags = Tag.all
   end
 
   def update
@@ -41,7 +37,6 @@ class Public::StudiesController < ApplicationController
     if @study.update(study_params)
       redirect_to study_path(@study), notice: "更新しました"
     else
-      @tags = Tag.all
       render "show"
     end
   end
@@ -71,7 +66,7 @@ class Public::StudiesController < ApplicationController
   private
 
   def study_params
-    params.require(:study).permit(:user_id, :title, :body, :status, :image, tag_ids: [])
+    params.require(:study).permit(:user_id, :title, :body, :status, :image)
   end
 
   def ensure_correct_user

@@ -145,9 +145,11 @@ ActiveRecord::Schema.define(version: 2024_02_19_032800) do
   end
 
   create_table "tags", force: :cascade do |t|
+    t.integer "user_id", null: false
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_tags_on_user_id"
   end
 
   create_table "timelines", force: :cascade do |t|
@@ -194,4 +196,5 @@ ActiveRecord::Schema.define(version: 2024_02_19_032800) do
   add_foreign_key "study_reviews", "users"
   add_foreign_key "tag_relays", "studies"
   add_foreign_key "tag_relays", "tags"
+  add_foreign_key "tags", "users"
 end

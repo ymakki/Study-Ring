@@ -1,7 +1,7 @@
 <div class="icon">
   <% if user.profile_image.attached? %>
     <%= link_to user_path(user) do %>
-      <%= image_tag user.get_profile_image(100, 100), class: "img-fluid user-image" %>
+      <%= image_tag user.get_profile_image(70, 70), class: "img-fluid user-image" %>
     <% end %>
   <% else %>
     <%= link_to user_path(user) do %>

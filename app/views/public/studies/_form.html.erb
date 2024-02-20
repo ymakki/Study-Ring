@@ -18,19 +18,15 @@
     </tr>
     <tr>
       <td class="form-group">
-        <%= f.label :tag_ids, "既存のカテゴリーから選択", class: "pt-3" %>
+        <%= f.label :tag_id, "カテゴリー", class: "pt-3" %>
       </td>
       <td class="form-group text-right">
-        <%= f.collection_check_boxes(:tag_ids, @tags, :id, :name) do |b| %>
-          <div class="side-line">
-            <%= b.label { b.check_box + b.text } %>
-          </div>
-        <% end %>
+        <%= f.collection_select(:tag_id, Tag.all, :id, :name, { prompt: "カテゴリなし" }, { class: "form-control" }) %>
       </td>
     </tr>
     <tr>
       <td colspan=2 class="form-group text-center">
-        <%= f.submit '保存', class: "btn btn-success" %>
+        <%= f.submit '保存', class: "btn btn-dark" %>
       </td>
     </tr>
   </table>

@@ -1,16 +1,16 @@
-<div class="d-flex justify-content-between align-items-center">
+<div class="d-flex justify-content-between align-items-center pt-3">
   <%= render 'public/users/user_icon', user: @user %>
-  <div>
+  <div class="d-flex">
     <% if @user == current_user %>
       <%= link_to 'プロフィールを編集', edit_user_path(@user), class: "btn btn-secondary" %>
     <% else %>
       <%= render 'public/relationships/button', user: @user %>
     <% end %>
-    <%= render 'dm', user: @user, room: @room, isRoom: @isRoom, roomId: @roomId, entry: @entry %>
+    <span class="ml-2"><%= render 'dm', user: @user, room: @room, isRoom: @isRoom, roomId: @roomId, entry: @entry %></span>
   </div>
 </div>
-<div class="text-size-lg"><%= @user.name %></div>
-<h4 class="pt-3">プロフィール</h4>
+<div class="text-size-md"><%= @user.name %></div>
+<h6 class="pt-3">プロフィール</h6>
 <table class='table col-md-8'>
   <tr>
     <td>
@@ -57,7 +57,7 @@
   </tr>
   <tr>
     <td>
-      <h4 class="pt-3">タイムライン</h4>
+      <h6 class="pt-3">タイムライン</h6>
       <%= render 'public/timelines/index', timelines: @timelines %>
     </td>
   </tr>
