@@ -112,6 +112,10 @@ header {
 main
 =============*/
 
+main {
+  background-image: image-url("hoge.jpg");}
+}
+
 .device {
   .title {
     font-family:"Meiryo";

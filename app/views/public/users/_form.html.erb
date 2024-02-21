@@ -15,6 +15,14 @@
         <%= f.text_area :introduction, class: "form-control" %>
       </td>
     </tr>
+
+    <tr>
+      <td colspan=2 class="form-group">
+        <%= f.label :tag_id, "ユーザータグ" %>
+        <%= f.collection_select(:tag_id, Tag.all, :id, :name, { prompt: "" }, { class: "form-control" }) %>
+      </td>
+    </tr>
+
     <tr>
       <td colspan=2>
         <%= f.label :follow_request, "フォロワー募集" %><br>
@@ -28,7 +36,7 @@
       </td>
     </tr>
     <tr>
-      <td colspan=2 class="form-group">
+      <td colspan=2 class="form-group w-100">
         <div class="field">
           <%= f.label :birthday, "生年月日" %><br>
           <%= f.date_field :birthday, class: "form-control" %>
@@ -42,8 +50,8 @@
       </td>
     </tr>
     <tr>
-      <td colspan=3 >
-        <span class="pt-2"><%= f.submit "保存", class: "btn btn-success" %></span>
+      <td colspan=3 class="text-center">
+        <span class="pt-2"><%= f.submit "保存", class: "btn btn-dark" %></span>
       </td>
     </tr>
   </table>
