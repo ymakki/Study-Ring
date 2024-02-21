@@ -3,20 +3,20 @@
   <h2 class="pl-5">メッセージ</h2>
 </div>
 <table class="table w-100 table-hover">
-  <% @users.each do |user| %>
-    <tr onclick="location.href='<%= room_path(user) %>'" style="cursor:pointer;">
+  <% @rooms.each do |room| %>
+    <tr onclick="location.href='<%= room_path(room) %>'" style="cursor:pointer;">
       <td class="col-md-1 mb-3">
-        <%= render 'public/users/user_icon', user: user %>
+        <%= render 'public/users/user_icon', user: room.other_user(current_user) %>
       </td>
       <td class="col-md-7">
-        <div class="text-size"><%= user.name %></div>
-        <div class="text-size break-word"><%= user.introduction %></div>
+        <div class="text-size"><%= room.other_user(current_user).name %></div>
+        <div class="text-size break-word"><%= room.other_user(current_user).introduction %></div>
         <i class="fa-regular fa-clock">
-        <span class="text-size"><%= user.total_study_time %></span>
+        <span class="text-size"><%= room.other_user(current_user).total_study_time %></span>
       </td>
       <td class="text-right align-bottom">
         <div>
-          <%= render 'public/relationships/button', user: user %>
+          <%= render 'public/relationships/button', user: room.other_user(current_user) %>
         </div>
       </td>
     </tr>

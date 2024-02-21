@@ -3,9 +3,7 @@ class Public::RoomsController < ApplicationController
   before_action :reject_non_related, only: [:show]
 
   def index
-    entries = current_user.entries.pluck(:room_id)
-    user_ids = Entry.where(room_id: entries).where.not(user_id: current_user.id).pluck(:user_id)
-    @users = User.where(id: user_ids)
+    @rooms = current_user.rooms
   end
 
   def create
