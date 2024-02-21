@@ -1,0 +1,7 @@
+<%= form_with(model: [record, study_comment], url: study_record_study_comments_path(record.study, record), local: true) do |f| %>
+<div class="d-flex align-items-center">
+  <%= f.text_area :comment, rows:"2",placeholder: "コメント", class: "w-75" %>
+  
+  <span class="ml-3"><%= f.submit "送信" %></span>
+</div>
+<% end %>

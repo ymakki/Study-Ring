@@ -1,0 +1,24 @@
+<div class="d-flex align-items-center">
+  <%= render 'layouts/back' %>
+  <h2 class="pl-5">メッセージ</h2>
+</div>
+<table class="table w-100 table-hover">
+  <% @users.each do |user| %>
+    <tr onclick="location.href='<%= room_path(user) %>'" style="cursor:pointer;">
+      <td class="col-md-1 mb-3">
+        <%= render 'public/users/user_icon', user: user %>
+      </td>
+      <td class="col-md-7">
+        <div class="text-size"><%= user.name %></div>
+        <div class="text-size break-word"><%= user.introduction %></div>
+        <i class="fa-regular fa-clock">
+        <span class="text-size"><%= user.total_study_time %></span>
+      </td>
+      <td class="text-right align-bottom">
+        <div>
+          <%= render 'public/relationships/button', user: user %>
+        </div>
+      </td>
+    </tr>
+  <% end %>
+</table>

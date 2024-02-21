@@ -1,0 +1,49 @@
+<nav class="navbar">
+  <div class="logo d-flex">
+    <a href="/"><span class="pl-2">StudyRing</span></a>
+  </div>
+  <div class="nav-list">
+    <ul>
+      <li>
+        <%= link_to admin_users_path do %>
+          <i class="fa-solid fa-users"></i>ユーザー一覧
+        <% end %>
+      </li>
+      <li>
+        <%= link_to admin_study_comments_path do %>
+          <i class="fa-solid fa-comments"></i>コメント一覧
+        <% end %>
+      </li>
+      <li>
+        <%= link_to admin_study_reviews_path do %>
+          <i class="fa-solid fa-file-pen"></i>レビュ一覧
+        <% end %>
+      </li>
+      <li>
+        <%= link_to destroy_admin_session_path, method: :delete do %>
+          <i class="fa-solid fa-arrow-right-from-bracket"></i> ログアウト
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="toggle_btn">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+
+<script>
+  (function($) {
+    var $body = $('body');
+    var $btn = $('.toggle_btn');
+    var open = 'open'; // class
+    $btn.on('click', function() {
+      if (!$body.hasClass(open)) {
+        $body.addClass(open);
+      } else {
+        $body.removeClass(open);
+      }
+    });
+  })(jQuery);
+</script>

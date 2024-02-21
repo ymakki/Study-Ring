@@ -1,0 +1,53 @@
+<div class="d-flex justify-content-between align-items-center">
+  <%= render 'layouts/back' %>
+</div>
+<div class="d-flex justify-content-between align-items-center">
+  <div class="icon">
+    <% if @user.profile_image.attached? %>
+      <%= image_tag @user.get_profile_image(100, 100), class: "img-fluid" %>
+    <% else %>
+      <i class="logo-show fa-regular fa-circle-user"></i>
+    <% end %>
+  </div>
+    <%= link_to "会員ステータスを更新", edit_admin_user_path(@user), class: "btn btn-success" %>
+</div>
+
+<div class="text-size-lg"><%= @user.name %></div>
+<h4 class="pt-3">プロフィール</h4>
+<table class='table col-md-8'>
+  <tr>
+    <td>
+      <strong>自己紹介</strong>
+      <div><%= @user.introduction %></div>
+    </td>
+  </tr>
+  <tr>
+  <tr>
+    <td>
+      <strong>性別</strong>
+      <div><%= User.sexes.key(@user.sex) %></div>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong>生年月日</strong>
+      <div><%= @user.birthday %></div>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong>都道府県</strong>
+      <div><%= User.residences.key(@user.residence) %></div>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong>会員ステータス</strong>
+      <% if @user.is_active %>
+        <div class="text-success">有効</div>
+      <% else %>
+        <div class="text-danger">退会</div>
+      <% end %>
+    </td>
+  </tr>
+</table>

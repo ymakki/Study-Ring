@@ -1,0 +1,93 @@
+<nav class="navbar">
+  <div class="logo d-flex">
+    <a href="/"><span class="pl-2">StudyRing</span></a>
+  </div>
+  <div class="nav-list">
+    <ul>
+      <% if user_signed_in? %>
+        <li>
+          <%= link_to user_path(current_user) do %>
+            <% if current_user.profile_image.attached? %>
+              <%= image_tag current_user.get_profile_image(30, 30), class: "img-fluid user-image" %>
+              <span class="pl-2"><%= current_user.name %></span>
+            <% else %>
+              <i class="fa-regular fa-circle-user user-icon"></i>
+              <span class="pl-2"><%= current_user.name %></span>
+            <% end %>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to records_path do %>
+            <i class="fa-solid fa-list"></i> タイムライン
+          <% end %>
+        </li>
+        <li>
+          <%= link_to studies_path do %>
+            <i class="fa-regular fa-pen-to-square"></i> 記録する
+          <% end %>
+        </li>
+        <li>
+          <%= link_to rooms_path do %>
+            <i class="fa-regular fa-comments"></i> メッセージ
+          <% end %>
+        </li>
+        <li>
+          <%= link_to search_path(search_type: 'user') do %>
+            <i class="fa-solid fa-magnifying-glass"></i> ユーザーを探す
+          <% end %>
+        </li>
+        <li>
+          <%= link_to search_path(search_type: 'study') do %>
+            <i class="fa-solid fa-magnifying-glass"></i> 教材を探す
+          <% end %>
+        </li>
+        <li>
+          <%= link_to destroy_user_session_path, method: :delete do %>
+            <i class="fa-solid fa-arrow-right-from-bracket"></i> ログアウト
+          <% end %>
+        </li>
+        <li>
+          <%= link_to unsubscribe_user_path(current_user) do %>
+            <i class="fa-solid fa-user-slash"></i> 退会する
+          <% end %>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to new_user_registration_path do %>
+            <i class="fa-solid fa-plus"></i> 新規登録
+          <% end %>
+        </li>
+        <li>
+          <%= link_to new_user_session_path do %>
+            <i class="fa-solid fa-arrow-right-to-bracket"></i> ログイン
+          <% end %>
+        </li>
+        <li>
+          <%= link_to users_guest_sign_in_path, method: :post do %>
+            <i class="fa-solid fa-circle-user"></i> ゲストログイン
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</nav>
+<div class="toggle_btn">
+  <span></span>
+  <span></span>
+  <span></span>
+</div>
+
+<script>
+  (function($) {
+    var $body = $('body');
+    var $btn = $('.toggle_btn');
+    var open = 'open'; // class
+    $btn.on('click', function() {
+      if (!$body.hasClass(open)) {
+        $body.addClass(open);
+      } else {
+        $body.removeClass(open);
+      }
+    });
+  })(jQuery);
+</script>

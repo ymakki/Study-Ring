@@ -1,0 +1,11 @@
+<% if record.favorited_by?(current_user) %>
+  <%= link_to study_record_favorites_path(record.study, record), method: :delete, style: "text-decoration: none; color: #000000;"  do %>
+    <i class="fa-solid fa-thumbs-up"></i>
+  <% end %>
+  <%= record.favorites.count %>
+<% else %>
+  <%= link_to study_record_favorites_path(record.study, record), method: :post, style: "text-decoration: none; color: #000000;"  do %>
+    <i class="fa-regular fa-thumbs-up"></i>
+  <% end %>
+  <%= record.favorites.count %>
+<% end %>

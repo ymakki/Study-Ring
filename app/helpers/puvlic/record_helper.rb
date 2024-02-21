@@ -1,0 +1,2 @@
+module Puvlic::RecordHelper
+end

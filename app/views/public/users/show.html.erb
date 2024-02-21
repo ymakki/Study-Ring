@@ -1,0 +1,67 @@
+<div class="d-flex justify-content-between align-items-center pt-3">
+  <%= render 'public/users/user_icon', user: @user %>
+  <div class="d-flex">
+    <% if @user == current_user %>
+      <%= link_to 'プロフィールを編集', edit_user_path(@user), class: "btn btn-secondary" %>
+    <% else %>
+      <%= render 'public/relationships/button', user: @user %>
+    <% end %>
+    <span class="ml-2"><%= render 'dm', user: @user, room: @room, isRoom: @isRoom, roomId: @roomId, entry: @entry %></span>
+  </div>
+</div>
+<div class="text-size-md"><%= @user.name %></div>
+
+<div><%= @user.tags.pluck(:name).join(', ') if @user.tags.present? %></div>
+
+<h6 class="pt-3">プロフィール</h6>
+<table class='table col-md-8'>
+  <tr>
+    <td>
+      <%= link_to studies_path(user_id: @user.id), class: "link" do %>
+        <%= @user.study_ids.count %>教材 >
+      <% end %>
+      <%= link_to following_user_path(@user), class: "link ml-2" do %>
+        <%= @user.following.count %>フォロー >
+      <% end %>
+      <%= link_to followers_user_path(@user), class: "link ml-2" do %>
+        <%= @user.followers.count %>フォロワー >
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong>自己紹介</strong>
+      <div class="break-word"><%= @user.introduction %></div>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong>フォロワー募集</strong>
+      <div><%= User.follow_requests.key(@user.follow_request) %></div>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong>性別</strong>
+      <div><%= User.sexes.key(@user.sex) %></div>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong>生年月日</strong>
+      <div><%= @user.birthday %></div>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong>都道府県</strong>
+      <div><%= User.residences.key(@user.residence) %></div>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <h6 class="pt-3">タイムライン</h6>
+      <%= render 'public/timelines/index', timelines: @timelines %>
+    </td>
+  </tr>
+</table>

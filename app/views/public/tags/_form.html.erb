@@ -1,0 +1,14 @@
+<%= form_with model: @tag, local: true do |f| %>
+  <div class="form-group">
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+
+  <% if action_name == 'edit' %>
+    <span class="form-group">
+      <%= link_to "削除", tag_path(@tag), method: :delete, data: { confirm: "カテゴリを削除しますか？" }, class: "btn btn-light border-dark" %>
+    </span>
+  <% end %>
+
+  <span><%= f.submit '保存', class: "btn btn-dark" %></span>
+
+<% end %>

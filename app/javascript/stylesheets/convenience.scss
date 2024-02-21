@@ -1,0 +1,73 @@
+/*============
+main
+=============*/
+.text-size-sm {
+  font-size: 10px;
+}
+
+.text-size {
+  font-size: 15px;
+}
+
+.text-size-md {
+  font-size: 25px;
+}
+
+.text-size-lg {
+  font-size: 50px;
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.link:hover {
+  text-decoration: none;
+  color: #000000;
+  background: #e4e4e4;
+  display: inline-block;
+}
+
+.height {
+  height: 100px;
+}
+
+.form-control.height::placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px;
+  font-size: 14px;
+  color: #a0a0a0;
+}
+
+.side-line {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.user-icon {
+  font-size: 30px;
+}
+
+.no-hover td {
+  pointer-events: none;
+}
+
+.padding-left {
+  padding-left: 300px;
+}
+
+.clamp-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.break-word{
+  word-break: break-all;
+}
+
+.form-text-field {
+  border-radius: 10px;
+}

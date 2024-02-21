@@ -1,0 +1,33 @@
+<%= form_with model: @study, url: @study.persisted? ? study_path(@study) : studies_path, method: @study.persisted? ? :patch : :post, local: true do |f| %>
+  <table class="table">
+    <tr>
+      <td class="form-group col-md-3">
+        <%= f.file_field :image, accept: "image/*", class: "form-control-file" %>
+      </td>
+      <td class="form-group col-md-5">
+        <%= f.text_field :title, value: @study_copy&.title || @study.title, placeholder: "教材名", class: "form-control" %>
+      </td>
+    </tr>
+    <tr>
+      <td class="form-group col-md-3">
+        <%= f.label :status, "ステータス" %><br>
+      </td>
+      <td class="form-group col-md-5 text-right">
+        <%= f.select :status, Study.statuses, include_blank: false, class: "form-control" %>
+      </td>
+    </tr>
+    <tr>
+      <td class="form-group">
+        <%= f.label :tag_id, "カテゴリー", class: "pt-3" %>
+      </td>
+      <td class="form-group text-right">
+        <%= f.collection_select(:tag_id, Tag.all, :id, :name, { prompt: "カテゴリなし" }, { class: "form-control" }) %>
+      </td>
+    </tr>
+    <tr>
+      <td colspan=2 class="form-group text-center">
+        <%= f.submit '保存', class: "btn btn-dark" %>
+      </td>
+    </tr>
+  </table>
+<% end %>

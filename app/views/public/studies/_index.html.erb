@@ -1,0 +1,30 @@
+<table class="table table-hover">
+  <% studies.each do |study| %>
+    <tr onclick="location.href='<%= study_path(study) %>'" style="cursor:pointer;">
+      <td class="col-md-1">
+        <%= render 'public/studies/study_icon', study: study %>
+      </td>
+      <td>
+        <table class="table-borderless">
+          <tr class="no-hover">
+            <td class="break-word"><%= study.title %></td>
+          </tr>
+          <tr class="no-hover">
+            <td>
+              <i class="fa-solid fa-comment-medical"></i>
+              <% if study.study_reviews.any? %>
+                <%= study.study_reviews.count %>
+              <% else %>
+                0
+              <% end %>
+            </td>
+            <td>
+              <%#= render 'public/favorites/favorite', study: study %>
+              <!--レビューのいいね数-->
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  <% end %>
+</table>

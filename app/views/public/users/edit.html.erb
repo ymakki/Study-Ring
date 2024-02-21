@@ -1,0 +1,6 @@
+<%= render 'layouts/errors', obj: @user %>
+<div class="d-flex align-items-center">
+  <%= render 'layouts/back' %>
+  <h2 class="pl-5">プロフィール編集</h2>
+</div>
+<%= render 'public/users/form', user: @user %>

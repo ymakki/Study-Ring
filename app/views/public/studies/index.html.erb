@@ -1,0 +1,43 @@
+<div class="d-flex align-items-center">
+  <h2 class="pt-3">記録する</h2>
+</div>
+<div class="pt-3 pb-3 d-flex justify-content-between">
+  <div>
+    <span><%= link_to "勉強中 |", sort_path(sort_type: 'now'), class: "text-size link" %></span>
+    <span><%= link_to " スタンバイ ", sort_path(sort_type: 'stay'), class: "text-size link" %></span>
+    <span><%= link_to "| 完了済み", sort_path(sort_type: 'finish'), class: "text-size link" %></span>
+  </div>
+  <div>
+    <%= link_to "カテゴリの整理", tags_path, class: "btn btn-secondary" %>
+  </div>
+</div>
+<div class="row">
+  <% @studies.each do |study| %>
+    <div class="col-sm-3 mt-3 link">
+      <div class="aspect-ratio-box icon align-self-end">
+        <% if study.image.attached? %>
+          <%= link_to new_study_record_path(study_id: study.id) do %>
+            <%= image_tag study.get_image(100, 100), class: "img-fluid study-image" %>
+          <% end %>
+        <% else %>
+          <%= link_to new_study_record_path(study_id: study.id) do %>
+            <i class="fa-solid fa-book"></i>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="text-center">
+        <h6 class="clamp-text mt-2 mb-3"><%= study.title %></h6>
+      </div>
+      <div class="text-center">
+        <% if study.user == current_user %>
+          <span><%= link_to "編集", edit_study_path(study), class: "btn btn-sm btn-success" %></span>
+          <span><%= link_to "詳細", study_path(study), class: "btn btn-sm btn-secondary" %></span>
+          <span><%= link_to "削除", study_path(study), method: :delete, data: { confirm: "本棚から「#{study.title}」を削除しますか？" }, class: "btn btn-sm btn-danger" %></span>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<div class="mt-5 text-center">
+  <%= link_to '+ 新しい教材を登録', new_study_path, class: "btn btn-secondary" %>
+</div>
