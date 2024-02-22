@@ -13,7 +13,7 @@ class Notification < ApplicationRecord
     when "Message"
       "<i class='fa-regular fa-envelope'></i>　#{notifiable.user.name}さんがあなたに返信しました".html_safe
     when "Relationship"
-      "<i class='fa-regular fa-handshake'></i>　#{notifiable.user.name}さんがあなたをフォローしました".html_safe
+      "<i class='fa-regular fa-handshake'></i>　#{notifiable.follower.name}さんがあなたをフォローしました".html_safe
     when "StudyComment"
       "<i class='fa-regular fa-comment'></i>　#{notifiable.user.name}さんがあなたの勉強記録にコメントしました".html_safe
     else

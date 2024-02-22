@@ -4,7 +4,7 @@ class Public::TagsController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def index
-    @tags = Tag.all
+    @tags = Tag.where(user_id: current_user.id)
   end
 
   def new
@@ -13,6 +13,7 @@ class Public::TagsController < ApplicationController
 
   def create
     @tag = current_user.tags.new(tag_params)
+    @tag.user_id = current_user.id
 
     if @tag.save
       redirect_to user_tags_path, notice: "記録しました"

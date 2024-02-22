@@ -5,7 +5,7 @@ class Relationship < ApplicationRecord
 
   # フォローを相手に通知
   after_create do
-    followed.notifications.create(user_id: follower.id)
+    build_notification(user_id: followed_id).save
   end
 
 end
