@@ -7,8 +7,7 @@ class Record < ApplicationRecord
   has_many :study_comments, dependent: :destroy
 
   validates :start_time,presence:true
-  validates :study_time,presence:true
-  validates :word,presence:true
+  validates :study_time, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   # いいねしているか？
   def favorited_by?(user)

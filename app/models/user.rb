@@ -24,8 +24,11 @@ class User < ApplicationRecord
   has_many :entries, dependent: :destroy
   has_many :messages, dependent: :destroy
   has_many :rooms, through: :entries
-  # 教材カテゴリー
-  has_many :tags
+  # タグ
+  has_many :user_taggings
+  has_many :tags, through: :user_taggings
+  # 通知
+  has_many :notifications, dependent: :destroy
 
   has_one_attached :profile_image
   validates :name,presence:true,length:{maximum:10}

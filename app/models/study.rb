@@ -2,9 +2,9 @@ class Study < ApplicationRecord
 
   # ユーザー
   belongs_to :user
-  # 教材カテゴリー
-  has_many :tag_relays, dependent: :destroy
-  has_many :tags, through: :tag_relays
+  # タグ
+  has_many :study_taggings
+  has_many :tags, through: :study_taggings
   # 記録
   has_many :records, dependent: :destroy
   # レビュー

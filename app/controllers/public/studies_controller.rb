@@ -10,8 +10,6 @@ class Public::StudiesController < ApplicationController
   def new
     @study = Study.new
     @study_copy = Study.new(title: params[:title])
-
-    Tag.unify_duplicate_tags
   end
 
   def create
@@ -68,7 +66,7 @@ class Public::StudiesController < ApplicationController
   private
 
   def study_params
-    params.require(:study).permit(:user_id, :title, :body, :status, :image, :tag_id)
+    params.require(:study).permit(:user_id, :title, :body, :status, :image, tag_ids: [])
   end
 
   def ensure_correct_user

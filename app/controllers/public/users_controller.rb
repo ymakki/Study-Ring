@@ -63,6 +63,7 @@ class Public::UsersController < ApplicationController
       :residence,
       :profile_image,
       :is_active,
+      tag_ids: [],
     )
   end
 

@@ -39,6 +39,8 @@ Rails.application.routes.draw do
         get "followers", to: "relationships#followers", as: :followers
       end
       resource :relationships, only: [:create, :destroy]
+      resources :tags, only: [:new, :index, :edit, :create, :destroy, :update]
+      resources :notifications, only: [:index, :update]
     end
 
     # 検索
@@ -51,9 +53,6 @@ Rails.application.routes.draw do
 
     # ソート
     get "sort", to: "studies#sort"
-
-    # タグ
-    resources :tags, only: [:new, :index, :edit, :create, :destroy, :update]
   end
 
   # 管理者側

@@ -11,7 +11,11 @@
 </div>
 <div class="text-size-md"><%= @user.name %></div>
 
+
+
 <div><%= @user.tags.pluck(:name).join(', ') if @user.tags.present? %></div>
+
+
 
 <h6 class="pt-3">プロフィール</h6>
 <table class='table col-md-8'>

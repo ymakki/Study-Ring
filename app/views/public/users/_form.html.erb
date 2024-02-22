@@ -16,12 +16,16 @@
       </td>
     </tr>
 
+
+
     <tr>
       <td colspan=2 class="form-group">
         <%= f.label :tag_id, "ユーザータグ" %>
         <%= f.collection_select(:tag_id, Tag.all, :id, :name, { prompt: "" }, { class: "form-control" }) %>
       </td>
     </tr>
+
+
 
     <tr>
       <td colspan=2>

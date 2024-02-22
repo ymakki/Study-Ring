@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_02_19_032800) do
+ActiveRecord::Schema.define(version: 2024_02_22_055018) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -80,6 +80,17 @@ ActiveRecord::Schema.define(version: 2024_02_19_032800) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "notifiable_type", null: false
+    t.integer "notifiable_id", null: false
+    t.boolean "read", default: false, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["notifiable_type", "notifiable_id"], name: "index_notifications_on_notifiable"
+    t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
   create_table "records", force: :cascade do |t|
     t.integer "study_id", null: false
     t.integer "user_id", null: false
@@ -135,20 +146,22 @@ ActiveRecord::Schema.define(version: 2024_02_19_032800) do
     t.index ["user_id"], name: "index_study_reviews_on_user_id"
   end
 
-  create_table "tag_relays", force: :cascade do |t|
-    t.integer "study_id", null: false
-    t.integer "tag_id", null: false
+  create_table "study_taggings", force: :cascade do |t|
+    t.integer "study_id"
+    t.integer "tag_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["study_id"], name: "index_tag_relays_on_study_id"
-    t.index ["tag_id"], name: "index_tag_relays_on_tag_id"
+    t.index ["study_id"], name: "index_study_taggings_on_study_id"
+    t.index ["tag_id"], name: "index_study_taggings_on_tag_id"
   end
 
   create_table "tags", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.integer "user_id"
+    t.integer "study_id"
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["study_id"], name: "index_tags_on_study_id"
     t.index ["user_id"], name: "index_tags_on_user_id"
   end
 
@@ -158,6 +171,15 @@ ActiveRecord::Schema.define(version: 2024_02_19_032800) do
     t.integer "study_review_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "user_taggings", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "tag_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["tag_id"], name: "index_user_taggings_on_tag_id"
+    t.index ["user_id"], name: "index_user_taggings_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -187,6 +209,7 @@ ActiveRecord::Schema.define(version: 2024_02_19_032800) do
   add_foreign_key "favorites", "users"
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
+  add_foreign_key "notifications", "users"
   add_foreign_key "records", "studies"
   add_foreign_key "records", "users"
   add_foreign_key "studies", "users"
@@ -194,7 +217,10 @@ ActiveRecord::Schema.define(version: 2024_02_19_032800) do
   add_foreign_key "study_comments", "users"
   add_foreign_key "study_reviews", "studies"
   add_foreign_key "study_reviews", "users"
-  add_foreign_key "tag_relays", "studies"
-  add_foreign_key "tag_relays", "tags"
+  add_foreign_key "study_taggings", "studies"
+  add_foreign_key "study_taggings", "tags"
+  add_foreign_key "tags", "studies"
   add_foreign_key "tags", "users"
+  add_foreign_key "user_taggings", "tags"
+  add_foreign_key "user_taggings", "users"
 end

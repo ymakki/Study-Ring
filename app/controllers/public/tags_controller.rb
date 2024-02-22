@@ -4,7 +4,7 @@ class Public::TagsController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def index
-    @tags = current_user.tags
+    @tags = Tag.all
   end
 
   def new
@@ -15,7 +15,7 @@ class Public::TagsController < ApplicationController
     @tag = current_user.tags.new(tag_params)
 
     if @tag.save
-      redirect_to tags_path, notice: "記録しました"
+      redirect_to user_tags_path, notice: "記録しました"
     else
       render "new"
     end
@@ -43,7 +43,7 @@ class Public::TagsController < ApplicationController
   private
 
   def tag_params
-    params.require(:tag).permit(:name)
+    params.require(:tag).permit(:user_id, :study_id, :name)
   end
 
   def ensure_correct_user

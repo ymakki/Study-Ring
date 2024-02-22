@@ -16,6 +16,9 @@
         <%= f.select :status, Study.statuses, include_blank: false, class: "form-control" %>
       </td>
     </tr>
+
+
+
     <tr>
       <td class="form-group">
         <%= f.label :tag_id, "カテゴリー", class: "pt-3" %>
@@ -24,6 +27,9 @@
         <%= f.collection_select(:tag_id, Tag.all, :id, :name, { prompt: "カテゴリなし" }, { class: "form-control" }) %>
       </td>
     </tr>
+
+
+
     <tr>
       <td colspan=2 class="form-group text-center">
         <%= f.submit '保存', class: "btn btn-dark" %>

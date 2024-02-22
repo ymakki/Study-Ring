@@ -5,7 +5,6 @@ class CreateStudies < ActiveRecord::Migration[6.1]
       t.string :title
       t.text :body
       t.integer :status, default: 0
-
       t.timestamps
     end
   end
