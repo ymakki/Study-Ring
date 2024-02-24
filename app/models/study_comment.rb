@@ -1,4 +1,5 @@
 class StudyComment < ApplicationRecord
+
   belongs_to :user
   belongs_to :record
   has_one :notification, as: :notifiable, dependent: :destroy
