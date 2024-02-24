@@ -5,11 +5,10 @@ class StudyComment < ApplicationRecord
 
   validates :comment, presence: true
 
-  # フォロワーに通知
   after_create do
-    user.followers.each do |follower|
-      build_notification(user_id: follower.id)
-      save
+    # StudyCommentが属するRecordモデルのuser_idを取得
+    if record.present? && record.respond_to?(:user_id)
+      build_notification(user_id: record.user_id).save
     end
   end
 

@@ -3,11 +3,10 @@ class Favorite < ApplicationRecord
   belongs_to :record
   has_one :notification, as: :notifiable, dependent: :destroy
 
-  # フォロワーに通知
   after_create do
-    user.followers.each do |follower|
-      build_notification(user_id: follower.id)
-      save
+    # Favoriteが属するRecordモデルのuser_idを取得
+    if record.present? && record.respond_to?(:user_id)
+      build_notification(user_id: record.user_id).save
     end
   end
 

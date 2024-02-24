@@ -6,7 +6,7 @@ class StudyReview < ApplicationRecord
   validates :title, presence: true,length:{maximum:30}
   validates :body,presence:true,length:{maximum:200}
 
-  # フォロワーに通知
+  # レビュー作成時に各フォロワーに通知を作成
   after_create do
     user.followers.each do |follower|
       build_notification(user_id: follower.id)

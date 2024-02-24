@@ -5,16 +5,13 @@ class Message < ApplicationRecord
 
   validates :content, presence: true, length: { maximum:140 }
 
-  # フォロワーに通知
+  # Message作成時に相手に通知
   after_create do
-    # Messageテーブルから、現在の発言したroom_idに関連するユーザーの発言を全件取得し、
-    # 配列で、user_idをpluckで取得した後、調布魔をuniq!で取り除く
-    room_user = Message.where(room_id: room_id).pluck(:user_id).uniq!
-    room_user.each do |user|
-      build_notification(user_id: user) # 配列のぶんだけ、ユーザーの通知作成
-      save
+    # room_idが同じのuser_idが違うuserを取得
+    entries = Entry.where(room_id: room_id).where.not(user_id: user_id)
+    entries.each do |entry|
+      build_notification(user_id: entry.user_id).save
     end
-
   end
 
 end
