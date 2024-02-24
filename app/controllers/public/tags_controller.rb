@@ -54,8 +54,6 @@ class Public::TagsController < ApplicationController
     unless tag.user == current_user
       redirect_to studies_path
     end
-  # rescue
-  #   redirect_to user_tags_path
   end
 
 end

@@ -1,0 +1,23 @@
+<table>
+  <% study_review.review_comments.each do |review_comment| %>
+    <% if review_comment.user.present? %>
+      <tr>
+        <td class="icon">
+          <% if review_comment.user.profile_image.attached? %>
+            <%= link_to user_path(review_comment.user) do %>
+              <%= image_tag review_comment.user.get_profile_image(100, 100), class: "img-fluid user-image" %>
+            <% end %>
+          <% else %>
+            <%= link_to user_path(review_comment.user) do %>
+              <i class="fa-regular fa-circle-user"></i>
+            <% end %>
+          <% end %>
+        </td>
+        <td>
+          <div><%= review_comment.user.name %></div>
+          <div class="break-word"><%= review_comment.comment %></div>
+        </td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>

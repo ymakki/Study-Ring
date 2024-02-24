@@ -30,6 +30,7 @@ class Public::StudyReviewsController < ApplicationController
     @review = StudyReview.find(params[:id])
     @user = @review.user
     @study = @review.study
+    @review_comment = @review.review_comments.build
   end
 
   def edit

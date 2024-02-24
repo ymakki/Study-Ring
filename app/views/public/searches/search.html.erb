@@ -1,8 +1,7 @@
 <!--ユーザ検索表示-->
 <% if @search_type == "user" %>
   <div class="d-flex align-items-center">
-    <%= render 'layouts/back' %>
-    <h2 class="pl-5">ユーザーを探す</h2>
+    <h2>ユーザーを探す</h2>
   </div>
   <%= form_with url: search_path, method: :get, local: true do |f| %>
     <div class="input-group">
@@ -20,8 +19,7 @@
 <!--教材検索表示-->
 <% if @search_type == "study" %>
   <div class="d-flex align-items-center">
-    <%= render 'layouts/back' %>
-    <h2 class="pl-5">教材を探す</h2>
+    <h2>教材を探す</h2>
   </div>
   <%= form_with url: search_path, method: :get, local: true do |f| %>
     <div class="input-group">
@@ -39,7 +37,6 @@
 <!--検索結果表示-->
 <% if @model == 'user' %>
   <div class="d-flex align-items-center">
-    <%= render 'layouts/back' %>
     <h2 class="pl-5 break-word"><%= @word %></h2>
   </div>
   <%= render 'public/users/index', users: @records %>

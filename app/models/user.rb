@@ -8,8 +8,11 @@ class User < ApplicationRecord
   # いいね
   has_many :favorites, dependent: :destroy
   has_many :favorited_records, through: :favorites, source: :record
+  has_many :review_favorites, dependent: :destroy
+  has_many :favorited_study_reviews, through: :review_favorites, source: :study_review
   # コメント
   has_many :study_comments, dependent: :destroy
+  has_many :review_comments, dependent: :destroy
   # 記録
   has_many :records, dependent: :destroy
   # フォローする
