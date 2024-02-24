@@ -27,7 +27,7 @@
           <% end %>
         </li>
         <li>
-          <%= link_to user_notifications_path(current_user) do %>
+          <%= link_to notifications_path do %>
             <i class="fa-solid fa-bell"></i> 通知
             <span class="badge badge-secondary"><%= current_user.notifications.where(read: false).count %></span>
           <% end %>

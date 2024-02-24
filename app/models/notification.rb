@@ -23,17 +23,20 @@ class Notification < ApplicationRecord
 
   # 通知の遷移先
   def notifiable_path
-    case notification.notifiable_type
+    case notifiable_type
+
     when "Favorite"
-      user_path(notification.notifiable)
+      user_path(notifiable) #相手に遷移したい
+
     when "Message"
-      room_path(notification.notifiable)
+      room_path(notifiable) #room_idがカウントアップ
+
     when "Relationship"
-      user_path(notification.notifiable)
+      user_path(notifiable.follower_id)
     when "StudyComment"
-      study_record_path(notification.notifiable)
+      study_record_path(study_id: notifiable.record.study_id, id: notifiable.record_id)
     else
-      study_study_review_path(notification.notifiable)
+      study_study_review_path(study_id: notifiable.study_id, id: notifiable.id)
     end
   end
 

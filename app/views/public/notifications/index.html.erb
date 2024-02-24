@@ -5,29 +5,12 @@
 <table class="table w-100 table-hover">
   <% if @unread_notifications.any? %>
     <% @unread_notifications.each do |notification| %>
-      <tr onclick="location.href='<%= user_notifications_path(current_user) %>'" style="cursor:pointer;">
-        <td><%= notification.message %></td>
+      <tr>
+        <td>
+          <%= link_to notification.message, notification, method: :patch, class: "dropdown-item" %>
+        </td>
         <td><%= notification.created_at.strftime('%m月%d日 %H:%M') %></td>
       </tr>
     <% end %>
   <% end %>
 </table>
-
-
-
-<script>
-  function sendPatchRequest(url) {
-    const form = document.createElement('form');
-    form.method = 'patch';
-    form.action = url;
-
-    const authenticityToken = document.createElement('input');
-    authenticityToken.type = 'hidden';
-    authenticityToken.name = 'authenticity_token';
-    authenticityToken.value = '<%= form_authenticity_token %>';
-
-    form.appendChild(authenticityToken);
-    document.body.appendChild(form);
-    form.submit();
-  }
-</script>

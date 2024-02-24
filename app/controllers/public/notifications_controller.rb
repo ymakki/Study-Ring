@@ -7,11 +7,11 @@ class Public::NotificationsController < ApplicationController
   end
 
   # 既読更新
-  def update
-    notification = current_user.notifications.find(params[:id])
-    notification.update(read: true)
-    redirect_to notification.notifiable_path
-  end
+def update
+  @notification = current_user.notifications.find(params[:id])
+  @notification.update(read: true)
+  redirect_to @notification.notifiable_path
+end
 
   private
 

@@ -40,7 +40,6 @@ Rails.application.routes.draw do
       end
       resource :relationships, only: [:create, :destroy]
       resources :tags, only: [:new, :index, :edit, :create, :destroy, :update]
-      resources :notifications, only: [:index, :update]
     end
 
     # 検索
@@ -53,6 +52,9 @@ Rails.application.routes.draw do
 
     # ソート
     get "sort", to: "studies#sort"
+
+    # 通知
+    resources :notifications
   end
 
   # 管理者側
