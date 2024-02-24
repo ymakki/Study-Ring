@@ -3,17 +3,24 @@
   <h2 class="pl-5">教材レビュー詳細</h2>
 </div>
 
+<% if @user == current_user %>
+  <div class="d-flex justify-content-end align-items-end">
+    <%= link_to '編集', edit_study_study_review_path(@review), class: "btn btn-success" %>
+    <%= link_to '削除', study_study_review_path(@review), method: :delete, data: { confirm: "この教材レビューを削除しますか？" },  class: "btn btn-danger ml-3" %>
+  </div>
+<% end %>
+
 <div class="d-flex align-items-center">
   <%= render 'public/users/user_icon', user: @user %>
   <span class="pl-2"><%= @user.name %></span>
 </div>
 
 <div class="break-word pl-3 pt-2 pb-2">
-  <%= @study_review.title %>
+  <%= @review.title %>
 </div>
 
 <div class="break-word pl-3 pt-2 pb-2">
-  <%= @study_review.body %>
+  <%= @review.body %>
 </div>
 
 <div class="d-flex align-items-center">
@@ -24,25 +31,25 @@
 </div>
 
 <div class="text-size-md pt-3">
-  <% if @study_review.favorited_by?(current_user) %>
-    <%= link_to study_study_review_favorites_path(@study, @study_review), method: :delete, style: "text-decoration: none; color: #000000;" do %>
+  <% if @review.favorited_by?(current_user) %>
+    <%= link_to study_study_review_review_favorites_path(@study, @review), method: :delete, style: "text-decoration: none; color: #000000;" do %>
       <i class="fa-solid fa-thumbs-up"></i>
     <% end %>
     <span class="pl-1">いいね！　(</span>
-    <%= @study_review.favorites.count %>
+    <%= @review.review_favorites.count %>
     <span class="pl-1">件)</span>
   <% else %>
-    <%= link_to study_study_review_favorites_path(@study, @study_review), method: :post, style: "text-decoration: none; color: #000000;" do %>
+    <%= link_to study_study_review_review_favorites_path(@study, @review), method: :post, style: "text-decoration: none; color: #000000;" do %>
       <i class="fa-regular fa-thumbs-up"></i>
     <% end %>
     <span class="pl-1">いいね！　(</span>
-    <%= @study_review.favorites.count %>
+    <%= @review.review_favorites.count %>
     <span class="pl-1">件)</span>
   <% end %>
 </div>
 
 <div class="d-flex gap-2 break-word">
-  <% @study_review.favoriting_users.each do |user| %>
+  <% @review.favoriting_users.each do |user| %>
     <%= render 'public/users/user_icon', user: user %>
   <% end %>
 </div>
@@ -50,21 +57,15 @@
 <div class="text-size-md pt-3">
   <i class="fa-regular fa-comment"></i>
   <span class="pl-1">コメント　(</span>
-  <%= @study_review.review_comments.count %>
+  <%= @review.review_comments.count %>
   <span>件)</span>
 </div>
 
 <div>
-  <%= render 'public/review_comments/index', study_review: @study_review %>
+  <%= render 'public/review_comments/index', study_review: @review %>
 </div>
 
 <div class="pt-3">
-  <%= render 'public/revie_comments/form', study_review: @study_review, review_comment: @study_review_comment %>
+  <%= render 'public/review_comments/form', study_review: @review, review_comment: @review_comment %>
 </div>
 
-<% if @user == current_user %>
-  <div class="d-flex justify-content-end align-items-end">
-    <%= link_to '編集', edit_study_study_review_path(@study_review), class: "btn btn-success" %>
-    <%= link_to '削除', study_study_review_path(@study_review), method: :delete, data: { confirm: "この教材レビューを削除しますか？" },  class: "btn btn-danger ml-3" %>
-  </div>
-<% end %>

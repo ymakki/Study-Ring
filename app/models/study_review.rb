@@ -11,7 +11,7 @@ class StudyReview < ApplicationRecord
 
   # いいねしているか？
   def favorited_by?(user)
-    favorites.where(user_id: user.id).exists?
+    review_favorites.where(user_id: user.id).exists?
   end
 
   # いいねしたユーザーを１０人表示(新しい順に更新)
