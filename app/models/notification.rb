@@ -26,11 +26,9 @@ class Notification < ApplicationRecord
     case notifiable_type
 
     when "Favorite"
-      user_path(notifiable) #相手に遷移したい
-
+      user_path(notifiable.user_id)
     when "Message"
-      room_path(notifiable) #room_idがカウントアップ
-
+      room_path(notifiable.room)
     when "Relationship"
       user_path(notifiable.follower_id)
     when "StudyComment"

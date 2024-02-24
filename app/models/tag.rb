@@ -1,10 +1,14 @@
 class Tag < ApplicationRecord
 
-  has_many :user_taggings
+  belongs_to :user
+
+  has_many :user_taggings, dependent: :destroy
   has_many :users, through: :user_taggings
 
-  has_many :study_taggings
+  has_many :study_taggings, dependent: :destroy
   has_many :studies, through: :study_taggings
+
+  validates :name,presence:true,length:{maximum:20}
 
   # 重複したタグを削除
   def self.unify_duplicate_tags

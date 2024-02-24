@@ -16,6 +16,7 @@ class Public::TagsController < ApplicationController
     @tag.user_id = current_user.id
 
     if @tag.save
+      Tag.unify_duplicate_tags
       redirect_to user_tags_path, notice: "記録しました"
     else
       render "new"
@@ -29,8 +30,9 @@ class Public::TagsController < ApplicationController
   def update
     @tag = Tag.find(params[:id])
     if @tag.update(tag_params)
-      redirect_to tags_path, notice: "更新しました"
+      redirect_to user_tags_path, notice: "更新しました"
     else
+      @tags = Tag.where(user_id: current_user.id)
       render "index"
     end
   end
@@ -38,13 +40,13 @@ class Public::TagsController < ApplicationController
   def destroy
     @tag = Tag.find(params[:id])
     @tag.destroy
-    redirect_to tags_path
+    redirect_to user_tags_path
   end
 
   private
 
   def tag_params
-    params.require(:tag).permit(:user_id, :study_id, :name)
+    params.require(:tag).permit(:name)
   end
 
   def ensure_correct_user
@@ -52,6 +54,8 @@ class Public::TagsController < ApplicationController
     unless tag.user == current_user
       redirect_to studies_path
     end
+  # rescue
+  #   redirect_to user_tags_path
   end
 
 end

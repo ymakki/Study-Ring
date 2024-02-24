@@ -10,13 +10,12 @@
   </div>
 </div>
 <div class="text-size-md"><%= @user.name %></div>
-
-
-
-<div><%= @user.tags.pluck(:name).join(', ') if @user.tags.present? %></div>
-
-
-
+<h6 class="pt-3"><i class="fa-solid fa-tag pr-1"></i>勉強中</h6>
+<div>
+  <% @tag_names.split("　").each do |tag| %>
+    <%= link_to tag, tagsearch_path(user_id: @user.id, tag_id: tag), class: "user-tag" %>
+  <% end %>
+</div>
 <h6 class="pt-3">プロフィール</h6>
 <table class='table col-md-8'>
   <tr>

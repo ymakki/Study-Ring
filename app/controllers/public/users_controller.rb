@@ -6,6 +6,7 @@ class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @timelines = Timeline.where(user_id: @user.id).order(created_at: :desc)
+    @tag_names = Tag.where(id: @user.tag_ids).pluck(:name).join('　')
 
     unless @user.id == current_user.id
       current_user.entries.includes(:room).each do |current_user_entry|
@@ -63,7 +64,7 @@ class Public::UsersController < ApplicationController
       :residence,
       :profile_image,
       :is_active,
-      tag_ids: [],
+      tag_ids:[],
     )
   end
 

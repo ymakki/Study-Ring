@@ -15,18 +15,18 @@
         <%= f.text_area :introduction, class: "form-control" %>
       </td>
     </tr>
-
-
-
     <tr>
       <td colspan=2 class="form-group">
-        <%= f.label :tag_id, "ユーザータグ" %>
-        <%= f.collection_select(:tag_id, Tag.all, :id, :name, { prompt: "" }, { class: "form-control" }) %>
+        <%= f.label "ユーザータグ" %><br>
+        <div style="display: flex; flex-wrap: wrap;">
+          <% Tag.all.each do |tag| %>
+            <div style="margin-right: 10px;">
+              <%= f.check_box :tag_ids, { multiple: true }, tag.id, nil %> <%= tag.name %>
+            </div>
+          <% end %>
+        </div>
       </td>
     </tr>
-
-
-
     <tr>
       <td colspan=2>
         <%= f.label :follow_request, "フォロワー募集" %><br>

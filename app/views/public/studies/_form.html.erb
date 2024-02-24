@@ -16,20 +16,20 @@
         <%= f.select :status, Study.statuses, include_blank: false, class: "form-control" %>
       </td>
     </tr>
-
-
-
     <tr>
       <td class="form-group">
         <%= f.label :tag_id, "カテゴリー", class: "pt-3" %>
       </td>
-      <td class="form-group text-right">
-        <%= f.collection_select(:tag_id, Tag.all, :id, :name, { prompt: "カテゴリなし" }, { class: "form-control" }) %>
+      <td>
+        <div class="text-right" style="display: flex; justify-content: flex-end; flex-wrap: wrap;">
+          <% Tag.all.each do |tag| %>
+            <div class="ml-1">
+              <%= f.check_box :tag_ids, { multiple: true }, tag.id, nil %> <%= tag.name %>
+            </div>
+          <% end %>
+        </div>
       </td>
     </tr>
-
-
-
     <tr>
       <td colspan=2 class="form-group text-center">
         <%= f.submit '保存', class: "btn btn-dark" %>

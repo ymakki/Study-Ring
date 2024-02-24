@@ -71,3 +71,16 @@ main
 .form-text-field {
   border-radius: 10px;
 }
+
+.user-tag {
+  background-color: #f0f0f0;
+  color: black;
+  border-radius: 30%;
+  padding: 5px 10px;
+  text-decoration: none;
+}
+
+.user-tag:hover {
+  text-decoration: none;
+  color: black;
+}
