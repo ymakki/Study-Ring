@@ -1,11 +1,11 @@
 <% if study_review.favorited_by?(current_user) %>
-  <%= link_to study_study_review_favorites_path(study_review.study, study_review), method: :delete, style: "text-decoration: none; color: #000000;"  do %>
+  <%= link_to study_study_review_review_favorites_path(study_review.study, study_review), method: :delete, style: "text-decoration: none; color: #000000;"  do %>
     <i class="fa-solid fa-thumbs-up"></i>
   <% end %>
-  <%= study_review.favorites.count %>
+  <%= study_review.review_favorites.count %>
 <% else %>
-  <%= link_to study_study_review_favorites_path(study_review.study, study_review), method: :post, style: "text-decoration: none; color: #000000;"  do %>
+  <%= link_to study_study_review_review_favorites_path(study_review.study, study_review), method: :post, style: "text-decoration: none; color: #000000;"  do %>
     <i class="fa-regular fa-thumbs-up"></i>
   <% end %>
-  <%= study_review.favorites.count %>
+  <%= study_review.review_favorites.count %>
 <% end %>

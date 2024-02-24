@@ -30,4 +30,10 @@ class Study < ApplicationRecord
     Study.where("title LIKE ?", "%" + (word.to_s) + "%")
   end
 
+  # レビューのいいね数カウント
+  def total_review_favorites
+    # 二重配列をひとつずつ合計
+    study_reviews.sum { |review| review.review_favorites.count }
+  end
+
 end

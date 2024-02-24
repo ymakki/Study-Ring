@@ -19,8 +19,12 @@
               <% end %>
             </td>
             <td>
-              <%#= render 'public/favorites/favorite', study: study %>
-              <!--レビューのいいね数-->
+              <i class="fa-solid fa-thumbs-up"></i>
+              <% if study.study_reviews.any? %>
+                <%= study.total_review_favorites %>
+              <% else %>
+                0
+              <% end %>
             </td>
           </tr>
         </table>

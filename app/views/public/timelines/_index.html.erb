@@ -1,4 +1,5 @@
 <% timelines.each do |timeline| %>
+  <!--レコード側表示-->
   <%  if timeline.record.present? %>
     <table class="table table-hover">
       <tr onclick="location.href='<%= study_record_path(timeline.record.study_id, timeline.record) %>' "style="cursor:pointer;">
@@ -44,6 +45,7 @@
         </td>
       </tr>
     </table>
+  <!--レビュー側表示-->
   <%  elsif timeline.study_review.present? %>
     <table class="table table-hover">
       <tr onclick="location.href='<%= study_study_review_path(timeline.study_review.study_id, timeline.study_review) %>'" style="cursor:pointer;">
@@ -69,13 +71,7 @@
                       <h6>教材レビュー</h6>
                       <div class="d-flex">
                         <%= render 'public/studies/study_icon', study: timeline.study_review.study %>
-                        <div class="d-flex ml-2 flex-column">
-                          <div class="break-word"><%= timeline.study_review.study.title %></div>
-                          <div>
-                            <i class="fa-solid fa-comment-medical"></i>
-                            <%= timeline.study_review.study.study_reviews.count %>
-                          </div>
-                        </div>
+                        <div class="break-word ml-2"><%= timeline.study_review.study.title %></div>
                       </div>
                     </td>
                   </tr>
@@ -93,6 +89,15 @@
                     <td class="d-flex flex-column">
                       <div class="break-word"><%= timeline.study_review.title %></div>
                       <div class="break-word"><%= timeline.study_review.body %></div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <span>
+                        <i class="fa-regular fa-comment"></i>
+                        <%= timeline.study_review.review_comments.count %>
+                      </span>
+                      <span class="ml-5"><%= render 'public/review_favorites/favorite', study_review: timeline.study_review %></span>
                     </td>
                   </tr>
                 </table>
