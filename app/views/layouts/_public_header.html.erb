@@ -1,8 +1,8 @@
 <nav class="navbar">
-  <div class="logo d-flex">
-    <a href="/"><span class="pl-2">StudyRing</span></a>
+  <div class="logo d-flex justify-content-center">
+    <a href="/" class="p-0"><%= image_tag('logo_image.png', class: "logo-image") %></a>
   </div>
-  <div class="nav-list">
+  <div class="nav-list p-0">
     <ul>
       <% if user_signed_in? %>
         <li>
@@ -87,7 +87,7 @@
   (function($) {
     var $body = $('body');
     var $btn = $('.toggle_btn');
-    var open = 'open'; // class
+    var open = 'open';
     $btn.on('click', function() {
       if (!$body.hasClass(open)) {
         $body.addClass(open);

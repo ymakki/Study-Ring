@@ -37,7 +37,10 @@
                   <i class="fa-regular fa-comment"></i>
                   <%= timeline.record.study_comments.count %>
                 </span>
-                <span class="ml-5"><%= render 'public/favorites/favorite', record: timeline.record %></span>
+                <span class="ml-5">
+                    <i class="fa-solid fa-thumbs-up"></i>
+                    <%= timeline.record.favorites.count %>
+                </span>
               </td>
             </tr>
           </table>
@@ -97,7 +100,10 @@
                         <i class="fa-regular fa-comment"></i>
                         <%= timeline.study_review.review_comments.count %>
                       </span>
-                      <span class="ml-5"><%= render 'public/review_favorites/favorite', study_review: timeline.study_review %></span>
+                      <span class="ml-5">
+                        <i class="fa-solid fa-thumbs-up"></i>
+                        <%= timeline.study_review.review_favorites.count %>
+                      </span>
                     </td>
                   </tr>
                 </table>
