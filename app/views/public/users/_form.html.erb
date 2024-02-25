@@ -4,9 +4,9 @@
       <%= f.file_field :profile_image, class: "d-none", onchange: "previewImage(this);" %>
       <td class="form-group col-md-2">
         <% if user.profile_image.attached? %>
-          <%= image_tag user.profile_image, class: "open-file-field img-fluid", id: "preview" %>
+          <%= image_tag user.profile_image, class: "open-file-field img-fluid user-profile-image", id: "preview" %>
         <% else %>
-          <%= image_tag "user_no_image.jpg", class: "open-file-field img-fluid", id: "preview" %>
+          <%= image_tag "user_no_image.jpg", class: "open-file-field img-fluid user-profile-image", id: "preview" %>
         <% end %>
       </td>
       <td class="form-group col-md-6">
