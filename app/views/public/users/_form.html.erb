@@ -1,8 +1,13 @@
 <%= form_with model: user, method: :patch, local: true do |f| %>
   <table class="table col-md-8">
     <tr>
+      <%= f.file_field :profile_image, class: "d-none", onchange: "previewImage(this);" %>
       <td class="form-group col-md-2">
-        <%= f.file_field :profile_image, class: "form-control-file", accept: 'image/*' %>
+        <% if user.profile_image.attached? %>
+          <%= image_tag user.profile_image, class: "open-file-field img-fluid", id: "preview" %>
+        <% else %>
+          <%= image_tag "user_no_image.jpg", class: "open-file-field img-fluid", id: "preview" %>
+        <% end %>
       </td>
       <td class="form-group col-md-6">
         <%= f.label :name, "ニックネーム" %>
@@ -60,3 +65,20 @@
     </tr>
   </table>
 <% end %>
+
+
+<script>
+  $(".open-file-field").on("click", () => {
+    $("#user_profile_image").click();
+    return false;
+  });
+
+  function previewImage(obj)
+  {
+  	var fileReader = new FileReader();
+  	fileReader.onload = (function() {
+  		document.getElementById('preview').src = fileReader.result;
+  	});
+  	fileReader.readAsDataURL(obj.files[0]);
+  }
+</script>
