@@ -2,19 +2,19 @@
 <% @reviews.each do |review| %>
   <table class="table table-hover">
     <tr onclick="location.href='<%= study_study_review_path(review.study_id, review) %>' "style="cursor:pointer;">
-      <td class="p-0">
-        <div class="icon-sm mt-3 ml-1" style="max-width: 10px;">
-          <% if @user.profile_image.attached? %>
-            <%= image_tag @user.get_profile_image(50, 50), class: "img-fluid" %>
+      <td class="p-0" style="max-width: 10px;">
+        <div class="icon mt-3 ml-1">
+          <% if review.user.profile_image.attached? %>
+            <%= image_tag review.user.get_profile_image(70, 70), class: "img-fluid user-image" %>
           <% else %>
             <i class="fa-regular fa-circle-user"></i>
           <% end %>
         </div>
       </td>
-      <td>
+      <td style="max-width: 100px;">
         <table class="table table-borderless">
           <tr class="no-hover">
-            <td><%= @user.name %></td>
+            <td><%= review.user.name %></td>
           </tr>
           <tr class="no-hover">
             <td class="break-word">

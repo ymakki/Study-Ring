@@ -3,8 +3,8 @@
   <%  if timeline.record.present? %>
     <table class="table table-hover">
       <tr onclick="location.href='<%= study_record_path(timeline.record.study_id, timeline.record) %>' "style="cursor:pointer;">
-        <td class="col-md-1 text-center" style="padding-right: 0;">
-          <div class="icon-sm">
+        <td class="p-0" style="max-width: 5px;">
+          <div class="icon-sm mt-3 ml-1">
             <% if timeline.record.user.profile_image.attached? %>
               <%= image_tag timeline.record.user.get_profile_image(50, 50), class: "img-fluid user-image" %>
             <% else %>
@@ -12,7 +12,7 @@
             <% end %>
           </div>
         </td>
-        <td class="col-md-7" style="padding-left: 0;">
+        <td style="max-width: 100px;">
           <table class="table-borderless">
             <tr  class="no-hover">
               <td>
