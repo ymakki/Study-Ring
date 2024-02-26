@@ -1,6 +1,7 @@
 <div class="d-flex align-items-center">
   <h2 class="pt-3">記録する</h2>
 </div>
+
 <div class="pt-3 pb-3 d-flex justify-content-between">
   <div>
     <span><%= link_to "勉強中 |", sort_path(sort_type: 'now'), class: "text-size link" %></span>
@@ -14,19 +15,24 @@
 
 <div class="row">
   <% @studies.each do |study| %>
-    <div class="col-sm-3 mt-3 link" style="cursor:pointer;">
+    <div class="col-sm-3 mt-3 link">
       <div class="aspect-ratio-box icon align-self-end">
         <% if study.image.attached? %>
-          <%= image_tag study.get_image(100, 100), class: "img-fluid study-image" %>
+          <%= link_to new_study_record_path(study_id: study.id) do %>
+            <%= image_tag study.get_image(100, 100), class: "img-fluid study-image" %>
+          <% end %>
         <% else %>
-          <i class="fa-solid fa-book"></i>
+          <%= link_to new_study_record_path(study_id: study.id) do %>
+            <i class="fa-solid fa-book"></i>
+          <% end %>
         <% end %>
-        <div class="text-center">
-          <h6 class="clamp-text mt-2 mb-3" style="height: 40px;"><%= study.title %></h6>
-        </div>
       </div>
-
-      <div class="text-center" style="margin-top: 60px;">
+      <div class="text-center">
+        <%= link_to new_study_record_path(study_id: study.id), class: "link-text" do %>
+          <h6 class="clamp-text mt-2 mb-3"><%= study.title %></h6>
+        <% end %>
+      </div>
+      <div class="text-center">
         <% if study.user == current_user %>
           <span><%= link_to "編集", edit_study_path(study), class: "btn btn-sm btn-success" %></span>
           <span><%= link_to "詳細", study_path(study), class: "btn btn-sm btn-secondary" %></span>
