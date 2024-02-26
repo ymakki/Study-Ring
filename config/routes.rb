@@ -65,11 +65,11 @@ Rails.application.routes.draw do
     root :to =>"users#index"
 
     # コメント
-    resources :study_comments, only: [:index, :show, :destroy]
+    resources :study_comments, only: [:index, :destroy]
     # ユーザー
     resources :users, only: [:index, :show, :edit, :update]
     # レビュー
-    resources :study_reviews, only: [:index, :show, :destroy]
+    resources :study_reviews, only: [:index, :destroy]
 
   end
 

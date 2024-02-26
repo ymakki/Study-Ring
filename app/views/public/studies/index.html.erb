@@ -11,24 +11,22 @@
     <%= link_to "カテゴリの整理", user_tags_path(user_id: current_user.id), class: "btn btn-secondary" %>
   </div>
 </div>
+
 <div class="row">
   <% @studies.each do |study| %>
-    <div class="col-sm-3 mt-3 link">
+    <div class="col-sm-3 mt-3 link" style="cursor:pointer;">
       <div class="aspect-ratio-box icon align-self-end">
         <% if study.image.attached? %>
-          <%= link_to new_study_record_path(study_id: study.id) do %>
-            <%= image_tag study.get_image(100, 100), class: "img-fluid study-image" %>
-          <% end %>
+          <%= image_tag study.get_image(100, 100), class: "img-fluid study-image" %>
         <% else %>
-          <%= link_to new_study_record_path(study_id: study.id) do %>
-            <i class="fa-solid fa-book"></i>
-          <% end %>
+          <i class="fa-solid fa-book"></i>
         <% end %>
+        <div class="text-center">
+          <h6 class="clamp-text mt-2 mb-3" style="height: 40px;"><%= study.title %></h6>
+        </div>
       </div>
-      <div class="text-center">
-        <h6 class="clamp-text mt-2 mb-3"><%= study.title %></h6>
-      </div>
-      <div class="text-center">
+
+      <div class="text-center" style="margin-top: 60px;">
         <% if study.user == current_user %>
           <span><%= link_to "編集", edit_study_path(study), class: "btn btn-sm btn-success" %></span>
           <span><%= link_to "詳細", study_path(study), class: "btn btn-sm btn-secondary" %></span>
@@ -38,6 +36,7 @@
     </div>
   <% end %>
 </div>
+
 <div class="mt-5 text-center">
   <%= link_to '+ 新しい教材を登録', new_study_path, class: "btn btn-secondary" %>
 </div>

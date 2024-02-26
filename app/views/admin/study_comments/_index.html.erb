@@ -1,10 +1,10 @@
-<table class="table table-hover">
+<table class="table">
   <% comments.each do |comment| %>
-    <tr onclick="location.href='<%= admin_study_comment_path(comment) %>'" style="cursor:pointer;">
+    <tr>
       <td class="d-flex mb-3 mr-2">
         <div class="icon-sm mr-3">
           <% if comment.user.profile_image.attached? %>
-            <%= image_tag comment.user.get_profile_image(50, 50), class: "img-fluid" %>
+            <%= image_tag comment.user.get_profile_image(50, 50), class: "img-fluid user-image" %>
           <% else %>
             <i class="fa-regular fa-circle-user"></i>
           <% end %>
