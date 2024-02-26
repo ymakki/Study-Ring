@@ -35,7 +35,7 @@ class Public::StudiesController < ApplicationController
   def update
     @study = Study.find(params[:id])
     if @study.update(study_params)
-      redirect_to study_path(@study), notice: "更新しました"
+      redirect_to studies_path, notice: "更新しました"
     else
       render "show"
     end
