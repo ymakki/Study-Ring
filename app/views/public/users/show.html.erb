@@ -29,7 +29,8 @@
 <table colspan="2" class='table'>
   <tr>
     <td>
-      <%= link_to studies_path(user_id: @user.id), class: "link" do %>
+      <!--user_studies-->
+      <%= link_to studies_path(@user), class: "link" do %>
         <%= @user.study_ids.count %>教材 >
       <% end %>
       <%= link_to following_user_path(@user), class: "link ml-2" do %>

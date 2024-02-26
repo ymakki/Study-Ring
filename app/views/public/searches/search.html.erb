@@ -37,7 +37,7 @@
 <!--検索結果表示-->
 <% if @model == 'user' %>
   <div class="d-flex align-items-center">
-    <h2 class="pl-5 break-word"><%= @word %></h2>
+    <h2 class="break-word pt-3"><%= @word %></h2>
   </div>
   <%= render 'public/users/index', users: @records %>
 <% end %>
