@@ -11,20 +11,22 @@
           </tr>
           <tr class="no-hover">
             <td>
-              <i class="fa-solid fa-comment-medical"></i>
-              <% if study.study_reviews.any? %>
-                <%= study.study_reviews.count %>
-              <% else %>
-                0
-              <% end %>
-            </td>
-            <td>
-              <i class="fa-solid fa-thumbs-up"></i>
-              <% if study.study_reviews.any? %>
-                <%= study.total_review_favorites %>
-              <% else %>
-                0
-              <% end %>
+              <span>
+                <i class="fa-solid fa-comment-medical"></i>
+                <% if study.study_reviews.any? %>
+                  <%= study.study_reviews.count %>
+                <% else %>
+                  0
+                <% end %>
+              </span>
+              <span class="pl-3">
+                <i class="fa-solid fa-thumbs-up"></i>
+                <% if study.study_reviews.any? %>
+                  <%= study.total_review_favorites %>
+                <% else %>
+                  0
+                <% end %>
+              </span>
             </td>
           </tr>
         </table>
