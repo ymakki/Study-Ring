@@ -1,5 +1,12 @@
 <div class="d-flex justify-content-between align-items-center pt-3">
-  <%= render 'public/users/user_icon', user: @user %>
+  <div class="icon">
+    <% if @user.profile_image.attached? %>
+      <%= image_tag @user.get_profile_image(70, 70), class: "img-fluid user-image" %>
+    <% else %>
+      <i class="fa-regular fa-circle-user"></i>
+    <% end %>
+  </div>
+
   <div class="d-flex">
     <% if @user == current_user %>
       <%= link_to 'プロフィールを編集', edit_user_path(@user), class: "btn btn-secondary" %>
