@@ -3,10 +3,10 @@
   <%  if timeline.record.present? %>
     <table class="table table-hover">
       <tr onclick="location.href='<%= study_record_path(timeline.record.study_id, timeline.record) %>' "style="cursor:pointer;">
-        <td class="p-0" style="max-width: 5px;">
-          <div class="icon-sm mt-3 ml-1">
+        <td class="pr-0 pt-0" style="max-width: 10px;">
+          <div class="icon mt-3 ml-1">
             <% if timeline.record.user.profile_image.attached? %>
-              <%= image_tag timeline.record.user.get_profile_image(50, 50), class: "img-fluid user-image" %>
+              <%= image_tag timeline.record.user.get_profile_image(70, 70), class: "img-fluid user-image" %>
             <% else %>
               <i class="fa-regular fa-circle-user"></i>
             <% end %>
@@ -52,13 +52,13 @@
   <%  elsif timeline.study_review.present? %>
     <table class="table table-hover">
       <tr onclick="location.href='<%= study_study_review_path(timeline.study_review.study_id, timeline.study_review) %>'" style="cursor:pointer;">
-        <td>
+        <td class="pl-0">
           <table class="table-borderless w-100">
             <tr  class="no-hover">
               <td class="d-flex align-items-center">
-                <div class="icon-sm">
+                <div class="icon">
                   <% if timeline.study_review.user.profile_image.attached? %>
-                    <%= image_tag timeline.study_review.user.get_profile_image(50, 50), class: "img-fluid user-image" %>
+                    <%= image_tag timeline.study_review.user.get_profile_image(70, 70), class: "img-fluid user-image" %>
                   <% else %>
                     <i class="fa-regular fa-circle-user"></i>
                   <% end %>
