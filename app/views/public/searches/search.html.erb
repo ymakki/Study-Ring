@@ -1,7 +1,7 @@
 <!--ユーザ検索表示-->
 <% if @search_type == "user" %>
   <div class="d-flex align-items-center">
-    <h2>ユーザーを探す</h2>
+    <h2 class="pt-3">ユーザーを探す</h2>
   </div>
   <%= form_with url: search_path, method: :get, local: true do |f| %>
     <div class="input-group">
@@ -19,7 +19,7 @@
 <!--教材検索表示-->
 <% if @search_type == "study" %>
   <div class="d-flex align-items-center">
-    <h2>教材を探す</h2>
+    <h2 class="pt-3">教材を探す</h2>
   </div>
   <%= form_with url: search_path, method: :get, local: true do |f| %>
     <div class="input-group">
