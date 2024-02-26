@@ -67,6 +67,8 @@ main
 
 .break-word{
   word-break: break-all;
+  overflow-wrap: break-word;
+  text-align: justify;
 }
 
 .form-text-field {

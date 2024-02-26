@@ -30,8 +30,8 @@ class StudyReview < ApplicationRecord
   # レビュー作成時に各フォロワーに通知を作成
   after_create do
     user.followers.each do |follower|
-      build_notification(user_id: follower.id)
-      save
+      notification = follower.notifications.build(notifiable: self)
+      notification.save
     end
   end
 
