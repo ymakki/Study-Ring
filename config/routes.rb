@@ -35,7 +35,7 @@ Rails.application.routes.draw do
 
     # ユーザー
     resources :users, only: [:index, :show, :edit, :update] do
-      resources :studies, only: [:new, :index, :show, :edit, :create, :destroy, :update], module: "users"
+      resources :studies, only: [:index], module: "users"
       member do
         get "unsubscribe", to: "users#unsubscribe", as: :unsubscribe
         patch "withdrawal", to: "users#withdrawal", as: :withdrawal
