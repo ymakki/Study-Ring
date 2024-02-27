@@ -20,8 +20,12 @@
       <% end %>
     </header>
     <main class="flex-shrink-0 wrapper">
-      <%= flash[:notice] %>
       <div class="container">
+        <% if flash[:notice] %>
+          <div class="alert alert-warning mt-2" role="alert">
+            <%= flash[:notice] %>
+          </div>
+        <% end %>
         <div class='row pb-5'>
           <div class="col-md-8 mx-auto pt-2">
             <%= yield %>
