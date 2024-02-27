@@ -10,7 +10,7 @@
   <div class="field d-flex justify-content-between pt-3">
     <span>
       <i class="fa-regular fa-clock text-size-md"></i>
-      <%= f.label :study_time, "学習時間" %><br>
+      <%= f.label :study_time, "学習時間(分)" %><br>
     </span>
     <%= f.number_field :study_time, placeholder: "学習時間(分)", min: 0, oninput: "this.value = Math.abs(parseInt(this.value, 10) || 0)" %>
   </div>

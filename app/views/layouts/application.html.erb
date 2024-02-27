@@ -11,7 +11,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body class="d-flex flex-column h-100" style="background-image: url('<%= asset_path('background.png') %>'); background-size: cover;">
+  <body class="d-flex flex-column h-100">
     <header>
       <% if request.fullpath.include? "/admin" %>
         <%= render "layouts/admin_header" %>
