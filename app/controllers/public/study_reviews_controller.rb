@@ -16,10 +16,7 @@ class Public::StudyReviewsController < ApplicationController
 
     if @review.save
       # レビューをタイムラインモデルに保存
-      # reviews = StudyReview.where(user_id: current_user.id)
-      # reviews.each do |review|
-        Timeline.create(user_id: current_user.id, study_review_id: @review.id, created_at: @review.created_at)
-      # end
+      Timeline.create(user_id: current_user.id, study_review_id: @review.id, created_at: @review.created_at)
       redirect_to study_path(@study), notice: "レビューを保存しました"
     else
       redirect_to new_study_study_review_path, notice: "保存に失敗しました"

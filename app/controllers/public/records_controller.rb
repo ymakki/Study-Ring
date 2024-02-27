@@ -22,11 +22,7 @@ class Public::RecordsController < ApplicationController
 
     if @record.save
       # レコードをタイムラインモデルに保存
-      # records = Record.where(user_id: current_user.id)
-      # records.each do |record|
-        # record に紐づく新しい Timeline レコードを作成
-        Timeline.create(user_id: current_user.id, record_id: @record.id, created_at: @record.created_at)
-      # end
+      Timeline.create(user_id: current_user.id, record_id: @record.id, created_at: @record.created_at)
       redirect_to studies_path, notice: "記録しました"
     else
       render :new

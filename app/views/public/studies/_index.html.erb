@@ -1,10 +1,10 @@
-<table class="table table-hover">
+<table class="table w-100 table-hover">
   <% studies.each do |study| %>
     <tr onclick="location.href='<%= study_path(study) %>'" style="cursor:pointer;">
-      <td>
+      <td class="col-md-1">
         <%= render 'public/studies/study_icon', study: study %>
       </td>
-      <td>
+      <td class="col-md-7">
         <table class="table-borderless">
           <tr class="no-hover">
             <td class="break-word"><%= study.title %></td>
