@@ -20,9 +20,9 @@ class Study < ApplicationRecord
     完了済み: 2,
   }
 
-  # 画像サイズ
+  # 画像サイズ(画像のアスペクト比を維持)
   def get_image(width, height)
-    image.variant(resize_to_fill: [width, height]).processed
+    image.variant(resize_to_fit: [width, height]).processed
   end
 
   # 検索

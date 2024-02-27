@@ -1,7 +1,7 @@
-<div class="icon">
+<div class="icon d-flex justify-content-center">
   <% if study.image.attached? %>
     <%= link_to study_path(study) do %>
-      <%= image_tag study.get_image(100, 100), class: "img-fluid study-image" %>
+      <%= image_tag study.get_image(70, 70), class: "img-fluid" %>
     <% end %>
   <% else %>
     <%= link_to study_path(study) do %>
