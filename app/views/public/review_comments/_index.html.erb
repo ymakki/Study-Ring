@@ -1,4 +1,4 @@
-<table>
+<table class="table table-hover">
   <% study_review.review_comments.each do |review_comment| %>
     <% if review_comment.user.present? %>
       <tr>
@@ -13,9 +13,18 @@
             <% end %>
           <% end %>
         </td>
-        <td>
-          <div><%= review_comment.user.name %></div>
-          <div class="break-word"><%= review_comment.comment %></div>
+        <td class="pl-2">
+          <% if review_comment.user == current_user %>
+            <%= link_to study_study_review_review_comment_path(study_id: review_comment.study_review.study.id, id: review_comment.id, study_review_id: review_comment.study_review.id), method: :delete, data: { confirm: "このコメントを削除しますか？" }, class: "link-text" do %>
+              <div><%= review_comment.user.name %></div>
+              <div class="break-word"><%= review_comment.comment %></div>
+            <% end %>
+          <% else %>
+            <div>
+              <%= review_comment.user.name %>
+              <div class="break-word"><%= review_comment.comment %></div>
+            </div>
+          <% end %>
         </td>
       </tr>
     <% end %>
