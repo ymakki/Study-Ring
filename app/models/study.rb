@@ -3,7 +3,7 @@ class Study < ApplicationRecord
   # ユーザー
   belongs_to :user
   # タグ
-  has_many :study_taggings
+  has_many :study_taggings, dependent: :destroy
   has_many :tags, through: :study_taggings
   # 記録
   has_many :records, dependent: :destroy
@@ -12,6 +12,7 @@ class Study < ApplicationRecord
 
   has_one_attached :image
   validates :title,presence:true
+  validates :image, content_type: [:png, :jpg, :jpeg]
 
   # ステータス
   enum statuses: {

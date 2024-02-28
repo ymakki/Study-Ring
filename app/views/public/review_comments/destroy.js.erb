@@ -1,0 +1,1 @@
+$('#comment-<%= @study_review.id %>').html("<%= j(render 'public/review_comments/comment', review: @study_review, review_comment: @review_comment ) %>")

@@ -34,11 +34,9 @@
   <%= render 'public/review_favorites/favorite', review: @review %>
 </div>
 
-<div>
-  <%= render 'public/review_comments/comment', review: @review %>
+<div id="comment-<%= @review.id %>">
+  <%= render 'public/review_comments/comment', review: @review, review_comment: @review_comment %>
 </div>
 
-<div class="pt-3">
-  <%= render 'public/review_comments/form', study_review: @review, review_comment: @review_comment %>
-</div>
+
 

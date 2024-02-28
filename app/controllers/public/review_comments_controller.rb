@@ -1,17 +1,19 @@
 class Public::ReviewCommentsController < ApplicationController
 
   def create
-    study_review = StudyReview.find(params[:study_review_id])
+    @study_review = StudyReview.find(params[:study_review_id])
+    @review_comment = @study_review.review_comments.build(review_comment_params)
+
     if current_user.present?
-      @comment = current_user.review_comments.new(review_comment_params)
-      @comment.study_review_id = study_review.id
-      @comment.save
+      @review_comment.user = current_user
+      @review_comment.save
     end
   end
 
   def destroy
-    @comment = ReviewComment.find_by(id: params[:id], study_review_id: params[:study_review_id])
-    @comment.destroy
+    @study_review = StudyReview.find(params[:study_review_id])
+    @review_comment = @study_review.review_comments.find(params[:id])
+    @review_comment.destroy
   end
 
   private

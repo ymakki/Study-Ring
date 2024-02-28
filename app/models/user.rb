@@ -35,6 +35,7 @@ class User < ApplicationRecord
 
   has_one_attached :profile_image
   validates :name,presence:true,length:{maximum:10}
+  validates :profile_image, content_type: [:png, :jpg, :jpeg]
 
   # 画像サイズ
   def get_profile_image(width, height)

@@ -9,7 +9,17 @@ class Public::StudiesController < ApplicationController
 
   def new
     @study = Study.new
-    @study_copy = Study.new(title: params[:title])
+  end
+
+  def copy
+    # dup: 複製
+    # refs: https://www.tom08.net/2017-02-06-224127/
+    original = Study.find(params[:study_id])
+    copy = original.dup
+    copy.user_id = current_user.id
+    copy.image.attach(original.image.blob)
+    copy.save
+    redirect_to studies_path
   end
 
   def create

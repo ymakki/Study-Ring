@@ -22,6 +22,7 @@ Rails.application.routes.draw do
 
     # 教材
     resources :studies, only: [:new, :index, :show, :edit, :create, :destroy, :update] do
+      get "copy", to: "studies#copy"
       resources :records, only: [:new, :edit, :show, :create, :update, :destroy] do
         resource :favorites, only: [:create, :destroy]
         resources :study_comments, only: [:create, :destroy]

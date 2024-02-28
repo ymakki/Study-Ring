@@ -68,6 +68,8 @@ group :production do
   gem 'mysql2'
 end
 
+gem 'active_storage_validations'
+
 gem "net-smtp"
 gem "net-pop"
 gem "net-imap"

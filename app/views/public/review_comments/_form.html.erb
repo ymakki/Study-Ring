@@ -1,4 +1,4 @@
-<%= form_with(model: [study_review, review_comment], url: study_study_review_review_comments_path(study_review.study, study_review), local: false) do |f| %>
+<%= form_with(model: [study_review, review_comment], url: study_study_review_review_comments_path(study_review.study, study_review), local: false, remote: true) do |f| %>
 <div class="d-flex align-items-center">
   <%= f.text_area :comment, rows:"2",placeholder: "コメント", class: "w-75" %>
 
