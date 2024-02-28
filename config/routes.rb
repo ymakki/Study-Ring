@@ -21,13 +21,13 @@ Rails.application.routes.draw do
     root :to =>"homes#top"
 
     # 教材
-    resources :studies, only: [:new, :index, :show, :edit, :create, :destroy, :update] do
+    resources :studies do
       get "copy", to: "studies#copy"
-      resources :records, only: [:new, :edit, :show, :create, :update, :destroy] do
+      resources :records, except: [:index] do
         resource :favorites, only: [:create, :destroy]
         resources :study_comments, only: [:create, :destroy]
       end
-      resources :study_reviews, only: [:new, :show, :edit, :create, :destroy, :update] do
+      resources :study_reviews, except: [:index] do
         resource :review_favorites, only: [:create, :destroy]
         resources :review_comments, only: [:create, :destroy]
       end
@@ -44,7 +44,7 @@ Rails.application.routes.draw do
         get "followers", to: "relationships#followers", as: :followers
       end
       resource :relationships, only: [:create, :destroy]
-      resources :tags, only: [:new, :index, :edit, :create, :destroy, :update]
+      resources :tags, except: [:show]
     end
 
     # 検索
