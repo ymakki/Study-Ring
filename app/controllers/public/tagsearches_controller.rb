@@ -6,7 +6,8 @@ class Public::TagsearchesController < ApplicationController
 
     tag = Tag.find_by(name: @word)
     if tag.present?
-      @records = @user.studies.where(id: tag.studies.pluck(:id))
+      # 関連する Tag レコードを組み合わせてtags テーブルの id カラムが指定された tag.id と一致するレコードを取得
+      @records = Study.joins(:tags).where(tags: { id: tag.id })
     else
       @records = []
     end
