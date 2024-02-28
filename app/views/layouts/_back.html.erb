@@ -1,3 +1,23 @@
-<%= link_to request.referer, class: "back" do %>
+<% case controller.controller_name %>
+  <% when "tags" %>
+    <% if controller.action_name == "index" %>
+      <% link = studies_path %>
+    <% else %>
+      <% link = user_tags_path %>
+    <% end %>
+  <% when "tagsearches" %>
+    <% link = user_path(current_user) %>
+  <% when "studies" %>
+    <% link = studies_path %>
+  <% when "records" %>
+    <% link = records_path %>
+  <% when "study_reviews" %>
+    <% study = StudyReview.find(params[:id]).study %>
+    <% link = study_path(study) %>
+  <% else %>
+    <% link = request.referer %>
+<% end %>
+
+<%= link_to link, class: "back" do %>
   <i class="fa-solid fa-arrow-left"></i>
 <% end %>
