@@ -12,8 +12,13 @@
   <% when "records" %>
     <% link = records_path %>
   <% when "study_reviews" %>
-    <% study = StudyReview.find(params[:id]).study %>
-    <% link = study_path(study) %>
+    <% if params[:id].present? %>
+      <% study_review = StudyReview.find(params[:id]) %>
+      <% study = study_review.study %>
+      <% link = study_path(study) %>
+    <% else %>
+      <% link = search_path(search_type: 'study') %>
+    <% end %>
   <% else %>
     <% link = request.referer %>
 <% end %>
