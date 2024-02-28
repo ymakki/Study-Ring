@@ -34,12 +34,6 @@
   <%= render 'public/favorites/favorite', record: @record %>
 </div>
 
-<div class="d-flex gap-2 break-word">
-  <% @record.favoriting_users.each do |user| %>
-    <%= render 'public/users/user_icon', user: user %>
-  <% end %>
-</div>
-
 <div class="text-size-md pt-3">
   <i class="fa-regular fa-comment"></i>
   <span class="pl-1">コメント　(</span>

@@ -5,6 +5,11 @@
   <span class="pl-1">いいね！　(</span>
   <%= record.favorites.count %>
   <span class="pl-1">件)</span>
+  <div class="d-flex gap-2 break-word">
+    <% record.favoriting_users.each do |user| %>
+      <%= render 'public/users/user_icon', user: user %>
+    <% end %>
+  </div>
 <% else %>
   <%= link_to study_record_favorites_path(record.study, record), method: :post, remote: true, style: "text-decoration: none; color: #000000;" do %>
     <i class="fa-regular fa-thumbs-up"></i>
@@ -12,4 +17,10 @@
   <span class="pl-1">いいね！　(</span>
   <%= record.favorites.count %>
   <span class="pl-1">件)</span>
+  <div class="d-flex gap-2 break-word">
+    <% record.favoriting_users.each do |user| %>
+      <%= render 'public/users/user_icon', user: user %>
+    <% end %>
+  </div>
 <% end %>
+
