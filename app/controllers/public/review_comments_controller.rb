@@ -7,13 +7,11 @@ class Public::ReviewCommentsController < ApplicationController
       @comment.study_review_id = study_review.id
       @comment.save
     end
-    redirect_to request.referer
   end
 
   def destroy
     @comment = ReviewComment.find_by(id: params[:id], study_review_id: params[:study_review_id])
     @comment.destroy
-    redirect_to request.referer
   end
 
   private

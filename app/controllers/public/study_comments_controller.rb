@@ -1,19 +1,19 @@
 class Public::StudyCommentsController < ApplicationController
 
   def create
-    record = Record.find(params[:record_id])
+    @record = Record.find(params[:record_id])
+    @study_comment = @record.study_comments.build(study_comment_params)
+
     if current_user.present?
-      @comment = current_user.study_comments.new(study_comment_params)
-      @comment.record_id = record.id
-      @comment.save
+      @study_comment.user = current_user
+      @study_comment.save
     end
-    redirect_to request.referer
   end
 
   def destroy
-    @comment = StudyComment.find_by(id: params[:id], record_id: params[:record_id])
-    @comment.destroy
-    redirect_to request.referer
+    @record = Record.find(params[:record_id])
+    @study_comment = @record.study_comments.find(params[:id])
+    @study_comment.destroy
   end
 
   private

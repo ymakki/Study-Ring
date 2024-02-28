@@ -34,15 +34,8 @@
   <%= render 'public/review_favorites/favorite', review: @review %>
 </div>
 
-<div class="text-size-md pt-3">
-  <i class="fa-regular fa-comment"></i>
-  <span class="pl-1">コメント　(</span>
-  <%= @review.review_comments.count %>
-  <span>件)</span>
-</div>
-
 <div>
-  <%= render 'public/review_comments/index', study_review: @review %>
+  <%= render 'public/review_comments/comment', review: @review %>
 </div>
 
 <div class="pt-3">

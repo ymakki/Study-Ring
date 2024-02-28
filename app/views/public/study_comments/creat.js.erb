@@ -1,0 +1,2 @@
+$('#comment-textarea').val("")
+$('#comment-<%= @record.id %>').html("<%= j(render 'public/study_comments/comment', record: @record, study_comment: @study_comment ) %>")
