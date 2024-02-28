@@ -19,11 +19,19 @@
           <i class="fa-solid fa-file-pen"></i>レビュ一覧
         <% end %>
       </li>
-      <li>
-        <%= link_to destroy_admin_session_path, method: :delete do %>
-          <i class="fa-solid fa-arrow-right-from-bracket"></i> ログアウト
-        <% end %>
-      </li>
+      <% if admin_signed_in? %>
+        <li>
+          <%= link_to destroy_admin_session_path, method: :delete do %>
+            <i class="fa-solid fa-arrow-right-from-bracket"></i> ログアウト
+          <% end %>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to admin_session_path do %>
+            <i class="fa-solid fa-arrow-right-from-bracket"></i> ログイン
+          <% end %>
+        </li>
+      <% end %>
     </ul>
   </div>
 </nav>
