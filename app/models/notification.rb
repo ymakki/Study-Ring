@@ -18,7 +18,7 @@ class Notification < ApplicationRecord
       "<i class='fa-regular fa-comment'></i>　#{notifiable.user.name}さんがあなたの勉強記録にコメントしました".html_safe
     when "StudyReview"
 
-      "<i class='fa-regular fa-thumbs-up'></i>　#{notifiable&.user&.name}さんがあなたの勉強記録にいいね！と言っています".html_safe
+       "<i class='fa-regular fa-thumbs-up'></i>　#{notifiable&.user&.name}さんがあなたの勉強記録にいいね！と言っています".html_safe if notifiable.present?
 
     when "ReviewFavorite"
       "<i class='fa-regular fa-thumbs-up'></i>　#{notifiable.user.name}さんがあなたのレビューにいいね！と言っています".html_safe
