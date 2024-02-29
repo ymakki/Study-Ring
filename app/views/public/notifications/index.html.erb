@@ -7,7 +7,7 @@
       <tr>
         <td>
 
-          <% if notification.user.present? %>
+          <% if notification.user&.present? %>
             <%= link_to notification.message, notification, method: :patch, class: "dropdown-item" %>
           <% end %>
 
@@ -17,3 +17,4 @@
     <% end %>
   <% end %>
 </table>
+
