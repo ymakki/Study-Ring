@@ -3,7 +3,7 @@ class Record < ApplicationRecord
   belongs_to :study
   belongs_to :user
   has_many :favorites, dependent: :destroy
-  has_many :favoriting_users, through: :favorites, source: :user
+  has_many :favoriting_users, through: :favorites, source: :user, dependent: :destroy
   has_many :study_comments, dependent: :destroy
 
   validates :start_time,presence:true
