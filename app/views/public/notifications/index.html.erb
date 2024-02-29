@@ -6,13 +6,11 @@
     <% @unread_notifications.each do |notification| %>
       <tr>
         <td>
-
-          <% if notification.user&.present? %>
+          <% if notification&.user&.present? %>
             <%= link_to notification.message, notification, method: :patch, class: "dropdown-item" %>
           <% end %>
-
         </td>
-        <td><%= notification.created_at.strftime('%m月%d日 %H:%M') %></td>
+        <td><%= notification&.created_at&.strftime('%m月%d日 %H:%M') %></td>
       </tr>
     <% end %>
   <% end %>
