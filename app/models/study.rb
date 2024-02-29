@@ -4,7 +4,7 @@ class Study < ApplicationRecord
   belongs_to :user
   # タグ
   has_many :study_taggings, dependent: :destroy
-  has_many :tags, through: :study_taggings
+  has_many :tags, through: :study_taggings, dependent: :destroy
   # 記録
   has_many :records, dependent: :destroy
   # レビュー

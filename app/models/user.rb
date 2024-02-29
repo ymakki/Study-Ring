@@ -7,9 +7,9 @@ class User < ApplicationRecord
   has_many :studies, dependent: :destroy
   # いいね
   has_many :favorites, dependent: :destroy
-  has_many :favorited_records, through: :favorites, source: :record
+  has_many :favorited_records, through: :favorites, source: :record, dependent: :destroy
   has_many :review_favorites, dependent: :destroy
-  has_many :favorited_study_reviews, through: :review_favorites, source: :study_review
+  has_many :favorited_study_reviews, through: :review_favorites, source: :study_review, dependent: :destroy
   # コメント
   has_many :study_comments, dependent: :destroy
   has_many :review_comments, dependent: :destroy
@@ -17,10 +17,10 @@ class User < ApplicationRecord
   has_many :records, dependent: :destroy
   # フォローする
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
-  has_many :following, through: :relationships, source: :followed
+  has_many :following, through: :relationships, source: :followed, dependent: :destroy
   # フォローされる
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
-  has_many :followers, through: :reverse_of_relationships, source: :follower
+  has_many :followers, through: :reverse_of_relationships, source: :follower, dependent: :destroy
   # レビュー
   has_many :study_reviews, dependent: :destroy
   # メッセージ
@@ -28,8 +28,8 @@ class User < ApplicationRecord
   has_many :messages, dependent: :destroy
   has_many :rooms, through: :entries
   # タグ
-  has_many :user_taggings
-  has_many :tags, through: :user_taggings
+  has_many :user_taggings, dependent: :destroy
+  has_many :tags, through: :user_taggings, dependent: :destroy
   # 通知
   has_many :notifications, dependent: :destroy
 

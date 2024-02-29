@@ -4,7 +4,7 @@ class StudyReview < ApplicationRecord
   has_many :review_favorites, dependent: :destroy
   has_many :favoriting_users, through: :review_favorites, source: :user, dependent: :destroy
   has_many :review_comments, dependent: :destroy
-  has_one :notification, as: :notifiable, dependent: :destroy
+  has_many :notification, as: :notifiable, dependent: :destroy
 
   validates :title, presence: true,length:{maximum:30}
   validates :body,presence:true,length:{maximum:200}
