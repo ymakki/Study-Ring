@@ -2,7 +2,7 @@ class StudyReview < ApplicationRecord
   belongs_to :user
   belongs_to :study
   has_many :review_favorites, dependent: :destroy
-  has_many :favoriting_users, through: :review_favorites, source: :user
+  has_many :favoriting_users, through: :review_favorites, source: :user, dependent: :destroy
   has_many :review_comments, dependent: :destroy
   has_one :notification, as: :notifiable, dependent: :destroy
 
@@ -30,7 +30,7 @@ class StudyReview < ApplicationRecord
   # レビュー作成時に各フォロワーに通知を作成
   after_create do
     user.followers.each do |follower|
-      notification = follower.notifications.build(notifiable: self)
+      notification = follower.notifications.build(notifiable: self, user: user)
       notification.save
     end
   end
