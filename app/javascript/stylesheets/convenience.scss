@@ -29,8 +29,14 @@ main
   display: inline-block;
 }
 
-.height {
-  height: 100px;
+.link-text {
+  text-decoration: none;
+  color: #000;
+}
+
+.link-text:hover {
+  text-decoration: none;
+  color: #000;
 }
 
 .form-control.height::placeholder {
@@ -42,6 +48,10 @@ main
   color: #a0a0a0;
 }
 
+.form-text-field {
+  border-radius: 10px;
+}
+
 .side-line {
   display: inline-block;
   margin-right: 10px;
@@ -49,14 +59,6 @@ main
 
 .user-icon {
   font-size: 30px;
-}
-
-.no-hover td {
-  pointer-events: none;
-}
-
-.padding-left {
-  padding-left: 300px;
 }
 
 .clamp-text {
@@ -69,10 +71,6 @@ main
   word-break: break-all;
   overflow-wrap: break-word;
   text-align: justify;
-}
-
-.form-text-field {
-  border-radius: 10px;
 }
 
 .user-tag {
@@ -88,26 +86,32 @@ main
   color: black;
 }
 
+.user-image {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
 .user-profile-image {
   width: 70px;
   height: 70px;
   border-radius: 50%;
+  object-fit: cover;
 }
 
 .study-image {
   width: 80px;
   height: 80px;
+  object-fit: cover;
 }
 
-.link-text {
-  text-decoration: none;
-  color: #000;
+.height {
+  height: 100px;
 }
 
-.link-text:hover {
-  text-decoration: none;
-  color: #000;
+.padding-left {
+  padding-left: 300px;
 }
 
-
-
+.no-hover td {
+  pointer-events: none;
+}
