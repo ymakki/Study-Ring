@@ -2,9 +2,9 @@
   <% comments.each do |comment| %>
     <tr>
       <td class="d-flex mb-3 mr-2">
-        <div class="icon-sm mr-3">
+        <div class="icon mr-3">
           <% if comment.user.profile_image.attached? %>
-            <%= image_tag comment.user.get_profile_image(50, 50), class: "img-fluid user-image" %>
+            <%= image_tag comment.user.get_profile_image(70, 70), class: "img-fluid user-image" %>
           <% else %>
             <i class="fa-regular fa-circle-user"></i>
           <% end %>
@@ -15,6 +15,26 @@
         </div>
         <div class="ml-auto text-size">
           <%= link_to '削除', admin_study_comment_path(comment), method: :delete, data: { confirm: "このコメントを削除しますか？" }, class: "btn btn-danger" %>
+        </div>
+      </td>
+    </tr>
+  <% end %>
+  <% review_comments.each do |review_comment| %>
+    <tr>
+      <td class="d-flex mb-3 mr-2">
+        <div class="icon mr-3">
+          <% if review_comment.user.profile_image.attached? %>
+            <%= image_tag review_comment.user.get_profile_image(70, 70), class: "img-fluid user-image" %>
+          <% else %>
+            <i class="fa-regular fa-circle-user"></i>
+          <% end %>
+        </div>
+        <div class="flex-column">
+          <div class="text-size"><%= review_comment.user.name %></div>
+          <div class="text-size break-word"><%= review_comment.comment %></div>
+        </div>
+        <div class="ml-auto text-size">
+          <%= link_to '削除', admin_study_comment_path(review_comment), method: :delete, data: { confirm: "このコメントを削除しますか？" }, class: "btn btn-danger" %>
         </div>
       </td>
     </tr>

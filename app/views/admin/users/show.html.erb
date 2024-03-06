@@ -1,10 +1,7 @@
-<div class="d-flex justify-content-between align-items-center">
-  <%= render 'layouts/back' %>
-</div>
-<div class="d-flex justify-content-between align-items-center">
+<div class="d-flex justify-content-between align-items-center pt-3">
   <div class="icon">
     <% if @user.profile_image.attached? %>
-      <%= image_tag @user.get_profile_image(100, 100), class: "img-fluid" %>
+      <%= image_tag @user.get_profile_image(70, 70), class: "img-fluid user-image" %>
     <% else %>
       <i class="logo-show fa-regular fa-circle-user"></i>
     <% end %>
@@ -12,7 +9,7 @@
     <%= link_to "会員ステータスを更新", edit_admin_user_path(@user), class: "btn btn-success" %>
 </div>
 
-<div class="text-size-lg"><%= @user.name %></div>
+<div class="text-size-md"><%= @user.name %></div>
 <h4 class="pt-3">プロフィール</h4>
 <table class='table col-md-8'>
   <tr>

@@ -3,18 +3,17 @@ class Admin::StudyCommentsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @comments = StudyComment.all
-  end
-
-  def show
-    @comment = StudyComment.includes(:user).find(params[:id])
-    @user = @comment.user
-    @comments = @user.study_comments
+    @comments = StudyComment.includes(:user).all
+    @review_comments = ReviewComment.includes(:user).all
   end
 
   def destroy
     @comment = StudyComment.find_by(id: params[:id])
-    @comment.destroy
+    @review_comment = ReviewComment.find_by(id: params[:id])
+
+    @comment&.destroy
+    @review_comment&.destroy
+
     redirect_to admin_study_comments_path
   end
 

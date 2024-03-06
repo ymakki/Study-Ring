@@ -2,9 +2,9 @@
   <% reviews.each do |review| %>
     <tr>
       <td class="d-flex mb-3 mr-2">
-        <div class="icon-sm mr-3">
+        <div class="icon mr-3">
           <% if review.user.profile_image.attached? %>
-            <%= image_tag review.user.get_profile_image(50, 50), class: "img-fluid user-image" %>
+            <%= image_tag review.user.get_profile_image(70, 70), class: "img-fluid user-image" %>
           <% else %>
             <i class="fa-regular fa-circle-user"></i>
           <% end %>

@@ -1,6 +1,5 @@
 class Public::SearchesController < ApplicationController
 
-
   def search
     @search_type = params[:search_type]
 

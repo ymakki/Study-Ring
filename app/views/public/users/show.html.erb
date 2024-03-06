@@ -3,7 +3,7 @@
     <% if @user.profile_image.attached? %>
       <%= image_tag @user.get_profile_image(70, 70), class: "img-fluid user-image" %>
     <% else %>
-      <i class="fa-regular fa-circle-user"></i>
+      <i class="logo-show fa-regular fa-circle-user"></i>
     <% end %>
   </div>
 
