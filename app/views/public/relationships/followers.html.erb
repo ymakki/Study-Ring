@@ -1,5 +1,5 @@
 <div class="d-flex align-items-center">
   <%= render 'layouts/back' %>
-  <h2 class="pl-5">フォロワー</h2>
+  <h2 class="pl-5"><%= @user.name %>さん　フォロワー</h2>
 </div>
 <%= render 'public/users/index', users: @users %>

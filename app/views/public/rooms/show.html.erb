@@ -14,6 +14,7 @@
         <div class="balloon6">
           <div class="chatting">
             <div class="mycomment">
+              <span><%= message.created_at.strftime('%m月%d日 %H:%M') %></span>
               <p class="break-word"><%= message.content %></p>
             </div>
           </div>
@@ -29,6 +30,7 @@
         <div class="says">
           <p class="break-word"><%= message.content %></p>
         </div>
+        <span><%= message.created_at.strftime('%m月%d日 %H:%M') %></span>
       <% end %>
     <% end %>
   <% end %>

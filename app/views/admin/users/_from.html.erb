@@ -3,8 +3,8 @@
     <tr>
       <th class="align-middle">会員ステータス</th>
       <td class="align-middle">
-        <span><%= f.radio_button :is_active, "true" %>有効</span>
-        <span class="pl-3"><%= f.radio_button :is_active, "false" %>無効</span>
+        <span><%= f.radio_button :is_active, "true" %><%= f.label :is_active, "有効", value: true %></span>
+        <span class="pl-3"><%= f.radio_button :is_active, "false" %><%= f.label :is_active, "無効", value: false %></span>
       </td>
       <td colspan=3 >
         <span class="pt-2"><%= f.submit "更新", class: "btn btn-success" %></span>

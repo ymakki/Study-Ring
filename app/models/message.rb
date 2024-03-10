@@ -1,7 +1,7 @@
 class Message < ApplicationRecord
   belongs_to :user
   belongs_to :room
-  has_many :notification, as: :notifiable, dependent: :destroy
+  has_one :notification, as: :notifiable, dependent: :destroy
 
   validates :content, presence: true, length: { maximum:140 }
 

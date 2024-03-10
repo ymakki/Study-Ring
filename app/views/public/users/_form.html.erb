@@ -26,7 +26,7 @@
         <div style="display: flex; flex-wrap: wrap;">
           <% Tag.all.each do |tag| %>
             <div style="margin-right: 10px;">
-              <%= f.check_box :tag_ids, { multiple: true }, tag.id, nil %> <%= tag.name %>
+              <%= f.check_box :tag_ids, { multiple: true }, tag.id %><%= tag.name %>
             </div>
           <% end %>
         </div>

@@ -2,6 +2,7 @@ $('.chats').append(`
   <div class="balloon6">
     <div class="chatting">
       <div class="mycomment">
+        <span><%= @message.created_at.strftime('%m月%d日 %H:%M') %></span>
         <p class="break-word"><%= j @message.content %></p>
       </div>
     </div>
