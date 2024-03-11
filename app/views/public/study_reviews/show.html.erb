@@ -5,8 +5,8 @@
 
 <% if @user == current_user %>
   <div class="d-flex justify-content-end align-items-end">
-    <%= link_to '編集', edit_study_study_review_path(@review), class: "btn btn-success" %>
-    <%= link_to '削除', study_study_review_path(@review), method: :delete, data: { confirm: "この教材レビューを削除しますか？" },  class: "btn btn-danger ml-3" %>
+    <%= link_to '編集', edit_study_study_review_path(@study_review), class: "btn btn-success" %>
+    <%= link_to '削除', study_study_review_path(@study_review), method: :delete, data: { confirm: "この教材レビューを削除しますか？" },  class: "btn btn-danger ml-3" %>
   </div>
 <% end %>
 
@@ -16,11 +16,11 @@
 </div>
 
 <div class="break-word pl-3 pt-2 pb-2">
-  <%= @review.title %>
+  <%= @study_review.title %>
 </div>
 
 <div class="break-word pl-3 pt-2 pb-2">
-  <%= @review.body %>
+  <%= @study_review.body %>
 </div>
 
 <div class="d-flex align-items-center">
@@ -30,12 +30,12 @@
   </div>
 </div>
 
-<div class="text-size-md pt-3" id="favorite-<%= @review.id %>">
-  <%= render 'public/review_favorites/favorite', review: @review %>
+<div class="text-size-md pt-3" id="favorite-<%= @study_review.id %>">
+  <%= render 'public/review_favorites/favorite', study_review: @study_review %>
 </div>
 
-<div class="comment-index">
-  <%= render 'public/review_comments/comment', review: @review, review_comment: @review_comment %>
+<div>
+  <%= render 'public/review_comments/comment', study_review: @study_review, review_comment: @review_comment %>
 </div>
 
 

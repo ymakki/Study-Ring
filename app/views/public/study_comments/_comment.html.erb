@@ -1,11 +1,8 @@
-<div class="text-size-md pt-3">
-  <i class="fa-regular fa-comment"></i>
-  <span class="pl-1">コメント　(</span>
-  <%= record.study_comments.count %>
-  <span>件)</span>
+<div class="comment-count text-size-md pt-3">
+  <%= render 'public/study_comments/count', record: record %>
 </div>
 
-<div>
+<div class="comment-index">
   <%= render 'public/study_comments/index', record: record %>
 </div>
 

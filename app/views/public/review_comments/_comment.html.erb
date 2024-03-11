@@ -1,14 +1,11 @@
-<div class="text-size-md pt-3">
-  <i class="fa-regular fa-comment"></i>
-  <span class="pl-1">コメント　(</span>
-  <%= review.review_comments.count %>
-  <span>件)</span>
+<div class="comment-count text-size-md pt-3">
+  <%= render 'public/review_comments/count', study_review: study_review %>
 </div>
 
-<div>
-  <%= render 'public/review_comments/index', study_review: review %>
+<div class="comment-index">
+  <%= render 'public/review_comments/index', study_review: study_review %>
 </div>
 
 <div class="pt-3">
-  <%= render 'public/review_comments/form', study_review: review, review_comment: review_comment %>
+  <%= render 'public/review_comments/form', study_review: study_review, review_comment: review_comment %>
 </div>

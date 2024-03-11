@@ -10,7 +10,7 @@
   <% when "studies" %>
     <% link = studies_path %>
   <% when "records" %>
-    <% link = records_path %>
+    <% link = timelines_path %>
   <% when "study_reviews" %>
     <% if params[:id].present? %>
       <% study_review = StudyReview.find(params[:id]) %>

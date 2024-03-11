@@ -1,2 +1,3 @@
-$('.comment-index').html("<%= j(render 'public/review_comments/comment', review: @study_review, review_comment: @review_comment ) %>");
+$('.comment-index').html("<%= j(render 'public/review_comments/index', study_review: @study_review ) %>");
+$('.comment-count').html("<%= j(render 'public/review_comments/count', study_review: @study_review ) %>");
 $('.comment-textarea').val("");

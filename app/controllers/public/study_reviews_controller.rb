@@ -4,52 +4,52 @@ class Public::StudyReviewsController < ApplicationController
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   def new
-    @review = StudyReview.new
+    @study_review = StudyReview.new
     @study = Study.find(params[:study_id])
   end
 
   def create
     # 取得した教材にレビューを保存
     @study = Study.find(params[:study_id])
-    @review = current_user.study_reviews.new(study_reviews_params)
-    @review.study_id = @study.id
+    @study_review = current_user.study_reviews.new(study_reviews_params)
+    @study_review.study_id = @study.id
 
-    if @review.save
+    if @study_review.save
       # レビューをタイムラインモデルに保存
-      Timeline.create(user_id: current_user.id, study_review_id: @review.id, created_at: @review.created_at)
+      Timeline.create(user_id: current_user.id, study_review_id: @study_review.id, created_at: @study_review.created_at)
       redirect_to study_path(@study), notice: "レビューを保存しました"
     else
-      redirect_to new_study_study_review_path, notice: "保存に失敗しました"
+      render :new
     end
   end
 
   def show
-    @review = StudyReview.find(params[:id])
-    @study = @review.study
-    @user = @review.user
-    @review_comment = @review.review_comments.build
+    @study_review = StudyReview.find(params[:id])
+    @study = @study_review.study
+    @user = @study_review.user
+    @review_comment = @study_review.review_comments.build
   end
 
   def edit
-    @review = StudyReview.find(params[:id])
-    @study = @review.study
+    @study_review = StudyReview.find(params[:id])
+    @study = @study_review.study
   end
 
   def update
-    @review = StudyReview.find(params[:id])
-    if @review.update(study_reviews_params)
-      redirect_to study_study_review_path(@review), notice: "更新しました"
+    @study_review = StudyReview.find(params[:id])
+    if @study_review.update(study_reviews_params)
+      redirect_to study_study_review_path(@study_review), notice: "更新しました"
     else
-      @study = @review.study
+      @study = @study_review.study
       @user = @study.user
       render "show"
     end
   end
 
   def destroy
-    @review = StudyReview.find(params[:id])
-    @review.destroy
-    redirect_to records_path
+    @study_review = StudyReview.find(params[:id])
+    @study_review.destroy
+    redirect_to timelines_path
   end
 
   private
@@ -59,8 +59,8 @@ class Public::StudyReviewsController < ApplicationController
   end
 
   def ensure_correct_user
-    review = StudyReview.find(params[:id])
-    unless review.user == current_user
+    study_review = StudyReview.find(params[:id])
+    unless study_review.user == current_user
       redirect_to new_study_study_review_path
     end
   end

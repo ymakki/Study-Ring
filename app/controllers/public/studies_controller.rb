@@ -34,7 +34,7 @@ class Public::StudiesController < ApplicationController
   def show
     @study = Study.includes(:user, :study_reviews).find(params[:id])
     @user = @study.user
-    @reviews = @study.study_reviews.all
+    @study_reviews = @study.study_reviews.all
   end
 
   def edit

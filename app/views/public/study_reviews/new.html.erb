@@ -1,4 +1,4 @@
-<%= render 'layouts/errors', obj: @review %>
+<%= render 'layouts/errors', obj: @study_review %>
 <div class="d-flex align-items-center">
   <%= render 'layouts/back' %>
 </div>
@@ -12,4 +12,4 @@
   </div>
   <h2 class="break-word pl-2"><%= @study.title %></h2>
 </div>
-<%= render 'public/study_reviews/form', review: @review %>
+<%= render 'public/study_reviews/form', study_review: @study_review, study: @study %>

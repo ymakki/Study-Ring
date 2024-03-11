@@ -1,11 +1,11 @@
 <h6 class="pt-3">教材レビュー</h6>
-<% @reviews.each do |review| %>
+<% study_reviews.each do |study_review| %>
   <table class="table table-hover">
-    <tr onclick="location.href='<%= study_study_review_path(review.study_id, review) %>' "style="cursor:pointer;">
+    <tr onclick="location.href='<%= study_study_review_path(study_review.study_id, study_review) %>' "style="cursor:pointer;">
       <td class="p-0" style="max-width: 10px;">
         <div class="icon mt-3 ml-1">
-          <% if review.user.profile_image.attached? %>
-            <%= image_tag review.user.get_profile_image(70, 70), class: "img-fluid user-image" %>
+          <% if study_review.user.profile_image.attached? %>
+            <%= image_tag study_review.user.get_profile_image(70, 70), class: "img-fluid user-image" %>
           <% else %>
             <i class="fa-regular fa-circle-user"></i>
           <% end %>
@@ -14,43 +14,41 @@
       <td style="max-width: 100px;">
         <table class="table table-borderless">
           <tr class="no-hover">
-            <td><%= review.user.name %></td>
+            <td><%= study_review.user.name %></td>
           </tr>
           <tr class="no-hover">
             <td class="break-word">
-              <%= review.title %>
+              <%= study_review.title %>
             </td>
           </tr>
           <tr class="no-hover">
             <td class="break-word">
-              <%= review.body %>
+              <%= study_review.body %>
             </td>
           </tr>
-
           <tr class="no-hover">
             <td>
               <span>
                 <i class="fa-solid fa-comment-medical"></i>
-                <% if review.review_comments.present? %>
-                  <%= review.review_comments.count %>
+                <% if study_review.review_comments.present? %>
+                  <%= study_review.review_comments.count %>
                 <% else %>
                   0
                 <% end %>
               </span>
               <span class="pl-5">
               <i class="fa-solid fa-thumbs-up"></i>
-                <% if review.review_favorites.present? %>
-                  <%= review.review_favorites.count %>
+                <% if study_review.review_favorites.present? %>
+                  <%= study_review.review_favorites.count %>
                 <% else %>
                   0
                 <% end %>
               </span>
             </td>
           </tr>
-
         </table>
       </td>
     </tr>
   </table>
-  <div class="text-right"><%= review.created_at.strftime('%Y年%m月%d日 %H:%M') %></div>
+  <div class="text-right"><%= study_review.created_at.strftime('%Y年%m月%d日 %H:%M') %></div>
 <% end %>

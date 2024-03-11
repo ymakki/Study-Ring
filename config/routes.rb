@@ -32,7 +32,6 @@ Rails.application.routes.draw do
         resources :review_comments, only: [:create, :destroy]
       end
     end
-    resources :records, only: [:index]
 
     # ユーザー
     resources :users, only: [:index, :show, :edit, :update] do
@@ -50,6 +49,9 @@ Rails.application.routes.draw do
     # 検索
     get "search", to: "searches#search"
     get  "tagsearch", to: "tagsearches#search"
+
+    # タイムライン
+    resources :timelines, only: [:index]
 
     # DM
     resources :messages, only: [:create]

@@ -1,4 +1,4 @@
-<%= form_with model: @review, url: @review.persisted? ? study_study_review_path(@review) : study_study_reviews_path, method: @review.persisted? ? :patch : :post, local: true do |f| %>
+<%= form_with model: [study, study_review], local: true do |f| %>
   <div class="form-group">
     <%= f.text_field :title, placeholder: "レビュータイトルを入力(30文字まで)", class: "form-control"  %>
   </div>
@@ -6,10 +6,6 @@
     <%= f.text_area :body, placeholder: "気に入ったポイントやどんな人にオススメしたいか、自分なりの使い方と勉強法、類似教材との比較などについて書いてみましょう(200文字まで)", class: "form-control height" %>
   </div>
   <div class="form-group text-center">
-    <% if action_name == 'new' %>
-      <%= f.submit '投稿', class: "btn btn-secondary" %>
-    <% elsif action_name == 'edit' %>
-      <%= f.submit '保存', class: "btn btn-secondary" %>
-    <% end %>
+    <%= f.submit (action_name == 'edit' ? '保存' : '記録'), class: "btn btn-secondary" %>
   </div>
 <% end %>

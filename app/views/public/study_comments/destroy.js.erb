@@ -1,1 +1,2 @@
-$('.comment-index').html("<%= j(render 'public/study_comments/comment', record: @record, study_comment: @study_comment ) %>");
+$('.comment-index').html("<%= j(render 'public/study_comments/index', record: @record ) %>");
+$('.comment-count').html("<%= j(render 'public/study_comments/count', record: @record ) %>");

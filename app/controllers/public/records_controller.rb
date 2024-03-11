@@ -8,13 +8,6 @@ class Public::RecordsController < ApplicationController
     @study = Study.find(params[:study_id])
   end
 
-  def index
-    # フォローしているユーザーのID一覧を取得
-    followed_user_ids = current_user.following.pluck(:id)
-    # フォローしているユーザーと自身のレコードとレビューを取得
-    @timelines = Timeline.where(user_id: [current_user.id] + followed_user_ids).order(created_at: :desc)
-  end
-
   def create
     # 自身の教材に勉強記録を保存
     @study = current_user.studies.find(params[:study_id])
@@ -46,6 +39,8 @@ class Public::RecordsController < ApplicationController
     if @record.update(record_params)
       redirect_to study_record_path(@record), notice: "更新しました"
     else
+      @user = @record.user
+      @study = @record.study
       render "show"
     end
   end
@@ -53,7 +48,7 @@ class Public::RecordsController < ApplicationController
   def destroy
     @record = Record.find(params[:id])
     @record.destroy
-    redirect_to records_path
+    redirect_to timelines_path
   end
 
   private
@@ -65,7 +60,7 @@ class Public::RecordsController < ApplicationController
   def ensure_correct_user
     record = Record.find(params[:id])
     unless record.user == current_user
-      redirect_to records_path
+      redirect_to timelines_path
     end
   end
 
