@@ -22,7 +22,6 @@ Rails.application.routes.draw do
 
     # 教材
     resources :studies do
-      get "copy", to: "studies#copy"
       resources :records, except: [:index] do
         resource :favorites, only: [:create, :destroy]
         resources :study_comments, only: [:create, :destroy]
@@ -31,11 +30,11 @@ Rails.application.routes.draw do
         resource :review_favorites, only: [:create, :destroy]
         resources :review_comments, only: [:create, :destroy]
       end
+      get "copy", to: "studies#copy"
     end
 
     # ユーザー
     resources :users, only: [:index, :show, :edit, :update] do
-      resources :studies, only: [:index], module: "users"
       member do
         get "unsubscribe", to: "users#unsubscribe", as: :unsubscribe
         patch "withdrawal", to: "users#withdrawal", as: :withdrawal
@@ -44,6 +43,7 @@ Rails.application.routes.draw do
       end
       resource :relationships, only: [:create, :destroy]
       resources :tags, except: [:show]
+      resources :studies, only: [:index], module: "users"
     end
 
     # 検索
@@ -74,7 +74,6 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show, :edit, :update]
     # レビュー
     resources :study_reviews, only: [:index, :destroy]
-
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

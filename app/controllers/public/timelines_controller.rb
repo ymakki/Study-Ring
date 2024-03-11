@@ -7,4 +7,10 @@ class Public::TimelinesController < ApplicationController
     @timelines = Timeline.where(user_id: [current_user.id] + followed_user_ids).order(created_at: :desc)
   end
 
+  private
+
+  def timelines_params
+    params.require(:timeline).permit(:user_id)
+  end
+
 end

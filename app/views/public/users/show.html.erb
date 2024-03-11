@@ -11,7 +11,7 @@
     <% if @user == current_user %>
       <%= link_to 'プロフィールを編集', edit_user_path(@user), class: "btn btn-secondary" %>
     <% else %>
-      <%= render 'public/relationships/button', user: @user %>
+      <div id="relationship-<%= @user.id %>"><%= render 'public/relationships/button', user: @user %></div>
     <% end %>
     <span class="ml-2"><%= render 'dm', user: @user, room: @room, isRoom: @isRoom, roomId: @roomId, entry: @entry %></span>
   </div>
