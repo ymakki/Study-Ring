@@ -1,5 +1,4 @@
 class Public::RelationshipsController < ApplicationController
-
   before_action :authenticate_user!
 
   # フォロー追加機能
@@ -31,5 +30,4 @@ class Public::RelationshipsController < ApplicationController
   def relationship_params
     params.require(:relationship).permit(:follower_id, :followed_id)
   end
-
 end

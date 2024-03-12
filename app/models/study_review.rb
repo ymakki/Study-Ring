@@ -1,4 +1,6 @@
 class StudyReview < ApplicationRecord
+  include Notifiable
+
   belongs_to :user
   belongs_to :study
   has_many :review_favorites, dependent: :destroy
@@ -14,25 +16,25 @@ class StudyReview < ApplicationRecord
     review_favorites.where(user_id: user.id).exists?
   end
 
-  # いいねしたユーザーを１０人表示(新しい順に更新)
+  # いいねしたユーザーを表示
   def add_favoriting_user(user)
     return if favoriting_users.include?(user)
-
-    # ユーザーが10人以上なら最も古いものを削除
-    if favoriting_users.count >= 10
-      oldest_user = favoriting_users.order(created_at: :asc).first
-      favoriting_users.delete(oldest_user)
-    end
-
     favoriting_users << user
+  end
+
+  def notification_message
+    "<i class='fa-solid fa-book-open'></i>　#{user.name}さんがレビューを投稿しました".html_safe
+  end
+
+  def notification_path
+    study_study_review_path(id: self.id, study_id: self)
   end
 
   # レビュー作成時に各フォロワーに通知を作成
   after_create do
-    user.followers.each do |follower|
-      notification = follower.notifications.build(notifiable: self)
-      notification.save
+    records = user.followers.map do |follower|
+      Notification.new(user_id: follower.id, notifiable: self)
     end
+    Notification.import records
   end
-
 end

@@ -25,6 +25,7 @@ class Public::TagsController < ApplicationController
 
   def edit
     @tag = Tag.find(params[:id])
+    @user = @tag.user
   end
 
   def update

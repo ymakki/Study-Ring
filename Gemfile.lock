@@ -52,6 +52,8 @@ GEM
     activerecord (6.1.7.6)
       activemodel (= 6.1.7.6)
       activesupport (= 6.1.7.6)
+    activerecord-import (1.5.1)
+      activerecord (>= 4.2)
     activestorage (6.1.7.6)
       actionpack (= 6.1.7.6)
       activejob (= 6.1.7.6)
@@ -266,6 +268,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_storage_validations
+  activerecord-import
   bootsnap (>= 1.4.4)
   byebug
   devise

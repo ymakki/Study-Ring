@@ -1,13 +1,8 @@
 class Study < ApplicationRecord
-
-  # ユーザー
   belongs_to :user
-  # タグ
   has_many :study_taggings, dependent: :destroy
   has_many :tags, through: :study_taggings, dependent: :destroy
-  # 記録
   has_many :records, dependent: :destroy
-  # レビュー
   has_many :study_reviews, dependent: :destroy
 
   has_one_attached :image
@@ -34,7 +29,6 @@ class Study < ApplicationRecord
   # レビューのいいね数カウント
   def total_review_favorites
     # 二重配列をひとつずつ合計
-    study_reviews.sum { |review| review.review_favorites.count }
+    study_reviews.sum { |study_review| study_review.review_favorites.count }
   end
-
 end

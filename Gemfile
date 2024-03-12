@@ -77,4 +77,4 @@ gem "net-pop"
 
 gem "net-imap"
 
-
+gem 'activerecord-import'

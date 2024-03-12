@@ -1,4 +1,4 @@
-<%= form_with model: @study, url: @study.persisted? ? study_path(@study) : studies_path, method: @study.persisted? ? :patch : :post, local: true do |f| %>
+<%= form_with model: @study, local: true do |f| %>
   <table class="table">
     <tr>
       <%= f.file_field :image, class: "d-none", onchange: "previewImage(this);" %>

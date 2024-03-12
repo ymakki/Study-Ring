@@ -37,7 +37,7 @@ class User < ApplicationRecord
   validates :name,presence:true,length:{maximum:10}
   validates :profile_image, content_type: [:png, :jpg, :jpeg]
 
-  # 画像サイズ
+  # 画像サイズ(画像のアスペクト比を維持)
   def get_profile_image(width, height)
     if profile_image.attached?
       profile_image.variant(resize_to_fill: [width, height]).processed
@@ -49,7 +49,7 @@ class User < ApplicationRecord
     User.where('name LIKE ?', '%' + word + '%')
   end
 
-  # 学習時間
+  # 学習の合計時間
   def total_study_time
     total_minutes = records.sum(:study_time)
     days = total_minutes / (60 * 24)
@@ -113,5 +113,4 @@ class User < ApplicationRecord
   def guest_user?
     email == GUEST_USER_EMAIL
   end
-
 end
