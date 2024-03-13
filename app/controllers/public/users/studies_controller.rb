@@ -1,5 +1,4 @@
 class Public::Users::StudiesController < ApplicationController
-
   before_action :authenticate_user!
 
   def index
@@ -12,5 +11,4 @@ class Public::Users::StudiesController < ApplicationController
   def study_params
     params.require(:study).permit(:user_id, :title, :body, :status, :image, tag_ids: [])
   end
-
 end

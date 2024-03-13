@@ -1,5 +1,4 @@
 class Public::NotificationsController < ApplicationController
-
   before_action :authenticate_user!
 
   def index
@@ -18,5 +17,4 @@ class Public::NotificationsController < ApplicationController
   def notification_params
     params.require(:notification).permit(:read)
   end
-
 end

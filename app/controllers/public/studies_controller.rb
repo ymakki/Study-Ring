@@ -1,5 +1,4 @@
 class Public::StudiesController < ApplicationController
-
   before_action :authenticate_user!
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
@@ -11,6 +10,7 @@ class Public::StudiesController < ApplicationController
     @study = Study.new
   end
 
+  # 自分の本棚に保存
   def copy
     # dup: 複製
     original = Study.find(params[:study_id])
@@ -59,14 +59,16 @@ class Public::StudiesController < ApplicationController
   # ソート
   def sort
     sort_type = params[:sort_type]
+    user_studies = current_user.studies
+    statuses = Study.statuses
 
     case sort_type
-    when 'now'
-      @studies = current_user.studies.where(status: Study.statuses[:勉強中])
-    when 'stay'
-      @studies = current_user.studies.where(status: Study.statuses[:スタンバイ])
-    when 'finish'
-      @studies = current_user.studies.where(status: Study.statuses[:完了済み])
+      when 'now'
+        @studies = user_studies.where(status: statuses[:勉強中])
+      when 'stay'
+        @studies = user_studies.where(status: statuses[:スタンバイ])
+      when 'finish'
+        @studies = user_studies.where(status: statuses[:完了済み])
     end
 
     render "index"
@@ -84,5 +86,4 @@ class Public::StudiesController < ApplicationController
       redirect_to studies_path
     end
   end
-
 end

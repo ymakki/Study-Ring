@@ -36,14 +36,10 @@
   <% end %>
   </div>
   <div class="pt-3">
-    <%= form_with model: @message, local: false do |f| %>
+    <%= form_with model: Message.new, local: false do |f| %>
       <%= f.text_area :content, placeholder: "Aa",  cols: 85, rows: 2, class: "form-text-field" %>
       <%= f.hidden_field :room_id, value: @room.id %>
       <%= f.submit "送信", class: "form-submit" %>
     <% end %>
   </div>
-</div>
-
-<div class="errors">
-  <%= render "layouts/errors", obj: @message %>
 </div>

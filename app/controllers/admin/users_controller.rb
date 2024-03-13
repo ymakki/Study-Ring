@@ -27,13 +27,4 @@ class Admin::UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :introduction, :birthday, :sex, :residence, :profile_image, :is_active)
   end
-
-  # ログインしているか
-  def ensure_correct_user
-    user = User.find(params[:id])
-    unless user == current_user
-      redirect_to user_path(current_user)
-    end
-  end
-
 end

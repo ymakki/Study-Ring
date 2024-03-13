@@ -1,5 +1,4 @@
 class Public::MessagesController < ApplicationController
-
   before_action :authenticate_user!
 
   def create
@@ -7,16 +6,12 @@ class Public::MessagesController < ApplicationController
       @message = Message.new(message_params)
       @message.user_id = current_user.id
       @message.save
-    else
-      flash[:alert] = "メッセージ送信に失敗しました。"
     end
-    render :validate unless @message.save
   end
 
   private
 
-    def message_params
-      params.require(:message).permit(:user_id, :room_id, :content)
-    end
-
+  def message_params
+    params.require(:message).permit(:user_id, :room_id, :content)
+  end
 end

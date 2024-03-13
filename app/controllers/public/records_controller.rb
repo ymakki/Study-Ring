@@ -1,5 +1,4 @@
 class Public::RecordsController < ApplicationController
-
   before_action :authenticate_user!
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
@@ -11,7 +10,8 @@ class Public::RecordsController < ApplicationController
   def create
     # 自身の教材に勉強記録を保存
     @study = current_user.studies.find(params[:study_id])
-    @record = current_user.records.new(record_params.merge(study: @study))
+    @record = current_user.records.new(record_params)
+    @record.study_id = @study.id
 
     if @record.save
       # レコードをタイムラインモデルに保存
@@ -26,7 +26,7 @@ class Public::RecordsController < ApplicationController
     @record = Record.find(params[:id])
     @user = @record.user
     @study = @record.study
-    @study_comment = @record.study_comments.build
+    @study_comment = StudyComment.new(record: @record)
   end
 
   def edit
@@ -63,5 +63,4 @@ class Public::RecordsController < ApplicationController
       redirect_to timelines_path
     end
   end
-
 end

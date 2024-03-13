@@ -9,6 +9,7 @@ class Public::TagsController < ApplicationController
 
   def new
     @tag = Tag.new
+    @user = current_user
   end
 
   def create

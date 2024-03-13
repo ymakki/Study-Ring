@@ -1,4 +1,5 @@
 class Public::ReviewFavoritesController < ApplicationController
+  before_action :authenticate_user!
 
   def create
     @study_review = StudyReview.find(params[:study_review_id])
@@ -11,5 +12,4 @@ class Public::ReviewFavoritesController < ApplicationController
     favorite = current_user.review_favorites.find_by(study_review_id: @study_review.id)
     favorite.destroy
   end
-
 end

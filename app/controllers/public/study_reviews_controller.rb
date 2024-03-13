@@ -1,5 +1,4 @@
 class Public::StudyReviewsController < ApplicationController
-
   before_action :authenticate_user!
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
@@ -27,7 +26,7 @@ class Public::StudyReviewsController < ApplicationController
     @study_review = StudyReview.find(params[:id])
     @study = @study_review.study
     @user = @study_review.user
-    @review_comment = @study_review.review_comments.build
+    @review_comment = ReviewComment.new(study_review: @study_review)
   end
 
   def edit
@@ -64,5 +63,4 @@ class Public::StudyReviewsController < ApplicationController
       redirect_to new_study_study_review_path
     end
   end
-
 end

@@ -7,17 +7,24 @@ class Public::RoomsController < ApplicationController
   end
 
   def create
-    @room = Room.create
-    Entry.create(room_id: @room.id, user_id: current_user.id)
-    Entry.create(params.require(:entry).permit(:user_id, :room_id).merge(room_id: @room.id))
-    redirect_to room_path(@room)
+    # 1. Roomオブジェクトを作成する
+    room = Room.create
+    # 2. 現在のユーザーをルームにエントリーさせる
+    entry = Entry.new(user_id: current_user.id, room_id: room.id)
+    entry.save
+    # 3. フォームから送信されたエントリー情報を使用して、エントリーを作成する
+    entry_params = params.require(:entry).permit(:user_id)
+    entry_params[:room_id] = room.id
+    entry = Entry.new(entry_params)
+    entry.save
+
+    redirect_to room_path(room)
   end
 
   def show
     @room = Room.find(params[:id])
     if Entry.where(user_id: current_user.id, room_id: @room.id).present?
       @messages = @room.messages
-      @message = Message.new
       @entries = @room.entries
     else
       redirect_to user_path(current_user)
@@ -34,5 +41,4 @@ class Public::RoomsController < ApplicationController
       redirect_to user_path(current_user)
     end
   end
-
 end

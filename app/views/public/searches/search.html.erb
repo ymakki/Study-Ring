@@ -1,35 +1,34 @@
-<!--ユーザ検索表示-->
+<!--検索フォーム-->
 <% if @search_type == "user" %>
   <div class="d-flex align-items-center">
     <h2 class="pt-3">ユーザーを探す</h2>
   </div>
-  <%= form_with url: search_path, method: :get, local: true do |f| %>
+  <%= form_with url: search_path, method: :get, local: true, id: 'user-search-form' do |f| %>
     <div class="input-group">
       <div class="input-group-prepend">
         <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
       </div>
-      <%= f.text_field :word, placeholder: "キーワードでユーザーを検索", class: 'form-control' %>
+      <%= f.text_field :word, placeholder: "キーワードでユーザーを検索", class: 'form-control', id: 'user-search-word' %>
     </div>
     <%= f.hidden_field :model, value: "user" %>
-    <div class="pt-3"><%= f.submit '検索' %></div>
+    <div class="pt-3"><%= f.submit '検索', id: 'user-search-submit' %></div>
   <% end %>
   <div class="pt-3"><%= render 'public/users/index', users: @users %></div>
 <% end %>
 
-<!--教材検索表示-->
 <% if @search_type == "study" %>
   <div class="d-flex align-items-center">
     <h2 class="pt-3">教材を探す</h2>
   </div>
-  <%= form_with url: search_path, method: :get, local: true do |f| %>
+  <%= form_with url: search_path, method: :get, local: true, id: 'study-search-form' do |f| %>
     <div class="input-group">
       <div class="input-group-prepend">
         <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
       </div>
-      <%= f.text_field :word, placeholder: "キーワードで教材を検索", class: 'form-control' %>
+      <%= f.text_field :word, placeholder: "キーワードで教材を検索", class: 'form-control', id: 'study-search-word' %>
     </div>
     <%= f.hidden_field :model, value: "study" %>
-    <div class="pt-3"><%= f.submit '検索' %></div>
+    <div class="pt-3"><%= f.submit '検索', id: 'study-search-submit' %></div>
   <% end %>
   <div class="pt-3"><%= render 'public/studies/index', studies: @studies %></div>
 <% end %>
@@ -37,6 +36,7 @@
 <!--検索結果表示-->
 <% if @model == 'user' %>
   <div class="d-flex align-items-center">
+    <%= render 'layouts/back' %>
     <h2 class="break-word pt-3"><%= @word %></h2>
   </div>
   <%= render 'public/users/index', users: @records %>
@@ -49,3 +49,20 @@
   </div>
   <%= render 'public/studies/index', studies: @records %>
 <% end %>
+
+<!--フォームが空の場合は送信を中止-->
+<script>
+  $(document).ready(function() {
+    $('#user-search-form').submit(function() {
+      if ($('#user-search-word').val() === '') {
+        return false;
+      }
+    });
+
+    $('#study-search-form').submit(function() {
+      if ($('#study-search-word').val() === '') {
+        return false;
+      }
+    });
+  });
+</script>

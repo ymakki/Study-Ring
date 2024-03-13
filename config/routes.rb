@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   # 顧客用
   devise_for :users,skip: [:passwords], controllers: {
     registrations: "public/registrations",
@@ -49,17 +48,13 @@ Rails.application.routes.draw do
     # 検索
     get "search", to: "searches#search"
     get  "tagsearch", to: "tagsearches#search"
-
     # タイムライン
     resources :timelines, only: [:index]
-
     # DM
     resources :messages, only: [:create]
     resources :rooms, only: [:index, :create, :show]
-
     # ソート
     get "sort", to: "studies#sort"
-
     # 通知
     resources :notifications
   end
@@ -68,13 +63,13 @@ Rails.application.routes.draw do
   namespace :admin do
     root :to =>"users#index"
 
-    # コメント
-    resources :study_comments, only: [:index, :destroy]
     # ユーザー
     resources :users, only: [:index, :show, :edit, :update]
+    # コメント
+    resources :study_comments, only: [:index, :destroy]
+    resources :review_comments, only: [:index, :destroy]
     # レビュー
     resources :study_reviews, only: [:index, :destroy]
   end
-
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
