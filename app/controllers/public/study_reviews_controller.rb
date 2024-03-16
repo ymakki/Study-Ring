@@ -16,9 +16,10 @@ class Public::StudyReviewsController < ApplicationController
     if @study_review.save
       # レビューをタイムラインモデルに保存
       Timeline.create(user_id: current_user.id, study_review_id: @study_review.id, created_at: @study_review.created_at)
-      redirect_to study_path(@study), notice: "レビューを保存しました"
+      flash[:success] = "レビューを保存しました"
+      redirect_to study_path(@study)
     else
-      render :new
+      render "new"
     end
   end
 
@@ -37,11 +38,11 @@ class Public::StudyReviewsController < ApplicationController
   def update
     @study_review = StudyReview.find(params[:id])
     if @study_review.update(study_reviews_params)
-      redirect_to study_study_review_path(@study_review), notice: "更新しました"
+      flash[:success] = "レビューを更新しました"
+      redirect_to study_study_review_path(@study_review)
     else
       @study = @study_review.study
-      @user = @study.user
-      render "show"
+      render "edit"
     end
   end
 

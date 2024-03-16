@@ -17,8 +17,10 @@ class Public::TagsController < ApplicationController
 
     if @tag.save
       Tag.unify_duplicate_tags
-      redirect_to user_tags_path, notice: "記録しました"
+      flash[:success] = "タグを保存しました"
+      redirect_to user_tags_path
     else
+      @user = current_user
       render "new"
     end
   end
@@ -31,10 +33,11 @@ class Public::TagsController < ApplicationController
   def update
     @tag = Tag.find(params[:id])
     if @tag.update(tag_params)
-      redirect_to user_tags_path, notice: "更新しました"
+      flash[:success] = "更新しました"
+      redirect_to user_tags_path
     else
-      @tags = Tag.where(user_id: current_user.id)
-      render "index"
+      @user = @tag.user
+      render "edit"
     end
   end
 

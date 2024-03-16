@@ -16,9 +16,12 @@ class Public::RoomsController < ApplicationController
     entry_params = params.require(:entry).permit(:user_id)
     entry_params[:room_id] = room.id
     entry = Entry.new(entry_params)
-    entry.save
-
-    redirect_to room_path(room)
+    if entry.save
+      redirect_to room_path(room)
+    else
+      flash[:danger] = "チャットルームの作成に失敗しました"
+      redirect_to user_path(current_user)
+    end
   end
 
   def show
@@ -27,6 +30,7 @@ class Public::RoomsController < ApplicationController
       @messages = @room.messages
       @entries = @room.entries
     else
+      flash[:danger] = "チャットルームが見つかりませんでした"
       redirect_to user_path(current_user)
     end
   end

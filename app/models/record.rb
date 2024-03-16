@@ -5,7 +5,7 @@ class Record < ApplicationRecord
   has_many :favoriting_users, through: :favorites, source: :user, dependent: :destroy
   has_many :study_comments, dependent: :destroy
 
-  validates :start_time,presence:true
+  validates :start_time, presence: true
   validates :study_time, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   # いいねしているか？

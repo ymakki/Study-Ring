@@ -13,19 +13,25 @@ class Public::StudiesController < ApplicationController
   # 自分の本棚に保存
   def copy
     # dup: 複製
-    original = Study.find(params[:study_id])
-    copy = original.dup
+    @original = Study.find(params[:study_id])
+    copy = @original.dup
     copy.user_id = current_user.id
-    copy.image.attach(original.image.blob)
-    copy.save
-    redirect_to studies_path
+    copy.image.attach(@original.image.blob)
+    if copy.save
+      flash[:success] = "本棚に登録しました"
+      redirect_to studies_path
+    else
+      flash[:danger] = "登録に失敗しました"
+      redirect_to study_path(@original)
+    end
   end
 
   def create
     @study = current_user.studies.new(study_params)
 
     if @study.save
-      redirect_to studies_path, notice: "記録しました"
+      flash[:success] = "保存しました"
+      redirect_to studies_path
     else
       render "new"
     end
@@ -44,9 +50,10 @@ class Public::StudiesController < ApplicationController
   def update
     @study = Study.find(params[:id])
     if @study.update(study_params)
-      redirect_to studies_path, notice: "更新しました"
+      flash[:success] = "更新しました"
+      redirect_to studies_path
     else
-      render "show"
+      render "edit"
     end
   end
 
@@ -77,7 +84,7 @@ class Public::StudiesController < ApplicationController
   private
 
   def study_params
-    params.require(:study).permit(:user_id, :title, :body, :status, :image, tag_ids: [])
+    params.require(:study).permit(:user_id, :title, :status, :image, tag_ids: [])
   end
 
   def ensure_correct_user

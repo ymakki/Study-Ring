@@ -16,9 +16,10 @@ class Public::RecordsController < ApplicationController
     if @record.save
       # レコードをタイムラインモデルに保存
       Timeline.create(user_id: current_user.id, record_id: @record.id, created_at: @record.created_at)
-      redirect_to studies_path, notice: "記録しました"
+      flash[:success] = "記録しました"
+      redirect_to studies_path
     else
-      render :new
+      render "new"
     end
   end
 
@@ -37,11 +38,11 @@ class Public::RecordsController < ApplicationController
   def update
     @record = Record.find(params[:id])
     if @record.update(record_params)
-      redirect_to study_record_path(@record), notice: "更新しました"
+      flash[:success] = "更新しました"
+      redirect_to study_record_path(@record)
     else
-      @user = @record.user
       @study = @record.study
-      render "show"
+      render "edit"
     end
   end
 

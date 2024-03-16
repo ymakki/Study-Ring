@@ -21,9 +21,14 @@
     </header>
     <main class="flex-shrink-0 wrapper">
       <div class="container">
-        <% if flash[:notice] %>
-          <div class="alert alert-warning mt-2" role="alert">
-            <%= flash[:notice] %>
+        <% if flash[:success] %>
+          <div class="alert alert-success mt-2" role="alert">
+            <%= flash[:success] %>
+          </div>
+        <% end %>
+        <% if flash[:danger] %>
+          <div class="alert alert-danger mt-2" role="alert">
+            <%= flash[:danger] %>
           </div>
         <% end %>
         <div class='row pb-5'>
@@ -40,3 +45,10 @@
     </footer>
   </body>
 </html>
+
+<!--エラー文 フェードアウト-->
+<script>
+  $(function(){
+    $(".alert").fadeOut(5000);
+  });
+</script>

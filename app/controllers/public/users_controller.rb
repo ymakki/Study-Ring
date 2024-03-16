@@ -35,7 +35,8 @@ class Public::UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to user_path(@user), notice: "更新しました"
+      flash[:success] = "更新しました"
+      redirect_to user_path(@user)
     else
       render "edit"
     end
@@ -46,7 +47,7 @@ class Public::UsersController < ApplicationController
     @user = current_user
     @user.update(is_active: false)
     reset_session
-    flash[:notice] = "退会処理を実行しました"
+    flash[:danger] = "退会しました"
     redirect_to root_path
   end
 
@@ -78,7 +79,8 @@ class Public::UsersController < ApplicationController
   def ensure_guest_user
     user = User.find(params[:id])
     if user.guest_user?
-      redirect_to user_path(current_user) , notice: "ゲストユーザーに許可していない操作です。"
+      flash[:danger] = "ゲストユーザーに許可していない操作です"
+      redirect_to user_path(current_user)
     end
   end
 end

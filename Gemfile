@@ -80,3 +80,5 @@ gem "net-imap"
 gem 'activerecord-import'
 
 gem 'rails-i18n'
+
+gem "jquery-rails"

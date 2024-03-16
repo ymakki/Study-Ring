@@ -64,27 +64,39 @@ ja:
         overseas: "海外"
   activerecord:
     attributes:
+      user:
+        name: "名前"
+        email: "メールアドレス"
+        password: "パスワード"
+        activated: "アクティブフラグ"
+        admin: "管理者フラグ"
+        profile_image: "画像"
       study:
-        title: タイトル
-  # errors:
-  #   messages:
-  #     not_saved:
-  #       one: エラーが発生したため %{resource} は保存されませんでした。
-  #       other: "%{count} 件のエラーが発生したため %{resource} は保存されませんでした。"
-  activerecord:
-    errors:
-      models:
-        obj:
-          one: "このオブジェクトの保存を妨げるエラーが1つあります:"
-          other: "このオブジェクトの保存を妨げるエラーが %{count} 件あります:"
-      attributes:
-        obj:
-          title: "タイトル"
-      messages:
-        blank: "を入力してください"
-  # attributes:
-  #   obj:
-  #     title: タイトル
+        title: "教材名"
+        image: "画像"
+      tag:
+        name: "タグ名"
+      massage:
+        content: "メッセージ"
+      record:
+        start_time: "勉強日"
+        study_time: "勉強時間"
+      review_comment:
+        comment: "コメント"
+      study_comment:
+        comment: "コメント"
+      study_review:
+        title: "タイトル"
+        body: "内容"
+  errors:
+    messages:
+      record_invalid: 'バリデーションに失敗しました: %{errors}'
+      restrict_dependent_destroy:
+      has_one: "%{record}が存在しているので削除できません"
+      has_many: "%{record}が存在しているので削除できません"
+      invalid: "%{attribute}が正しくありません。"
+      blank: "%{attribute}を入力してください。"
+      too_short: "%{attribute}は%{count}文字以上で入力してください。"
   date:
     abbr_day_names:
     - 日

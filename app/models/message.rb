@@ -5,7 +5,7 @@ class Message < ApplicationRecord
   belongs_to :room
   has_one :notification, as: :notifiable, dependent: :destroy
 
-  validates :content, presence: true, length: { maximum:140 }
+  validates :content, presence: true, length: { maximum: 140 }
 
   def notification_message
     "<i class='fa-regular fa-envelope'></i>　#{user.name}さんがあなたに返信しました".html_safe

@@ -4,9 +4,9 @@ class Study < ApplicationRecord
   has_many :tags, through: :study_taggings, dependent: :destroy
   has_many :records, dependent: :destroy
   has_many :study_reviews, dependent: :destroy
-
   has_one_attached :image
-  validates :title,presence:true
+
+  validates :title, presence:true
   validates :image, content_type: [:png, :jpg, :jpeg]
 
   # ステータス

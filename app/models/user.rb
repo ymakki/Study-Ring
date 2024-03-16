@@ -34,7 +34,8 @@ class User < ApplicationRecord
   has_many :notifications, dependent: :destroy
 
   has_one_attached :profile_image
-  validates :name,presence:true,length:{maximum:10}
+
+  validates :name, presence: true, length: {maximum: 10}
   validates :profile_image, content_type: [:png, :jpg, :jpeg]
 
   # 画像サイズ(画像のアスペクト比を維持)

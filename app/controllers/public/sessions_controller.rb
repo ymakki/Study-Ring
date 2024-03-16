@@ -18,35 +18,36 @@ class Public::SessionsController < Devise::SessionsController
   #   super
   # end
 
-  # ゲストログイン機能
+  # ゲストログイン
   def guest_sign_in
     user = User.guest
     sign_in user
-    redirect_to user_path(user), notice: "guestuserでログインしました。"
+    flash[:success] = "ゲストでログインしました"
+    redirect_to user_path(user)
   end
 
   protected
 
-  # 退会機能
+  # 会員アクティブ確認
   def user_state
-    user = User.find_by(email: params[:user][:email])
+    user = User.find_by(email: params[:email])
     return if user.nil?
-    return unless user.valid_password?(params[:user][:password])
+    return unless user.valid_password?(params[:password])
     if user.is_active
       sign_in(user)
-      redirect_to user_path(user)
     else
-      flash[:notice] = "既に退会済みのアカウントです。新規会員登録が必要になります。"
+      flash[:danger] = "既に退会済みのアカウントです。新規会員登録が必要になります"
       redirect_to new_user_registration_path
     end
   end
 
-  # ログイン後の遷移先
   def after_sign_in_path_for(resource)
+    flash[:success] = "ログインしました"
     user_path(current_user)
   end
 
   def after_sign_out_path_for(resource)
+    flash[:success] = "ログアウトしました"
     new_user_session_path
   end
 

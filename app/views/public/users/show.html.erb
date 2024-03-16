@@ -49,7 +49,9 @@
   <tr>
     <td>
       <strong>フォロワー募集</strong>
-      <div><%= I18n.t("enums.user.follow_requests.#{User.follow_requests.key(@user.follow_request)}") %></div>
+      <% if @user.follow_request.present? %>
+        <div><%= I18n.t("enums.user.follow_requests.#{User.follow_requests.key(@user.follow_request)}") %></div>
+      <% end %>
     </td>
   </tr>
   <tr>

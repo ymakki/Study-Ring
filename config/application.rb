@@ -13,7 +13,7 @@ module Studyring
     # デフォルトのlocaleを日本語(:ja)にする
     config.i18n.default_locale = :ja
 
-    # I18nライブラリに訳文の探索場所を指示する
-    config.i18n.load_path += Dir[Rails.root.join('config/locales/ja.yml').to_s]
+    # locales直下にファイルを置かずフォルダ分けする場合はパスを追加
+    # config.i18n.load_path += Dir[Rails.root.join("config", "locales", "**", "*.{rb,yml}").to_s]
   end
 end
