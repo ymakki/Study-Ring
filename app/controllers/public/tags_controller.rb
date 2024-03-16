@@ -16,7 +16,6 @@ class Public::TagsController < ApplicationController
     @tag.user_id = current_user.id
 
     if @tag.save
-      Tag.unify_duplicate_tags
       flash[:success] = "タグを保存しました"
       redirect_to user_tags_path
     else
