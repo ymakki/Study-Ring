@@ -75,7 +75,7 @@ ja:
         title: "教材名"
         image: "画像"
       tag:
-        name: "タグ名"
+        name: "タグ"
       massage:
         content: "メッセージ"
       record:
