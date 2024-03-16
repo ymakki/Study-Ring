@@ -5,29 +5,27 @@ class Public::UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    # タイムライン
     @timelines = Timeline.where(user_id: @user.id).order(created_at: :desc)
-    @tag_names = Tag.where(id: @user.tag_ids).pluck(:name).join('　')
-
+    # タグ
+    tag_names_query = Tag.where(id: @user.tag_ids).pluck(:name)
+    @tag_names = tag_names_query.join('　')
+    # メッセージ
     unless @user.id == current_user.id
-      current_user.entries.includes(:room).each do |current_user_entry|
-        @user.entries.includes(:room).each do |user_entry|
-          if current_user_entry.room_id == user_entry.room_id
-            @isRoom = true
-            @roomId = current_user_entry.room_id
-          end
-        end
-      end
+      shared_room_info = Entry.shared_room_info(current_user, @user)
+      @isRoom = shared_room_info[:is_room]
+      @roomId = shared_room_info[:room_id]
+
       unless @isRoom
         @room = Room.new
         @entry = Entry.new
       end
     end
-
   end
 
   def index
     @users = User.all
-    @users = @users.where.not(id: current_user.id) if current_user.present?
+    @users = @users.where.not(id: current_user.id)
   end
 
   def edit
@@ -83,5 +81,4 @@ class Public::UsersController < ApplicationController
       redirect_to user_path(current_user) , notice: "ゲストユーザーに許可していない操作です。"
     end
   end
-
 end

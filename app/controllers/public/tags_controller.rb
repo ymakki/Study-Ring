@@ -1,5 +1,4 @@
 class Public::TagsController < ApplicationController
-
   before_action :authenticate_user!
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
@@ -13,7 +12,7 @@ class Public::TagsController < ApplicationController
   end
 
   def create
-    @tag = current_user.tags.new(tag_params)
+    @tag = Tag.new(tag_params)
     @tag.user_id = current_user.id
 
     if @tag.save
@@ -48,7 +47,7 @@ class Public::TagsController < ApplicationController
   private
 
   def tag_params
-    params.require(:tag).permit(:name)
+    params.require(:tag).permit(:user_id, :study_id, :name)
   end
 
   def ensure_correct_user
@@ -57,5 +56,4 @@ class Public::TagsController < ApplicationController
       redirect_to studies_path
     end
   end
-
 end

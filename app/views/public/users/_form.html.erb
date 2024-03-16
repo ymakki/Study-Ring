@@ -2,7 +2,7 @@
   <table colspan="2" class="table">
     <tr>
       <%= f.file_field :profile_image, class: "d-none", onchange: "previewImage(this);" %>
-      <td class="form-group" style="max-width: 35px;">
+      <td class="form-group">
         <% if user.profile_image.attached? %>
           <%= image_tag user.profile_image, class: "open-file-field img-fluid user-profile-image", id: "preview" %>
         <% else %>
@@ -23,10 +23,10 @@
     <tr>
       <td colspan=2 class="form-group">
         <%= f.label "ユーザータグ" %><br>
-        <div style="display: flex; flex-wrap: wrap;">
-          <% Tag.all.each do |tag| %>
-            <div style="margin-right: 10px;">
-              <%= f.check_box :tag_ids, { multiple: true }, tag.id %><%= tag.name %>
+        <div class="d-flex flex-wrap">
+          <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name do |b| %>
+            <div class="mr-2">
+              <%= b.label { b.check_box + b.text } %>
             </div>
           <% end %>
         </div>
@@ -35,13 +35,13 @@
     <tr>
       <td colspan=2>
         <%= f.label :follow_request, "フォロワー募集" %><br>
-        <%= f.select :follow_request, User.follow_requests, include_blank: false, class: "form-control" %>
+        <%= f.select :follow_request, User.follow_requests.map { |key, value| [I18n.t("enums.user.follow_requests.#{key}"), value] }, include_blank: false, class: "form-control" %>
       </td>
     </tr>
     <tr>
       <td colspan=2>
         <%= f.label :sex, "性別" %><br>
-        <%= f.select :sex, User.sexes, include_blank: true, class: "form-control" %>
+        <%= f.select :sex, User.sexes.map { |key, value| [I18n.t("enums.user.sexes.#{key}"), value] }, include_blank: true, class: "form-control" %>
       </td>
     </tr>
     <tr>
@@ -55,7 +55,7 @@
     <tr>
       <td colspan=2 class="form-group">
         <%= f.label :residence, "都道府県" %><br>
-        <%= f.select :residence, User.residences, include_blank: true, class: "form-control" %>
+        <%= f.select :residence, User.residences.map { |key, value| [I18n.t("enums.user.residences.#{key}"), value] }, include_blank: true, class: "form-control" %>
       </td>
     </tr>
     <tr>

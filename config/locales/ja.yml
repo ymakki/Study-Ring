@@ -1,17 +1,90 @@
-  ja: # 日本語の設定を行う
-    enums: # enumの設定を行う
-      order: # モデル名（Orderモデルに対して）
-        status: # カラム名（statusカラムに対して）
-          studying: "勉強中"
-          stand_by: "スタンバイ"
-          finish: "完了済み"
- activerecord:
+ja:
+  enums:
+    study:
+      statuses:
+        now: "勉強中"
+        stay: "スタンバイ"
+        finish: "完了済み"
+    user:
+      follow_requests:
+        welcome: "誰でも歓迎"
+        acquaintance: "知り合い"
+        no_recruitment: "現在募集無し"
+      sexes:
+        man: "男性"
+        woman: "女性"
+      residences:
+        hokkaido: "北海道"
+        aomori: "青森県"
+        iwate: "岩手県"
+        miyagi: "宮城県"
+        akita: "秋田県"
+        yamagata: "山形県"
+        fukushima: "福島県"
+        ibaraki: "茨城県"
+        tochigi: "栃木県"
+        gunma: "群馬県"
+        saitama: "埼玉県"
+        chiba: "千葉県"
+        tokyo: "東京都"
+        kanagawa: "神奈川県"
+        niigata: "新潟県"
+        toyama: "富山県"
+        ishikawa: "石川県"
+        fukui: "福井県"
+        yamanashi: "山梨県"
+        nagano: "長野県"
+        gifu: "岐阜県"
+        shizuoka: "静岡県"
+        aichi: "愛知県"
+        mie: "三重県"
+        shiga: "滋賀県"
+        kyoto: "京都府"
+        osaka: "大阪府"
+        hyogo: "兵庫県"
+        nara: "奈良県"
+        wakayama: "和歌山県"
+        tottori: "鳥取県"
+        shimane: "島根県"
+        okayama: "岡山県"
+        hiroshima: "広島県"
+        yamaguchi: "山口県"
+        tokushima: "徳島県"
+        kagawa: "香川県"
+        ehime: "愛媛県"
+        kochi: "高知県"
+        fukuoka: "福岡県"
+        saga: "佐賀県"
+        nagasaki: "長崎県"
+        kumamoto: "熊本県"
+        oita: "大分県"
+        miyazaki: "宮崎県"
+        kagoshima: "鹿児島県"
+        okinawa: "沖縄県"
+        overseas: "海外"
+  activerecord:
+    attributes:
+      study:
+        title: タイトル
+  # errors:
+  #   messages:
+  #     not_saved:
+  #       one: エラーが発生したため %{resource} は保存されませんでした。
+  #       other: "%{count} 件のエラーが発生したため %{resource} は保存されませんでした。"
+  activerecord:
     errors:
+      models:
+        obj:
+          one: "このオブジェクトの保存を妨げるエラーが1つあります:"
+          other: "このオブジェクトの保存を妨げるエラーが %{count} 件あります:"
+      attributes:
+        obj:
+          title: "タイトル"
       messages:
-        record_invalid: 'バリデーションに失敗しました: %{errors}'
-        restrict_dependent_destroy:
-          has_one: "%{record}が存在しているので削除できません"
-          has_many: "%{record}が存在しているので削除できません"
+        blank: "を入力してください"
+  # attributes:
+  #   obj:
+  #     title: タイトル
   date:
     abbr_day_names:
     - 日
@@ -180,9 +253,9 @@
       two_words_connector: "、"
       words_connector: "、"
   time:
+    am: 午前
     formats:
       default: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
-    am: 午前
     pm: 午後

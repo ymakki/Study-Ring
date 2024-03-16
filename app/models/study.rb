@@ -11,9 +11,9 @@ class Study < ApplicationRecord
 
   # ステータス
   enum statuses: {
-    勉強中: 0,
-    スタンバイ: 1,
-    完了済み: 2,
+    now: 0,
+    stay: 1,
+    finish: 2
   }
 
   # 画像サイズ(画像のアスペクト比を維持)

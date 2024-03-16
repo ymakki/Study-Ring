@@ -18,7 +18,7 @@
         <%= f.label :status, "ステータス" %>
       </td>
       <td class="form-group text-right">
-        <%= f.select :status, Study.statuses, include_blank: false, class: "form-control" %>
+        <%= f.select :status, Study.statuses.map { |key, value| [I18n.t("enums.study.statuses.#{key}"), value] }, include_blank: false, class: "form-control" %>
       </td>
     </tr>
     <tr>
@@ -27,9 +27,9 @@
       </td>
       <td>
         <div class="text-right" style="display: flex; justify-content: flex-end; flex-wrap: wrap;">
-          <% Tag.all.each do |tag| %>
-            <div class="ml-1">
-              <%= f.check_box :tag_ids, { multiple: true }, tag.id, nil %> <%= tag.name %>
+          <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name do |b| %>
+            <div class="mr-2">
+              <%= b.label { b.check_box + b.text } %>
             </div>
           <% end %>
         </div>

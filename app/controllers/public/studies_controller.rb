@@ -64,11 +64,11 @@ class Public::StudiesController < ApplicationController
 
     case sort_type
       when 'now'
-        @studies = user_studies.where(status: statuses[:勉強中])
+        @studies = user_studies.where(status: statuses[:now])
       when 'stay'
-        @studies = user_studies.where(status: statuses[:スタンバイ])
+        @studies = user_studies.where(status: statuses[:stay])
       when 'finish'
-        @studies = user_studies.where(status: statuses[:完了済み])
+        @studies = user_studies.where(status: statuses[:finish])
     end
 
     render "index"
