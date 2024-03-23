@@ -23,7 +23,7 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Active Storage variant
-# gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
@@ -45,12 +45,10 @@ group :development do
 end
 
 group :test do
-  # Adds support for Capybara system testing and selenium driver
-  # gem 'capybara', '>= 3.26'
-  # gem 'selenium-webdriver', '>= 4.0.0.rc1'
-  # Easy installation and use of web drivers to run system tests with browsers
-  gem 'webdrivers'
+  gem 'capybara'
   gem 'rspec-rails'
+  gem 'factory_bot_rails'
+  gem 'faker'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -62,16 +60,12 @@ gem 'kaminari','~> 1.2.1'
 
 gem "enum_help"
 
-gem 'image_processing', '~>1.2'
-
 gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
 end
 
 gem 'active_storage_validations'
-
-gem "net-smtp"
 
 gem "net-pop"
 
@@ -82,3 +76,5 @@ gem 'activerecord-import'
 gem 'rails-i18n'
 
 gem "jquery-rails"
+
+gem "net-smtp"
