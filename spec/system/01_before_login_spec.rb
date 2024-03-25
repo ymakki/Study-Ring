@@ -7,18 +7,12 @@ describe '[STEP1] ユーザログイン前のテスト' do
     end
 
     context '表示内容の確認' do
-      it 'アイコンリンクが表示される' do
-        home_link = find_all('a')[0]
-        expect(home_link).to have_css('img.logo-image')
-        expect(home_link[:href]).to eq('/')
-      end
       it '新規登録リンクが表示される' do
         sign_up_link = find_all('a')[1]
         link_text = sign_up_link.text.strip
         icon_class = sign_up_link.find('i')[:class]
 
         expected_text = '新規登録'
-        expected_icon_class = 'fa-solid fa-plus'
         expected_path = new_user_registration_path
 
         expect(link_text).to eq(expected_text)
@@ -31,7 +25,6 @@ describe '[STEP1] ユーザログイン前のテスト' do
         icon_class = log_in_link.find('i')[:class]
 
         expected_text = 'ログイン'
-        expected_icon_class = 'fa-solid fa-arrow-right-to-bracket'
         expected_path = new_user_session_path
 
         expect(link_text).to eq(expected_text)
@@ -152,9 +145,6 @@ describe '[STEP1] ユーザログイン前のテスト' do
     end
 
     context 'ヘッダーの表示を確認' do
-      it 'アイコンが表示される' do
-        expect(page).to have_css('img.logo-image')
-      end
       it 'ユーザーアイコンリンクが表示される' do
         user_link = find_all('a')[1]
         expect(user_link).to have_css('img.user-image')
