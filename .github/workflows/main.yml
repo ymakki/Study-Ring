@@ -1,8 +1,11 @@
+name: Serverless Deploy
+
 on:
   push:
     branches:
-    - serverless-deploy
-name: Serverless Deploy
+    - main
+    - develop
+
 jobs:
   deploy:
     name: deploy
