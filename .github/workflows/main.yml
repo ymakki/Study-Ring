@@ -1,33 +1,35 @@
-name: Serverless Deploy
+name: Deploy to Production
 
 on:
   push:
     branches:
-    - main
-    - develop
+      - main
+      - develop
 
 jobs:
   deploy:
-    name: deploy
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@master
-      - name: setup ubuntu
-        run: sudo apt-get --quiet update --yes
-      - name: yarn install |
-        working-directory: ./serverless
-        run: yarn install
-      - name: serverless package and deploy
-        working-directory: ./serverless
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        run:
-          yarn add serverless
-          ./node_modules/serverless/bin/serverless package --package ./build
-          ./node_modules/serverless/bin/serverless config credentials --provider aws --key ${AWS_ACCESS_KEY_ID} --secret ${AWS_SECRET_ACCESS_KEY}
-          ./node_modules/serverless/bin/serverless deploy --package ./build
-      - uses: actions/upload-artifact@master
-        with:
-          name: build
-          path: serverless/build
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Install SSH Client
+        run: sudo apt-get install -y openssh-client
+
+      - name: SSH into EC2 and deploy
+        run: |
+          ssh -i ${{ secrets.EC2_PRIVATE_KEY }} ec2-user@${{ secrets.EC2_PUBLIC_IP }} << 'EOF'
+            cd /path/to/application
+            git pull origin main
+            bundle install --path vendor/bundle --without test development
+            bundle exec rails assets:precompile RAILS_ENV=production
+            bundle exec rails db:migrate RAILS_ENV=production
+            sudo kill $(cat tmp/pids/puma.pid)
+            rails s -e production &
+          EOF
+
+      - name: Check deployment
+        run: |
+          sleep 30 # wait for server to start
+          curl http://${{ secrets.EC2_PUBLIC_IP }} # replace with actual URL
