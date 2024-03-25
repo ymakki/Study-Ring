@@ -6,7 +6,7 @@ on:
  push:
    branches:
      - main
- 
+
 #実行される処理
 jobs:
  build:
@@ -20,5 +20,5 @@ jobs:
          # SSH接続して、git pullする
          echo "${{ secrets.PRIVATE_KEY }}" > private_key
          chmod 600 private_key
-         ssh -oStrictHostKeyChecking=no ${{ secrets.USER_NAME }}@${{ secrets.HOST_NAME }} -i private_key "cd [リポジトリのディレクトリ] && git fetch github:shuncask/kanpai.git && git pull github:shuncask/kanpai.git"
-         
+         ssh -oStrictHostKeyChecking=no ${{ secrets.USER_NAME }}@${{ secrets.HOST_NAME }} -i private_key "cd [Study-Ring] && git fetch github:shuncask/kanpai.git && git pull github:shuncask/kanpai.git"
+
