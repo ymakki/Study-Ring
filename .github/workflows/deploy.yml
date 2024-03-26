@@ -13,6 +13,4 @@ jobs:
         run: |
           echo "${{ secrets.PRIVATE_KEY }}" > private_key
           chmod 600 private_key
-          ssh -oStrictHostKeyChecking=no ${{ secrets.USER_NAME }}@${{ secrets.HOST_NAME }} -i private_key "cd Study-Ring && git fetch git@github.com:ymakki/Study-Ring.git && git pull git@github.com:ymakki/Study-Ring.git"
-          ssh -oStrictHostKeyChecking=no ${{ secrets.USER_NAME }}@${{ secrets.HOST_NAME }} -i private_key "cd Study-Ring && sudo kill \$(cat tmp/pids/puma.pid)"
-          ssh -oStrictHostKeyChecking=no ${{ secrets.USER_NAME }}@${{ secrets.HOST_NAME }} -i private_key "cd Study-Ring && rails s -e production &"
+          ssh -oStrictHostKeyChecking=no ${{ secrets.USER_NAME }}@${{ secrets.HOST_NAME }} -i private_key "cd Study-Ring && git fetch git@github.com:ymakki/Study-Ring.git && git pull git@github.com:ymakki/Study-Ring.git && sudo systemctl restart puma.service"
