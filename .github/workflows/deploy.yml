@@ -1,20 +1,16 @@
 name: EC2 auto deploy
 
 on:
- push:
-   branches:
-     - main
+  push:
+    branches:
+      - main
 
 jobs:
- build:
-   runs-on: ubuntu-latest
-   steps:
-
-     - name: Deploy
-       run: |
-         # SSH接続して、git pullする
-         echo "${{ secrets.PRIVATE_KEY }}" > private_key
-         chmod 600 private_key
-         ssh -oStrictHostKeyChecking=no ${{ secrets.USER_NAME }}@${{ secrets.HOST_NAME }} -i private_key "cd Study-Ring && git pull origin main"
-
-
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy
+        run: |
+          echo "${{ secrets.PRIVATE_KEY }}" > private_key
+          chmod 600 private_key
+          ssh -oStrictHostKeyChecking=no ${{ secrets.USER_NAME }}@${{ secrets.HOST_NAME }} -i private_key "cd Study-Ring && git pull origin main && bundle install --path vendor/bundle --without test development && bundle exec rails assets:precompile RAILS_ENV=production && bundle exec rails db:migrate RAILS_ENV=production && sudo kill \$(cat tmp/pids/puma.pid)"
