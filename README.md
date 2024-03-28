@@ -45,7 +45,11 @@
 
 ## 設計書
 <!--テーマを設定・提出する時点では不要です-->
-後ほど作成予定
+ER図<br>
+https://drive.google.com/file/d/1YbNOjk2iqODRHtEFZtIFeIOHzepOcKWZ/view?usp=sharing
+
+実装機能リスト<br>
+https://docs.google.com/spreadsheets/d/1lIy5YNQd4xJz3iKBIhOiNayrisLhpOhGJ7EJrlbgVIQ/edit?usp=drive_link
 
 ## 開発環境
 - OS：Linux(CentOS)
@@ -53,13 +57,6 @@
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
-
-ER<br>
-https://drive.google.com/file/d/1YbNOjk2iqODRHtEFZtIFeIOHzepOcKWZ/view?usp=sharing
-
-実装機能リスト<br>
-https://docs.google.com/spreadsheets/d/1lIy5YNQd4xJz3iKBIhOiNayrisLhpOhGJ7EJrlbgVIQ/edit?usp=drive_link
-
 
 <!--## 使用素材-->
 <!--- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。-->
