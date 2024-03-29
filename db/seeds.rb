@@ -8,7 +8,9 @@
 
 puts "seedの実行を開始"
 
-Admin.create!(
+Model.destroy_all
+
+Admin.find_or_create_by!(
    email: 'admin@admin',
    password: 'testtest'
 )
