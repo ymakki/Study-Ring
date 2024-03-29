@@ -8,10 +8,9 @@
 
 puts "seedの実行を開始"
 
-Admin.find_or_create_by!(
-   email: 'admin@admin',
-   encrypted_password: 'testtest'
-)
+Admin.find_or_create_by!(email: 'admin@admin') do |admin|
+  admin.encrypted_password = 'testtest'
+end
 
 userA = User.find_or_create_by!(email: "ausera@example.com") do |user|
   user.name = "userA"
