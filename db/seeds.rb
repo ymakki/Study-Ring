@@ -66,7 +66,7 @@ studyC = Study.find_or_create_by!(title: "教材C") do |study|
   study.status = 2
 end
 
-Study.find_or_create_by!(title: "教材D") do |study|
+studyD = Study.find_or_create_by!(title: "教材D") do |study|
   study.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/studyD.jpg"), filename:"studyD.jpg")
   study.user = userA
   study.status = 1
