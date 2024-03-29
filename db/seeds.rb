@@ -8,14 +8,12 @@
 
 puts "seedの実行を開始"
 
-Model.destroy_all
-
 Admin.find_or_create_by!(
    email: 'admin@admin',
    password: 'testtest'
 )
 
-userA = User.find_or_create_by!(email: "usera@example.com") do |user|
+userA = User.find_or_create_by!(email: "ausera@example.com") do |user|
   user.name = "userA"
   user.password = "password"
   user.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/userA.jpg"), filename:"userA.jpg")
@@ -27,7 +25,7 @@ userA = User.find_or_create_by!(email: "usera@example.com") do |user|
   user.is_active = true
 end
 
-userB = User.find_or_create_by!(email: "userb@example.com") do |user|
+userB = User.find_or_create_by!(email: "buserb@example.com") do |user|
   user.name = "userB"
   user.password = "password"
   user.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/userB.jpg"), filename:"userB.jpg")
@@ -39,7 +37,7 @@ userB = User.find_or_create_by!(email: "userb@example.com") do |user|
   user.is_active = true
 end
 
-userC = User.find_or_create_by!(email: "userc@example.com") do |user|
+userC = User.find_or_create_by!(email: "cuserc@example.com") do |user|
   user.name = "userC"
   user.password = "password"
   user.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/userC.jpg"), filename:"userC.jpg")
