@@ -9,10 +9,10 @@
 puts "seedの実行を開始"
 
 Admin.find_or_create_by!(email: 'admin@admin') do |admin|
-  admin.encrypted_password = 'testtest'
+  admin.password = 'testtest'
 end
 
-userA = User.find_or_create_by!(email: "ausera@example.com") do |user|
+userA = User.find_or_create_by!(email: "usera@example.com") do |user|
   user.name = "userA"
   user.password = "password"
   user.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/userA.jpg"), filename:"userA.jpg")
@@ -24,7 +24,7 @@ userA = User.find_or_create_by!(email: "ausera@example.com") do |user|
   user.is_active = true
 end
 
-userB = User.find_or_create_by!(email: "buserb@example.com") do |user|
+userB = User.find_or_create_by!(email: "userb@example.com") do |user|
   user.name = "userB"
   user.password = "password"
   user.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/userB.jpg"), filename:"userB.jpg")
@@ -36,7 +36,7 @@ userB = User.find_or_create_by!(email: "buserb@example.com") do |user|
   user.is_active = true
 end
 
-userC = User.find_or_create_by!(email: "cuserc@example.com") do |user|
+userC = User.find_or_create_by!(email: "userc@example.com") do |user|
   user.name = "userC"
   user.password = "password"
   user.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/userC.jpg"), filename:"userC.jpg")
@@ -66,7 +66,7 @@ studyC = Study.find_or_create_by!(title: "教材C") do |study|
   study.status = 2
 end
 
-studyD = Study.find_or_create_by!(title: "教材D") do |study|
+Study.find_or_create_by!(title: "教材D") do |study|
   study.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/studyD.jpg"), filename:"studyD.jpg")
   study.user = userA
   study.status = 1
@@ -90,20 +90,11 @@ recordC = Record.find_or_create_by!(study_time: 120, start_time: Time.zone.now) 
   record.study = studyC
 end
 
-Favorite.create! do |favorite|
-  favorite.user = userB
-  favorite.record = recordA
-end
+Favorite.find_or_create_by!(user: userB, record: recordA)
 
-Favorite.create! do |favorite|
-  favorite.user = userA
-  favorite.record = recordB
-end
+Favorite.find_or_create_by!(user: userA, record: recordB)
 
-Favorite.create! do |favorite|
-  favorite.user = userB
-  favorite.record = recordC
-end
+Favorite.find_or_create_by!(user: userB, record: recordC)
 
 StudyComment.find_or_create_by!(comment: "頑張ってください!") do |study_comment|
   study_comment.user = userB
@@ -135,20 +126,11 @@ study_reviewC = StudyReview.find_or_create_by!(title: "ちょっと物足りな�
   study_review.study = studyC
 end
 
-ReviewFavorite.create! do |review_favorite|
-  review_favorite.user = userB
-  review_favorite.study_review = study_reviewA
-end
+ReviewFavorite.find_or_create_by!(user: userB, study_review: study_reviewA)
 
-ReviewFavorite.create! do |review_favorite|
-  review_favorite.user = userA
-  review_favorite.study_review = study_reviewB
-end
+ReviewFavorite.find_or_create_by!(user: userA, study_review: study_reviewB)
 
-ReviewFavorite.create! do |review_favorite|
-  review_favorite.user = userB
-  review_favorite.study_review = study_reviewC
-end
+ReviewFavorite.find_or_create_by!(user: userB, study_review: study_reviewC)
 
 ReviewComment.find_or_create_by!(comment: "これいいですよね！") do |review_comment|
   review_comment.user = userB
@@ -165,55 +147,25 @@ ReviewComment.find_or_create_by!(comment: "とても分かりやすかったで�
   review_comment.study_review = study_reviewC
 end
 
-Timeline.create! do |timeline|
-  timeline.record = recordA
-  timeline.user_id = recordA.user.id
-end
+Timeline.find_or_create_by!(record: recordA, user_id: recordA.user.id)
 
-Timeline.create! do |timeline|
-  timeline.record = recordB
-  timeline.user_id = recordB.user.id
-end
+Timeline.find_or_create_by!(record: recordB, user_id: recordB.user.id)
 
-Timeline.create! do |timeline|
-  timeline.record = recordC
-  timeline.user_id = recordC.user.id
-end
+Timeline.find_or_create_by!(record: recordC, user_id: recordC.user.id)
 
-Timeline.create! do |timeline|
-  timeline.study_review = study_reviewA
-  timeline.user_id = study_reviewA.user.id
-end
+Timeline.find_or_create_by!(study_review: study_reviewA, user_id: study_reviewA.user.id)
 
-Timeline.create! do |timeline|
-  timeline.study_review = study_reviewB
-  timeline.user_id = study_reviewB.user.id
-end
+Timeline.find_or_create_by!(study_review: study_reviewB, user_id: study_reviewB.user.id)
 
-Timeline.create! do |timeline|
-  timeline.study_review = study_reviewC
-  timeline.user_id = study_reviewC.user.id
-end
+Timeline.find_or_create_by!(study_review: study_reviewC, user_id: study_reviewC.user.id)
 
-Relationship.create! do |relationship|
-  relationship.follower = userB
-  relationship.followed = userA
-end
+Relationship.find_or_create_by!(follower: userB, followed: userA)
 
-Relationship.create! do |relationship|
-  relationship.follower = userC
-  relationship.followed = userA
-end
+Relationship.find_or_create_by!(follower: userC, followed: userA)
 
-Relationship.create! do |relationship|
-  relationship.follower = userA
-  relationship.followed = userB
-end
+Relationship.find_or_create_by!(follower: userA, followed: userB)
 
-Relationship.create! do |relationship|
-  relationship.follower = userA
-  relationship.followed = userC
-end
+Relationship.find_or_create_by!(follower: userA, followed: userC)
 
 tagA = Tag.find_or_create_by!(name: "Ruby") do |tag|
   tag.user = userA
@@ -227,47 +179,23 @@ tagC = Tag.find_or_create_by!(name: "Python") do |tag|
   tag.user = userC
 end
 
-StudyTagging.create! do |study_tagging|
-  study_tagging.study = studyA
-  study_tagging.tag = tagA
-end
+StudyTagging.find_or_create_by!(study: studyA, tag: tagA)
 
-StudyTagging.create! do |study_tagging|
-  study_tagging.study = studyB
-  study_tagging.tag = tagB
-end
+StudyTagging.find_or_create_by!(study: studyB, tag: tagB)
 
-StudyTagging.create! do |study_tagging|
-  study_tagging.study = studyC
-  study_tagging.tag = tagC
-end
+StudyTagging.find_or_create_by!(study: studyC, tag: tagC)
 
-UserTagging.create! do |user_tagging|
-  user_tagging.user = userA
-  user_tagging.tag = tagA
-end
+UserTagging.find_or_create_by!(user: userA, tag: tagA)
 
-UserTagging.create! do |user_tagging|
-  user_tagging.user = userB
-  user_tagging.tag = tagB
-end
+UserTagging.find_or_create_by!(user: userB, tag: tagB)
 
-UserTagging.create! do |user_tagging|
-  user_tagging.user = userC
-  user_tagging.tag = tagC
-end
+UserTagging.find_or_create_by!(user: userC, tag: tagC)
 
-room1 = Room.create!
+room1 = Room.find_or_create_by!(id: 1)
 
-Entry.create! do |entry|
-  entry.user = userA
-  entry.room = room1
-end
+Entry.find_or_create_by!(user: userA, room: room1)
 
-Entry.create! do |entry|
-  entry.user = userB
-  entry.room = room1
-end
+Entry.find_or_create_by!(user: userB, room: room1)
 
 Message.find_or_create_by!(content: "よろしくお願いします!") do |message|
   message.user = userA
